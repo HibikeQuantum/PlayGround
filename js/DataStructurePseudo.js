@@ -31,61 +31,7 @@ myQueue.dequeue("B"); // A B
 console.log(myQueue.enqueue());  // A;
 console.log(myQueue.qLength());  // 1;
 
-var temp = new Vertex(input);
-temp.next = head;
-head = temp;
-
-
-head = temp
-//추가
-Vertex
-temp = new Vertex(input)
-temp.next = head
-head = temp
-//삭제
-Vertex
-temp1 = head
-while (--k != 0)
-  temp1 = temp1.next
-Vertex
-temp2 = temp1.next
-Vertex
-newVertex = new Vertex(input)
-temp1.next = newVertex
-newVertex.next = temp2
-
-
-class LinkedList
-
-(item)
-{
-  constructor()
-  {
-    this.data = item
-  }
-  data;
-  nextNode;
-
-  find(num)
-  {
-    return dListAddressfinde
-  }
-
-  input(item, 넣고
-  싶은
-  인덱스
-)
-  {
-    // NewList = new LinkedList
-    // PrevList = find(넣고 싶은 인덱스)
-    // NewList.nextnode = PrevList.nextnode
-    // PrevList.nextnode = NewList
-  }
-
-  delete (item)
-  {
-  }
-}
+class LinkedList {}
 
 class Node {
   data;

@@ -8,11 +8,11 @@ function f() {
     //작은 순서대로 배열에 삽입
     while (i <= middle && j <= n) {
       if (a[i] <= a[j]) {
-        sorted[k] = a[i]
-        i++
+        sorted[k] = a[i];
+        i++;
       } else {
-        sorted[k] = a[j]
-        j++
+        sorted[k] = a[j];
+        j++;
       }
       k++;
     }
@@ -45,7 +45,7 @@ function f() {
     }
   }
 
-  var array = [7,6,5,8,3,5,9,1];
+  var array = [7, 6, 5, 8, 3, 5, 9, 1];
   var number = 8;
   mergeSort(array, 0, number - 1);
 
@@ -53,4 +53,5 @@ function f() {
     console.log(array[key]);
   }
 }
+
 f();
