@@ -421,8 +421,8 @@ var obj2 = {
   aaa : "obj2",
   method: obj.fn
 };
-console.log( obj2.method() === "obj2")  // this 는 자기를 실행시킨 obj2. 이걸 들고 있다.
-console.log( obj.fn() === "obj")  // this 는 자기를 실행시킨 obj를 가르키고 있다. 즉. 실행환경! this!
+console.log( obj2.method() === "obj2"); // this 는 자기를 실행시킨 obj2. 이걸 들고 있다.
+console.log( obj.fn() === "obj"); // this 는 자기를 실행시킨 obj를 가르키고 있다. 즉. 실행환경! this!
 
 function identify() {
   //let returning = 'WHO AMI'

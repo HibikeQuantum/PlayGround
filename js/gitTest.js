@@ -17,7 +17,11 @@ myTree.checkBody();
 const disorderTree = new Tree("왼팔");
 disorderTree.checkBody();
 
-
+class Graph {
+  constructor(x){
+    this.x = x;
+  }
+}
 /*
 class AnswerVer {
   constructor(value) {
