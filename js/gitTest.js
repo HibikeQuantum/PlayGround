@@ -21,7 +21,13 @@ class Graph {
   constructor(x){
     this.x = x;
   }
+  push(x){
+    console.log(`{$x}가 우리의 친구가 됬어요.`);
+  }
 }
+
+
+
 /*
 class AnswerVer {
   constructor(value) {
