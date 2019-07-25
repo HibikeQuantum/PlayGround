@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title> this is title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--  <link rel="manifest" href="site.webmanifest">  -->
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/6.1.4/mocha.min.css">
+  <meta name="theme-color" content="#fafafa">
+  <!--  start  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/6.1.4/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js"></script>
+  <!--  end -->
+</head>
+<body>
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+  your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<p align="">정신을 집중해서 할때 하고 쉴때 쉬자</p>
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="js/plugins.js"></script>
+
+
+<!-- 실제 테스트 대상 -->
+<script src="js/testFunction.js"></script>
+<!--  test unit for mocha -->
+<div id="mocha"></div>
+<script>
+  mocha.setup({
+    ui: 'bdd',
+    reporter: 'html'
+  })
+</script>
+<script src="./js/operator.js"></script>
+<script src="./test/test.js"></script>
+<script>
+  mocha.checkLeaks();
+  mocha.run();
+</script>
+<!--  test unit for mocha -->
+
+</body>
+</html>
