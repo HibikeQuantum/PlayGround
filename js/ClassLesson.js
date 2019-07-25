@@ -48,3 +48,5 @@ const dreamAnswer = new FirmAnswerVer(7);
 console.log(dreamAnswer.get());
 const realAnswer = new FirmAnswerVer(747);
 console.log(realAnswer.get());
+
+// todo: 내용
