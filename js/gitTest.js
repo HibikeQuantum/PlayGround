@@ -21,6 +21,9 @@ class Graph {
   constructor(x){
     this.x = x;
   }
+  newPush(){
+    console.log("this is log");
+  }
 }
 /*
 class AnswerVer {
