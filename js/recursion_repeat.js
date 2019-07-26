@@ -28,9 +28,6 @@ var s4 = [
 ];
 
 const stringifyJSON = (obj) => {
-  // console.log("진입: ", obj);
-  //불린, null, 숫자는 return
-  //문자열은 문자열 유지해서 return
   if (typeof obj === "number" || obj === null || typeof obj === "boolean") {
     return '' + obj;
   } else if (typeof obj === "string") {
@@ -39,7 +36,7 @@ const stringifyJSON = (obj) => {
   var myArr = [];
   if (Array.isArray(obj)) {
     if (Array.length === 0) {
-      return '[]'
+      return '[]';
     } else {
       for (let key in obj) {
         if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string") {
@@ -56,20 +53,27 @@ const stringifyJSON = (obj) => {
       return '{}'
     } else {
       for (let key in obj) {
-        console.log("key: ",key,"  robj[key]: ", obj[key])
+        //console.log("key: ",key,"  robj[key]: ", obj[key])
         if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string") {
-          myObj.push(stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
+          myObj.push( stringifyJSON(key) + ":" + stringifyJSON(obj[key] ));
         } else if ( typeof obj[key] === 'object') {
-          myObj.push(stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
+          myObj.push( stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
         }
       }
-      return '{' + {myObj} + '}';
+      return '{' + myObj + '}';
     }
   }
 };
 
 
 console.log(stringifyJSON(s1), "1단계");
+console.log(JSON.stringify(s1), "정답");
+
 console.log(stringifyJSON(s2), "2단계");
+console.log(JSON.stringify(s2), "정답");
+
 console.log(stringifyJSON(s3), "3단계");
+console.log(JSON.stringify(s3), "정답");
+
 console.log(stringifyJSON(s4), "4단계");
+console.log(JSON.stringify(s4), "정답");
