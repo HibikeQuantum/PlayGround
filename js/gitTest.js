@@ -11,28 +11,8 @@ class Tree {
   }
 }
 
-const myTree = new Tree("왼팔", "오른팔");
-myTree.checkBody();
+const goodTree = new Tree("왼팔", "오른팔");
+goodTree.checkBody();
 
 const disorderTree = new Tree("왼팔");
 disorderTree.checkBody();
-
-class Graph {
-  constructor(x){
-    this.x = x;
-  }
-  newPush(){
-    console.log("this is log");
-  }
-}
-/*
-class AnswerVer {
-  constructor(value) {
-    this.value = value;
-  }
-
-  get() {
-    return this.value;
-  }
-}
- */
