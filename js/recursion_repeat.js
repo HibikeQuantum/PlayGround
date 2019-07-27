@@ -26,6 +26,11 @@ var s4 = [
   [{"a": "b"}, {"c": "d"}],
   {"a": [], "c": {}, "b": true}
 ];
+var s5 = [
+  {"me": function (){console.log('천안문 민주화')}},
+  undefined,
+  "nul"
+];
 
 const stringifyJSON = (obj) => {
   if (typeof obj === "number" || obj === null || typeof obj === "boolean") {
@@ -39,9 +44,7 @@ const stringifyJSON = (obj) => {
       return '[]';
     } else {
       for (let key in obj) {
-        if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string") {
-          myArr.push(stringifyJSON(obj[key]));
-        } else if (typeof obj[key] === "object"){
+        if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string" || typeof obj[key] === "object") {
           myArr.push(stringifyJSON(obj[key]));
         }
       }
@@ -53,18 +56,14 @@ const stringifyJSON = (obj) => {
       return '{}'
     } else {
       for (let key in obj) {
-        //console.log("key: ",key,"  robj[key]: ", obj[key])
-        if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string") {
-          myObj.push( stringifyJSON(key) + ":" + stringifyJSON(obj[key] ));
-        } else if ( typeof obj[key] === 'object') {
-          myObj.push( stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
+        if (typeof obj[key] === "number" || obj[key] === null || typeof obj[key] === "boolean" || typeof obj[key] === "string" || typeof obj[key] === 'object') {
+          myObj.push(stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
         }
       }
       return '{' + myObj + '}';
     }
   }
 };
-
 
 console.log(stringifyJSON(s1), "1단계");
 console.log(JSON.stringify(s1), "정답");
@@ -77,3 +76,6 @@ console.log(JSON.stringify(s3), "정답");
 
 console.log(stringifyJSON(s4), "4단계");
 console.log(JSON.stringify(s4), "정답");
+
+console.log(stringifyJSON(s5), "5단계");
+console.log(JSON.stringify(s5), "정답");
