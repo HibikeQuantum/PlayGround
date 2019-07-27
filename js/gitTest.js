@@ -11,5 +11,8 @@ class Tree {
   }
 }
 
-const goodTree = new Tree("왼팔", "오른팔");
-goodTree.checkBody();
+const myTree = new Tree("왼팔", "오른팔");
+myTree.checkBody();
+
+const disorderTree = new Tree("왼팔");
+disorderTree.checkBody();
