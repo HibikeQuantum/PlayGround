@@ -17,6 +17,6 @@ myTree.checkBody();
 const disorderTree = new Tree("왼팔");
 disorderTree.checkBody();
 
-// add some
+// 수정될 로직 
 
 
