@@ -18,3 +18,5 @@ const disorderTree = new Tree("왼팔");
 disorderTree.checkBody();
 
 // add some
+
+
