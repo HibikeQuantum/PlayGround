@@ -1,0 +1,62 @@
+body,html {
+  background-color: grey;
+  height: 94%;
+  width: 97%;
+  position: relative;
+}
+.content-table {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: gainsboro;
+  position: relative;
+}
+
+.upside {
+  background: black;
+  display: block;
+
+  height: 2em;
+  padding: 1em;
+
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 5%;
+  min-height: 5%;
+  position: relative;
+}
+
+.downside {
+  background-color: darkred;
+  display: block;
+
+  max-height: 95%;
+  min-height: 95%;
+  min-width: 100%;
+  max-width: 100%;
+  padding: 1em;
+  position: relative;
+}
+
+.node {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 100px;
+  background: red;
+  position: relative;
+}
+
+a:link, a:active, a:visited {
+  height: 20px;
+  color: yellow;
+  float: right;
+  padding: 0.5em;
+}
+
+.graph {
+  height: 1em;
+  width: 1em;
+  color-adjust: economy;
+  color: darkblue;
+}

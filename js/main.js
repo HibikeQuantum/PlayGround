@@ -241,8 +241,8 @@ akuma.selfIntro();
 function deathBattle(A, B) {
   let result = undefined;
   while (!result) {
-    A.hp = A.hp - B.attack;
-    B.hp = B.hp - A.attack;
+    A.hp = A.hp - B.eat;
+    B.hp = B.hp - A.eat;
     if (A.hp < 0) {
       result = B.name + "의 승리!"
     } else if (B.hp < 0) {
