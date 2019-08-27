@@ -1,9 +1,10 @@
 const e = React.createElement;
 
+// eslint-disable-next-line no-undef
 class LikeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {liked: false};
+    this.state = { liked: false };
   }
 
   render() {
@@ -12,12 +13,12 @@ class LikeButton extends React.Component {
     }
 
     return (
-      <button onClick={() => this.setState({liked: true})}>
+      <button onClick={() => this.setState({ liked: true })}>
         Like
       </button>
     );
   }
 }
 
-const domCotainer = document.querySelector('#Like_button_container');
-ReactDOM.render(e(LikeButton), domCotainer);
+const domContainer = document.querySelector('#like_button_container');
+ReactDOM.render(<LikeButton/>, domContainer);
