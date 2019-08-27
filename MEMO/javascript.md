@@ -11,10 +11,10 @@ syntax: [블로그](https://medium.com/@jadetypehoon)
 
 - - -
 ## 2장 object
-1. object has property, function at same time.
-2. all object of JS are Object.
-3. object 프로퍼티는 delete foo.name; 같은 방식으로 삭제가 가능하다. (iterater 작업할때는 자제)
-4. 메서드와 함수의 차이 메서드: 객체에게 동작을 수행하라고 하는것 객체에게 동작을 수행하라고 명령하지 않아도 된다. (왜냐하면 함수 자체가 함수객체) foo.sum 을 하면 프로퍼티로서의 정보만 반환하지만 foo.sum()을 하면 동작을 지시한것이다.
+* 모든 객체는 객체다.
+* delete 키워드로 삭제를 할 수 있다. // iterater 작업시 문제가 생길 수도 있다.
+* 메서드와 함수의 차이 ?
+: 메서드 => 객체에게 동작을 수행하라고 하는것 객체에게 동작을 수행하라고 명령하지 않아도 된다. (왜냐하면 함수 자체가 함수객체) foo.sum 을 하면 프로퍼티로서의 정보만 반환하지만 foo.sum()을 하면 동작을 지시한것이다.
 5. Built-in Object : 많이 쓰는 기능들을 미리 만들어둔 오브젝트 (= global Objects); new Boolean (123) 은 new Object (true) 와 같은 값을 반환한다.
 6. Native ObjectHost Object(사용자 정의 객체)
 7. JSON 방식, Constructor 방식
