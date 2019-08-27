@@ -2,8 +2,9 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 
-
-
+# hub BLOG
+MEMO/Private.md
+MEMO/IM14.md
 # Floobits
 .idea/
 .floo
