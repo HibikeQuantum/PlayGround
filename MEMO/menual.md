@@ -1,7 +1,6 @@
 # Manual for this NOTE
 
-CMD + SHIFT + P : 팔레트 ( enhanced 키워드 사용해서 마크다운 추가기능 사용 )
-CMD + SHIFT + M : Toggle preVIEW
+
 
 *single asterisks*
 _single underscores_
