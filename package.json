@@ -12,7 +12,8 @@
   "author": "kth",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "redux": "^4.0.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
