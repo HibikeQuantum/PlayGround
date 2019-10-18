@@ -1,5 +1,7 @@
 # Session
 
+> ~~삭선은 이렇게 쓰느니라~~ 맹자
+
 ##How to ASK
 - 질문하기 위해 글로 적는게 문제를 분해하는 방법이다.
 - 좋은 질문을 만들어내는게 능력.
@@ -37,97 +39,23 @@ var obj {
 * 객체가 어떻게 되든 c가 함수스코프가 되고 *this* 는 *obj* 가 된다. 그래서 메소드호출은 언제나 객체가 this가 된다. 대신 객체 안이라도 => 익명함수가 되면 스코프가 생겨나지 않고 생겨나지 않으면 기본은 window.
 * 즉 다르게 말하면 애로우를 작성하면 함수가 작성된 시점의 스코프로 고정된다. 안바뀐다. 애로우로 안하면 실행되는 시점에서 함수스코프다 >> 객체는 스코프를 만들지 않는다. 그걸 생각해라.
 
-<< git 명령어 모음>>
-git checkout - b <name>			//브랜치 만들기
-//브랜치 만들기
-git log //이력보기
-git reset --soft <seq>
-
-git reset HEAD [file] // add 취소 , 디폴트 전체 git add 취소
-git commit --amend // 코멘트 변경
-
-git reset --hard HEAD	// 파일 내용까지 되돌림.
-git pull
-git commit -m —no-verify
-
-<<.gitignore>>
-git rm -r --cached .
-git add .
-git commit -m "fixed untracked files”
-
-
-// 원격 저장소와 로컬 저장소에 있는 파일을 삭제한다.
-$ git rm [File Name]
-// 원격 저장소에 있는 파일을 삭제한다. 로컬 저장소에 있는 파일은 삭제하지 않는다.
-$ git rm --cached [File Name]
-
-git log --graph --decorate --oneline	//그래프로 확인
-
-//git push origin +master
-pull 하라는 메시지에 강제로 푸시.
-
-git branch bugfix
-git checkout bugfix		//버그픽스로 작업 이미지 결정
-git branch -a 			//브랜치 종류와 현재 사용중인 브랜치 확인
-
-git checkout master^	마스터 위에껄 브랜치로 선택
-
-
-git remote add pair < Repo URL for pairs fork >
-git remote -v
-
-git push origin master( or other branch name )
-git pull pair master ( or other branch name )
-
-git checkout . 	[파일명 가능]
-
-// 로컬이 더 옛날이고 덮어 씌우고 싶을때.
-git push origin master --force
-
-git add -A 	[디렉토리 무시하고 애드
-git add . [디렉토리 기반  애드]
 
 ##chatterBOX
 * SQL 공격에 사용될 수 있는 패턴 ```<img src="image.gif" onerror="prompt('으아')">```
 * innerHTML을 사용하지 않도록 한다. ContentsText가 브라우저에서 성능도 좋으니까 그거 쓰자.
 
 
-< 자료구조 >
-취업면접때 쓰는 가장 첫 생각의 단위가 자료구조
+##Data Structure
+* 알고리즘을 생각할때 첫 생각은 자료구조로 시작한다.
+* 미로찾기에 stack을 쓴다. 막히면 pop 하다보면 성공한 방법만 나온다.
+* 자바스크립트 array는 linkedList로 만들어짐
+* 결국 자료구조는 알고리즘을 구성하는 방법이자 데이터의 형태이기도 하다.
+* Graph를 사용하면 엣지의 가중치에 따른 요금차이 구현이 가능.
 
-미로찾기에 stack을 쓴다. 막히면 pop 하다보면 성공한 방법만 ㄴtack에 나믄ㄴ다.
+##Instance 가 가능한 객체( new가 되는것)만 construct 를 가진다. 예를 들어  math는 construct가 없다. 계산만을 위한거다.
+* 부모의 컨스트럭터를 실행하는게 super 키워드 → 명시적 실행. ES6 부터는 없어도 실행된다. 바벨 옵션에 따라 없어도 알아서 수행된다. create-react-app에는 옵션이 적용되어 있다.
 
-자바스크립트 array는 linkedList로 만들어짐
-
-결국 자료구조는 알고리즘을 구성하는 방법이자 데이터의 형태이기ㄹ도 하다.
-
-그래프> 가중치에 따른 요금차이 구현이 가능.
-
-
-왜 O(logN)인가? 바이너리트리가 한쪽으로 솔린모양일 경우 List와 다름없어서 N
-
-
-<이건 기본 외워>
-외부함수의 변수에 접근할 수 있는 !내부 함수!가 => 클로져
-=== => 주소를 비교한다.
-참조타입을 args로 넘겨주면 args 조작이 원본의 변경으로 이어진다.
-
-
-<페어프로그래밍>
-막혀도 끝까지 같이하세요 목표는 제출이 아니라 페어프로그래밍
-
-
-<프로토타입>
-1. 프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다.
- 예를 들어 foo = new Person() foo 객체를 생성한 객체는 Person() 생성자 함수이다 foo 객체의 프로토타입 객체는 Person.prototype [설계도]
-따라서 프로토타입 객체 Person.prototype의 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다. [자궁]
-
-
-instantiation 가능한 객체만 construct 를 가진다. ex math
-
-부모의 컨스트럭터를 실행하는게 super(name) -> 명시적 실행. 없어도 알아서 수행된다.ES6
-
-
+##프로토타입 표현
 __proto__ 은 [[prototype]]와 같은거. 표기방식이 다른거다. 읽는건 프로토타입체인,프로토링크
 super 키워드로 부모에 접근
 git rm -r --cached .
@@ -293,4 +221,4 @@ object create를 하면 (arg)의 객체를 __proto__ 로 가르치는 (생성자
 * 데모사이트 만들어놓고 사전예약처럼 이벤트 받아서 처리한다. 관심을 확인하는게 창업의 첫순서. 요즘은 이렇게 사업이 변했다.
 * 수익구조가 심플해야한다. 간단하게 설명할 수있어야 좋은 아이디어. 위대한 아이디어는 설명해도 모른다. 잘되는 사람은 자신을 매니페스트하는데 두려움이 없다. 계속 노출시킨다. 잘되는 사업도 그렇다. 노출시키고 빠르게 피드백을 받아서 개선시킨다. 빅피쳐보다는 고객의 관심이 답이다.
 * 어찌되든 사이드프로젝트는 하고 공개해야한다. 그리고 남들이 쓰게해야한다. 개발주기는 짧게 해야한다.
-* 제너랄한걸 노려도 되고 니치한걸 노려도 되고 돈을 안벌어도 인수되는 방법도 있다. 
+* 제너랄한걸 노려도 되고 니치한걸 노려도 되고 돈을 안벌어도 인수되는 방법도 있다.

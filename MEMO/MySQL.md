@@ -1,6 +1,6 @@
 ##MYSQL
 내 MAC에 설치환경
-mySQL  // Ver 8.0.17 for osx10.14 on x86_64 (Homebrew)
+
 
 #### 로컬 켜고 끄기
 - 서비스

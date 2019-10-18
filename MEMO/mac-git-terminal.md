@@ -14,7 +14,15 @@
 * iTerm : command 클릭으로 파일 열 수 있음
 * command + K:  버퍼 삭제
 * open . : 현재 디렉토리 파인더로 열기
+- - -
+## install library
+#### 배쉬꾸미기
+~/.bash_it/install.sh
 
+bash에 theme입히기
+source ~/.bashrc
+
+- - -
 ##ffmpeg
  음원파일 자르기
  `ffmpeg -ss 5 -i example.mp3 -acodec copy output.mp3`
