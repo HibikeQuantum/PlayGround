@@ -1,5 +1,8 @@
 # [XOS, Terminal, Git]
 - - -
+##medium
+CTRL + COMMAND + 6 - 코드입력
+
 
 ## XOS 계통 명령어
 
