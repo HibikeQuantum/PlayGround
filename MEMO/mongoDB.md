@@ -54,7 +54,10 @@ db.createUser({
 ```
 db.students.drop()
 ```
-
+- 지우기
+```
+db.comments.remove({})
+```
 ##Daemon management
 
 ####켜고 끄기
