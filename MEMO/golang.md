@@ -41,6 +41,7 @@ float32 float64 complex64 complex128
 
 ##### JS 와 공통점
 - 백틱(\`)과 (")은 동일하게 문자열을 표기함
+- break, continue, goto (c)
 
 ##### JS 다른점
 - 변수를 선언하면서 초기값을 지정하지 않으면, Zero Value를 기본적으로 할당한다. `0`, `False`, `""`
@@ -62,4 +63,14 @@ if val := i * 2; val < max {
 ```
 - 위와 같은 방법으로 조건을 검사하면서 순회작업 가능
 - switch 의 문법이 기타 언어와는 편이하게 구현되어 있으며 if 대용으로 사용가능 [🔗LINK](http://golang.site/go/article/7-Go-%EC%A1%B0%EA%B1%B4%EB%AC%B8)
-- 표현식을 집어넣을 수 있고 자동으로 break 가입력된다. 다음 케이스를 강제로 실행하려면 fallthrough
+- 표현식을 집어넣을 수 있고 자동으로 break 가입력된다. 다음 케이스를 강제로 실행하려면 fallthrough 를 쓴다.
+
+- for 문으로 반복문을 처리한다.
+```
+names := []string{'따효니','방송천재','바보'}
+
+for index, name := range names {
+    println(index, name)
+}
+```
+- 이렇게 range를 지원 python의 forEach 를 닮았다.
