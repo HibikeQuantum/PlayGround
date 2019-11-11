@@ -67,4 +67,28 @@ func main() {
   for index, name := range names {
     println(index, name)
   }
+
+  a1 := [3]int{1, 2, 3}
+  b1 := a1
+  b1[1] = 100
+
+  fmt.Println(a1)
+  fmt.Println(b1)
+
+  sum := func(n ...int) int {
+    s := 0
+    for _, v := range n {
+      s += v
+    }
+    return s
+  }
+  result := sum(1, 2, 3)
+  println(result)
+
+  var a2 = [...]int{1, 2, 3}
+  println(a2[2])
+  //초기화하지 않은 인덱스를 호출하면 "invalid array index 2 (out of bounds for 2-element array)"
+  for _, v := range a2 {
+    println(v)
+  }
 }
