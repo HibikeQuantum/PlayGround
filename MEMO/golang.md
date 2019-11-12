@@ -163,3 +163,54 @@ println(a[1][2])
 #### 속성
 - 배열의 크기는 Type의 일부분으로서
 `reflect.TypeOf([3]int{}) == reflect.TypeOf([5]int{}) // False`
+이렇게 크기가 다르면 다른 취급이다.
+- `var a1 = [3]int{1, 2, 3}` C처럼 크기를 할당하여 사용한다.
+
+##배열
+#### 속성
+- 크기를 지정하지 않고 사용가능, 중간을 잘라내는 등의 메서드 지원
+```
+var a []int        //슬라이스 변수 선언
+a = []int{1, 2, 3} //슬라이스에 리터럴값 지정
+a[1] = 10
+```
+- 내장함수 make()를 활용하여 슬라이스를 만들 수도 있다. (인자타입, 길이, 캐파)
+```
+s := make([]int, 5, 10)
+println(len(s), cap(s)) // len 5, cap 10
+```
+- 크기와 용량이 지정되지 않은 슬라이스는 Nil slice라 하고 Nil 과 동일하게 취급
+###### 잘라내기
+- 잘라내기를 할때 왼쪽은 inclusive, 오른쪽은 exclusive
+```
+s := []int{0, 1, 2, 3, 4, 5}
+s = s[2:5]  
+fmt.Println(s) //2,3,4 출력
+```
+-  4까지는 [:5], 인덱스 2부터 마지막까지 [2:] 이렇게 표현한다.
+###### 붙이기
+- 필요에 따라 확장되는 성격을 활용하는 APPEND
+```
+s := []int{0, 1}
+s = append(s, 2)       // 0, 1, 2
+s = append(s, 3, 4, 5) // 0,1,2,3,4,5
+```
+- 확장할때 len은 입력된 값만큼 capacity는 현재 cap의 2배만큼 늘어나게 된다. 내부적으로는 cap을 확장한 새로운 slice를 생성하고 현재 slice를 copy하는 방식으로 진행된다.
+####### 병합
+- append 안에 두가지 슬라이스를 넣으면 병합이 된다.
+```
+sliceA := []int{1, 2, 3}
+    sliceB := []int{4, 5, 6}
+
+    sliceA = append(sliceA, sliceB...)
+    //sliceA = append(sliceA, 4, 5, 6)
+```
+- sliceB... (ellipsis, 일리시스)를 하면 해당 내용-컬렉션-으로 치환한다. (여기선 4,5,6)
+- __copy__ 명령어를 활용할 수도 있다. 이때 실제 데이터들이 복사되는게 아니란걸 주의. 슬라이스는 데이터에 대한 포인터일 뿐이므로 복사의 복잡도는 낮다.
+```
+source := []int{0, 1, 2}
+target := make([]int, len(source), cap(source)*2)
+copy(target, source)
+fmt.Println(target)  // [0 1 2 ] 출력
+println(len(target), cap(target)) // 3, 6 출력
+```

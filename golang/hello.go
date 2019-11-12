@@ -91,4 +91,35 @@ func main() {
   for _, v := range a2 {
     println(v)
   }
+
+  println("___ 12일 파트 ___");
+  // len=0, cap=3 인 슬라이스
+  sliceA := make([]int, 0, 3)
+
+  // 계속 한 요소씩 추가
+  for i := 1; i <= 15; i++ {
+    sliceA = append(sliceA, i)
+    // 슬라이스 길이와 용량 확인
+    fmt.Println(len(sliceA), cap(sliceA))
+  }
+
+  fmt.Println(sliceA) // 1 부터 15 까지 숫자 출력
+
+  sliceA1 := []int{1, 2, 3}
+  sliceB := []int{4, 5, 6}
+
+  sliceA1 = append(sliceA1, sliceB...)
+  fmt.Println(sliceA1)
+
+  //sliceA = append(sliceA, 4, 5, 6)
+
+  var myMap map[int]string
+  fmt.Println(myMap)
+  myMap[0] = "a"
+  fmt.Println(myMap)
+
+
+  println("___ 13일 파트 ___")
+
+
 }
