@@ -1,4 +1,7 @@
 #Go Lang
+---
+#*prep*
+---
 ##셋팅
 ####툴
 - IDE: goland
@@ -149,16 +152,6 @@ println(a[1][2])
 ```
 
 ---
-## 관리기법
-####package
-- 패키지명이 __main__ 인 경우는 특별하게 취급하고 excutable 프로그램으로 만든다. (엔트리포인트)
-- 패키지는 함수, 구조체, 인터페이스, 메서드으로 구성.
-- 이름(Identifier)이 첫문자를 대문자로 시작하면 이는 → public 으로 사용
-- 이름이 소문자로 시작하면 이는 non-public → 패키지 내부에서만 사용
-- 패키지내부에 __init__ 이름으로된 func는 패키지가 로드될때 자동으로 실행
-- alias 호출을 통해 이름을 지정하고 콜을 컨트롤 할 수 있다.
-- 사이즈가 큰 패키지의 경우 `go install`명령어를 통해 라이브러리를 cached한 상태로 관리할 수 있다.
-
 ##배열
 #### 속성
 - 배열의 크기는 Type의 일부분으로서
@@ -206,7 +199,7 @@ sliceA := []int{1, 2, 3}
     //sliceA = append(sliceA, 4, 5, 6)
 ```
 - sliceB... (ellipsis, 일리시스)를 하면 해당 내용-컬렉션-으로 치환한다. (여기선 4,5,6)
-- __copy__ 명령어를 활용할 수도 있다. 이때 실제 데이터들이 복사되는게 아니란걸 주의. 슬라이스는 데이터에 대한 포인터일 뿐이므로 복사의 복잡도는 낮다.
+- __copy__ 명령어를 활용할 수도 있다. 이때 실제 데이터들이 복사되는게 아니란걸 주의. 슬라이스는 데이터에 대한 포인터를 가지고 있을 뿐이다. 때문에 이런 작업의 시간 복잡도는 낮다. (배열포인터로부터 시작해서 len까지를 데이터로 취급한다)
 ```
 source := []int{0, 1, 2}
 target := make([]int, len(source), cap(source)*2)
@@ -214,3 +207,81 @@ copy(target, source)
 fmt.Println(target)  // [0 1 2 ] 출력
 println(len(target), cap(target)) // 3, 6 출력
 ```
+---
+## Map 맵
+#### 개요
+- 키에 대응하는 값을 구현해놓은 자료구조
+`var idMap map[int]string`
+- 이렇게 구현을 해놓으면 중간이 키의 타입, 마지막이 밸류의 타입
+- 초기화가 되지않은 맵은 Nil Map 이라고 하며 값을 쓸 수 없다. (panic: assignment to entry in nil map
+)에러 발생
+`idMap = make(map[int]string)` 초기화를 통해 사용
+- 또는 리터럴하게 값을 할당하여 사용할 수도 있다.
+```
+tickers := map[string]string{
+    "GOOG": "Google Inc",
+    "MSFT": "Microsoft",
+    "FB":   "FaceBook",
+}
+```
+#### 할당 및 삭제
+- `m[901] = "Apple"` 이렇게 초기화된 내용을 사용할 수 있다.
+- `delete(myMap, 777)` 맵의 특정키를 삭제하기, 삭제에 대해 없는 키값이면 Nil, value타입인 경우에는 zero를 리턴한다.
+
+#### 키확인
+`val, exists := tickers["MSFT"]`
+- Map을 호출하면 첫번째는 값이 두번째로는 키의 값의 존재여부에 대한 boolean이 리턴된다.
+- 복수개의 리턴 되는 함수를 쓰는것처럼 변수를 준비해놓고 호출하면 확인가능
+
+#### 순회
+```
+for key, val := range myMap {
+    fmt.Println(key, val)
+}
+```
+- 배열과 마찬가지로 range 키워드를 통해 순회가 가능하다.
+
+---
+#*immersive*
+---
+## 구조체 struct
+- Custom data type을 표현할때 사용한다. __struct 는 필드의 집함이며 필드의 컨테이너__
+- __Go의 struct는 필드만을 가지고 메서드를 가지지 않는다.__
+- Go만의 다른 언어와는 상이한 OOP를 지원하며 클래스, 객체, 상속의 개념이 없다.
+- 메서드는 별도의 방법으로 정의한다.
+- 기본적인 정의와 사용
+```
+type person struct {
+  name string
+  age int
+}
+func main() {
+  p := person{}
+  p.name = "Tom"
+  p.age = "11"
+  fmt.Println(p)  
+
+  // {Tom 11}
+```
+- 순서대로 값을 할당하거나, 키를 지정해서 할당하는 방법도 가능하다.
+```
+var p1 person
+p1 = person{"Bob", 20}
+p2 := person{name: "Sean", age: 50}
+```
+- new 키워드를 사용하면 person객체의 포인터가 반환되는데 이렇게 해도 .(dot)을 사용하여 필드에 액세스 가능하다.
+```
+p := new(person)
+p.name = "Lee"  // p가 포인터라도 . 을 사용한다
+```
+
+
+## 관리기법
+####package
+- 패키지명이 __main__ 인 경우는 특별하게 취급하고 excutable 프로그램으로 만든다. (엔트리포인트)
+- 패키지는 함수, 구조체, 인터페이스, 메서드으로 구성.
+- __이름(Identifier)이 첫문자를 대문자로 시작하면 이는 → public 으로 사용__
+- __이름이 소문자로 시작하면 이는 non-public → 패키지 내부에서만 사용__
+- 패키지내부에 __init__ 이름으로된 func는 패키지가 로드될때 자동으로 실행
+- alias 호출을 통해 이름을 지정하고 콜을 컨트롤 할 수 있다.
+- 사이즈가 큰 패키지의 경우 `go install`명령어를 통해 라이브러리를 cached한 상태로 관리할 수 있다.

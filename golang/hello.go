@@ -91,8 +91,6 @@ func main() {
   for _, v := range a2 {
     println(v)
   }
-
-  println("___ 12일 파트 ___");
   // len=0, cap=3 인 슬라이스
   sliceA := make([]int, 0, 3)
 
@@ -113,13 +111,20 @@ func main() {
 
   //sliceA = append(sliceA, 4, 5, 6)
 
-  var myMap map[int]string
-  fmt.Println(myMap)
-  myMap[0] = "a"
-  fmt.Println(myMap)
-
+  //var myMap map[int]string
+  //fmt.Println(myMap)
+  //myMap[0] = "a"
+  //fmt.Println(myMap) 초기화 안해서 에러난다.
 
   println("___ 13일 파트 ___")
 
+  type person struct {
+    name string
+    age  int
+  }
 
+  px := person{}
+  px.name = "Tom"
+  px.age = 11
+  fmt.Println(px)
 }
