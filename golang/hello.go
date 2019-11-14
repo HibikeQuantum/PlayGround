@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+  "fmt"
+  "log"
+)
 
 func main() {
   //var f float32 = 11.0
@@ -127,4 +130,54 @@ func main() {
   px.name = "Tom"
   px.age = 11
   fmt.Println(px)
+
+  // 2019년 11월 14일
+  rect := Rect{10, 20}
+  area := rect.area() //메서드 호출
+  println(area)
+
+  var x interface{}
+  x = 1;
+  printIt(x)
+  x = "X"
+  printIt(x)
+
+  var ass interface{}
+
+  iex := ass       // a와 i 는 dynamic type, 값은 1
+  jex := ass.(int) // j는 int 타입, 값은 1
+
+  println(iex) // 포인터주소 출력
+  println(jex) // 1 출력
+
+  _, err := myFunc()
+  switch err.(type) {
+  default:
+    println("ok")
+  case MyError:
+    log.Print("Log!!! my error")
+  case error:
+    log.Fatal(err.Error())
+  }
+
+}
+
+// 스트럭쳐 구현
+type Rect struct {
+  width, height int
+}
+
+// 메소드 구현
+func (r Rect) area() int {
+  return r.width * r.height
+}
+
+// 메소드 (포인트 리시버 구현), 원본값이 변형됨
+func (r *Rect) area2() int {
+  r.width++
+  return r.width * r.height
+}
+
+func printIt(v interface{}) {
+  fmt.Println(v)
 }

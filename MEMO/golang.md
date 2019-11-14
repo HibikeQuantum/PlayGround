@@ -275,6 +275,111 @@ p := new(person)
 p.name = "Lee"  // p가 포인터라도 . 을 사용한다
 ```
 
+####생성자 함수 패턴
+```
+type dict struct {
+    data map[int]string
+}
+
+func newDict() *dict {
+    d := dict{}
+    d.data = map[int]string{}
+    return &d //포인터 전달
+}
+
+func main() {
+    dic := newDict() // 생성자 호출
+    dic.data[1] = "A"
+}
+```
+- Struct는 초기화 과정을 커진 다음에 사용이 가능하므로 초기화 코드를 진행하는 함수를 만들고 생성된 포인터를 반환하는 __생성자함수__ 를 사용하면 편리하게 쓸 수 있다.
+
+#### 메서드
+###### general method ( value 변수로 구현 )
+GO는 Structure가 필드만 가지고 있다고 했다. 그러면 메서드는 어떻게 구현하는가
+```
+type Rect struct {
+    width, height int
+}
+
+func (r Rect) area() int {
+    return r.width * r.height   
+}
+
+func main() {
+    rect := Rect{10, 20}
+    area := rect.area() // 호출
+}
+```
+이렇게 Go func의 앞에 `(name type)`을 지정한 func는 스트럭처에 귀속된 메소드 취급을 받게된다.
+###### pointer recevier
+```
+// 메소드 (포인트 리시버 구현), 원본값이 변형됨
+func (r *Rect) area2() int {
+  r.width++
+  return r.width * r.height
+}
+```
+## 인터페이스 Interface
+#### 개념
+- 구조체가 필드의 집합체라면 인터페이스는 메서드의 집합체
+- 인터페이스는 타입이 구현해야할 모든 메서드들을 구현해놓아야하는 약속이다
+```
+type Shape interface {
+    area() float64
+    perimeter() float64
+}
+```
+- 이렇게 해놓았으면 Shape의 구현체들은 area, perimeter 메소드들이 구현되어야 한다.
+#### 인터페이스 필요성
+- 함수의 인자로 스트럭처를 요구할 수 있다. 요구할때 인터페이스 구현된 메서드가 등록된 구조체들은 동일한 규격의 동작을 예상하고 동작을 지시할 수 있다. (구현되지 않았다면 에러가 뜨고)
+```
+func main() {
+    r := Rect{10., 20.}
+    c := Circle{10}
+
+    showArea(r, c)
+}
+
+func showArea(shapes ...Shape) {
+    for _, s := range shapes {
+        a := s.area()
+        println(a)
+    }
+}`
+```
+#### 빈인터페이스 Empty interface
+- 아무거나 넣어도 되는 컨테이너로 사용
+```
+func Marshal(v interface{}) ([]byte, error);
+func Println(a ...interface{}) (n int, err error);
+```
+- Dynamic Type 이라고 볼 수 있다. (주: empty interface는 C#, Java 에서 object라 볼 수 있으며, C/C++ 에서는 void* 와 같다고 볼 수 있다)
+```
+func main() {
+    var x interface{}
+    x = 1
+    x = "Tom"
+
+    printIt(x)
+}
+
+func printIt(v interface{}) {
+    fmt.Println(v) //Tom
+}
+```
+####### Type Assertion 패턴
+- 변수를 체크하기 위해 `변수.(type)`으로 호출하는 기법
+- Nil ( 초기화하지 않음 ) 이면 컴파일 에러, 값이 예상되는 Type이 아니어도 컴파일 에러 ( 리액트에서 propTypes 를 통해 런타임에 가지 않고 타입을 체크하는것과 비슷함)
+```
+
+var a interface{} = 1
+i := a       // a와 i 는 dynamic type, 값은 1
+j := a.(int) // j는 int 타입, 값은 1
+
+println(i)  // 포인터주소 출력
+println(j)  // 1 출력
+```
 
 ## 관리기법
 ####package
