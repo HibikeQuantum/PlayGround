@@ -14,6 +14,11 @@
 - 컴파일 언어이나 인터프리터 언어처럼 빠름
 - 09년에 발표
 - OS와 가까워서 `systemctl` (데몬) 으로 관리하기편하다
+- 현대적 문법들이 없는 대신 단순하다.
+- 유닛테스트, 문서화를 기본으로 지원한다.
+- concurrency를 구현하기 위해 Communicating Sequential Processes 모델을 사용 ( 루틴간 메시지 통신 )
+ - composition (구성) 을 통해 상속구현. Struct + Interface
+
 ##기초문법
 ######Short Assignment Statement
 - `var i = 1` 대신 `i:=1`로 할당가능 (대신 함수안에서만 사용이 가능하다)
@@ -71,6 +76,7 @@ if val := i * 2; val < max {
 - 위와 같은 방법으로 조건을 검사하면서 순회작업 가능
 - switch 의 문법이 기타 언어와는 편이하게 구현되어 있으며 if 대용으로 사용가능 [🔗LINK](http://golang.site/go/article/7-Go-%EC%A1%B0%EA%B1%B4%EB%AC%B8)
 - 표현식을 집어넣을 수 있고 자동으로 break 가입력된다. 다음 케이스를 강제로 실행하려면 fallthrough 를 쓴다.
+- 조건문에서 선언된건 해당 컬리 브라켓 전용 로컬 변수
 
 - for 문으로 반복문을 처리한다.
 ```
@@ -81,6 +87,21 @@ for index, name := range names {
 }
 ```
 - 이렇게 range를 지원 python의 forEach 를 닮았다.
+
+######복수개의 케이스처리
+```
+var name string
+var cat = 1;
+switch cat {
+  case 1:
+  name = "book"
+  case 2,3:
+  name = "sword"
+}
+println(name)
+```
+- ' ,  ' 를 활용하면 복수의 케이스 표현가능
+
 
 #### 함수
 `*msg = "" `
@@ -127,14 +148,16 @@ func calc(f calculator, a int, b int) int {
     return result
 }
 ```
-- 간단하게 표현할 수 있다.
+- 위와같이 간단하게 표현할 수 있다.
 ---
 #### 클로져 패턴
-###### 역시 지원
+- 사용가능
+
 ---
 ## 배열
 #### 기초
 - 연속적인 메모리 공간에 데이터를 연속적으로 저장하는 자료구조
+- 배열에 '=' 연산을 사용하면 배열의 포인터가 아니라 밸류가 할당된다.
 `var a [3]int` 선언
 `a[0] = 1` 할당 적용
 `println(a[1])` 호출
@@ -216,7 +239,8 @@ println(len(target), cap(target)) // 3, 6 출력
 - 키에 대응하는 값을 구현해놓은 자료구조
 `var idMap map[int]string`
 - 이렇게 구현을 해놓으면 중간이 키의 타입, 마지막이 밸류의 타입
-- 초기화가 되지않은 맵은 Nil Map 이라고 하며 값을 쓸 수 없다. (panic: assignment to entry in nil map
+- 초기화가 되지않은 맵은 Nil Map 이라고 하며 값을 쓸 수 없다. (panic: assignment to entry in nil map)
+- 할당되지 않은 값을 호출하면 Nil || Zero value를 반환
 )에러 발생
 `idMap = make(map[int]string)` 초기화를 통해 사용
 - 또는 리터럴하게 값을 할당하여 사용할 수도 있다.
@@ -506,7 +530,7 @@ wait.Wait()
 - waitGroup을 만들고 2개의 루틴을 추가해놓고 익명의 함수에서 wait - done을 호출하여 웨이팅을 종료하는 로직이 구현된 예제다.
 
 ###### 병렬처리
-- 이렇게 여러개의 루틴을 짜더라도 이건 시피유1개에서 동작하므로 동시성(concurrency)은 있으나 병렬처리는 되지 않는다. (다중 CPU사용)
+- 이렇게 여러개의 루틴을 짜더라도 이건 시피유1개에서 동작하므로 동시성(concurrency)은 보장되나 병렬처리는 되지 않는다. (다중 CPU사용)
 
 ```
 func main() {

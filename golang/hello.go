@@ -246,7 +246,7 @@ func main() {
   go run1(done1)
   go run2(done2)
 
-  EXIT:
+EXIT:
   for {
     println("루프 도는중")
     select {
@@ -260,24 +260,60 @@ func main() {
   }
   // true를 수신하는 대로 통신이 열린다. 먼저  done2가 되면 break;
 
-
   // map 다루기
   ex22 := make(map[int]string)
-  ex22[0]= "str1"
-  ex22[1]= "str2"
+  ex22[0] = "str1"
+  ex22[1] = "str2"
   fmt.Println(ex22[0])
   fmt.Println(ex22[1])
   fmt.Println(ex22[2])
   println(reflect.TypeOf(ex22[2]))
-  for v,bool := range ex22 {
+  for v, bool := range ex22 {
     println(v, bool)
   }
 
+  println("진입")
   c := make(chan int)
-  c <- 1
+  go func() {
+    println("고 루틴")
+    time.Sleep(1 * time.Second)
+    c <- 12
+  }()
+  // 채널은 루틴간 통신
+  println("수신직전")
   d11 := <-c
-  print(d11)
+  println(d11, "수신완료")
+  // 이게 왜 이런 순서인지는 확인 필요
+
+
+  //16. Sat.
+  chx := make(chan int, 2)
+  chx <- 1
+  chx <- 2
+
+  close(chx)
+
+  println(<-chx)
+  println(<-chx)
+
+
+  // select 병합 예제, 끝난 루틴들이 경쟁해서 스위치 결과를 리턴한다.
+  ch1xx := make(chan int, 1)
+  ch2xx := make(chan int, 1)
+
+  ch1xx <- 1011
+  ch2xx <- 2011
+
+  select {
+  case c := <-ch1xx:
+    println(c)
+  case d := <-ch2xx:
+    println(d)
+  default:
+    println(0)
+  }
 }
+// end of main()
 
 // 스트럭쳐 구현
 type Rect struct {
