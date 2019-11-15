@@ -2,6 +2,7 @@ package main
 
 import (
   "fmt"
+  "reflect"
   "sync"
   "time"
 )
@@ -259,6 +260,23 @@ func main() {
   }
   // true를 수신하는 대로 통신이 열린다. 먼저  done2가 되면 break;
 
+
+  // map 다루기
+  ex22 := make(map[int]string)
+  ex22[0]= "str1"
+  ex22[1]= "str2"
+  fmt.Println(ex22[0])
+  fmt.Println(ex22[1])
+  fmt.Println(ex22[2])
+  println(reflect.TypeOf(ex22[2]))
+  for v,bool := range ex22 {
+    println(v, bool)
+  }
+
+  c := make(chan int)
+  c <- 1
+  d11 := <-c
+  print(d11)
 }
 
 // 스트럭쳐 구현
