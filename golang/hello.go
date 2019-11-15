@@ -2,7 +2,8 @@ package main
 
 import (
   "fmt"
-  "log"
+  "sync"
+  "time"
 )
 
 func main() {
@@ -142,23 +143,121 @@ func main() {
   x = "X"
   printIt(x)
 
-  var ass interface{}
+  //var ass interface{}
+  //
+  //iex := ass       // a와 i 는 dynamic type, 값은 1
+  //jex := ass.(int) // j는 int 타입, 값은 1
+  //
+  //println(iex) // 포인터주소 출력
+  //println(jex) // 1 출력
 
-  iex := ass       // a와 i 는 dynamic type, 값은 1
-  jex := ass.(int) // j는 int 타입, 값은 1
+  //_, err := myFunc()
+  //switch err.(type) {
+  //default:
+  //  println("ok")
+  //case MyError:
+  //  log.Print("Log!!! my error")
+  //case error:
+  //  log.Fatal(err.Error())
+  //}
 
-  println(iex) // 포인터주소 출력
-  println(jex) // 1 출력
+  // 2015일 루틴
+  // 함수를 동기적으로 실행
+  say("Sync")
 
-  _, err := myFunc()
-  switch err.(type) {
-  default:
-    println("ok")
-  case MyError:
-    log.Print("Log!!! my error")
-  case error:
-    log.Fatal(err.Error())
+  // 함수를 비동기적으로 실행
+  go say("Async1")
+  go say("Async2")
+  go say("Async3")
+
+  // 3초 대기
+  time.Sleep(time.Second * 1)
+
+  // WaitGroup 생성. 2개의 Go루틴을 기다림.
+  var wait sync.WaitGroup
+  wait.Add(2)
+
+  // 익명함수를 사용한 goroutine
+  go func() {
+    defer wait.Done() //끝나면 .Done() 호출
+    fmt.Println("Hello")
+  }()
+
+  // 익명함수에 파라미터 전달
+  go func(msg string) {
+    defer wait.Done() //끝나면 .Done() 호출
+    fmt.Println(msg)
+  }("Hi")
+
+  wait.Wait() //Go루틴 모두 끝날 때까지 대기
+  fmt.Println("last line ")
+
+  // 정수형 채널을 생성한다
+  ch := make(chan int)
+
+  go func() {
+    ch <- 123 //채널에 123을 보낸다
+  }()
+
+  var iii int
+  iii = <-ch // 채널로부터 123을 받는다
+  println(iii)
+
+  // 송수신 지정 채널링
+  println("여기는 채널링 테스트")
+
+  ch2 := make(chan string, 1)
+  sendChan(ch2)
+  receiveChan(ch2)
+
+  // 클로즈 테스트
+  ch3 := make(chan int, 2)
+
+  // 채널에 송신
+  ch3 <- 1
+  ch3 <- 2
+
+  // 채널을 닫는다
+  close(ch3)
+
+  // 채널 수신
+  //println(<-ch3)
+  ////1
+  //println(<-ch3)
+  ////2
+  //println(<-ch3)
+  ////0
+  if v, success := <-ch3; success {
+    println(v, success)
   }
+  if v, success := <-ch3; success {
+    println(v, success)
+  }
+  if v, success := <-ch3; !success {
+    println(v, "더이상 데이타 없음.", success)
+  }
+
+  // channel example
+
+  done1 := make(chan bool)
+  done2 := make(chan bool)
+
+  go run1(done1)
+  go run2(done2)
+
+  EXIT:
+  for {
+    println("루프 도는중")
+    select {
+    case <-done1:
+      println("run1 완료")
+
+    case <-done2:
+      println("run2 완료")
+      break EXIT
+    }
+  }
+  // true를 수신하는 대로 통신이 열린다. 먼저  done2가 되면 break;
 
 }
 
@@ -180,4 +279,32 @@ func (r *Rect) area2() int {
 
 func printIt(v interface{}) {
   fmt.Println(v)
+}
+
+// 루틴이 실행할 로직
+func say(s string) {
+  for i := 0; i < 10; i++ {
+    fmt.Println(s, "***", i)
+  }
+}
+
+func sendChan(ch chan<- string) {
+  ch <- "Data"
+  //x := <-ch // 에러발생
+}
+
+func receiveChan(ch <-chan string) {
+  data := <-ch
+  fmt.Println(data)
+}
+
+// select example
+func run1(done chan bool) {
+  time.Sleep(1 * time.Second)
+  done <- true
+}
+
+func run2(done chan bool) {
+  time.Sleep(2 * time.Second)
+  done <- true
 }
