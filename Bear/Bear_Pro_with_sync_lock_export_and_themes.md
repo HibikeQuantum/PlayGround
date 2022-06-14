@@ -1,10 +1,6 @@
 # Bear Pro with sync, lock, export, and themes
 [image:SFNoteIntro2_File0/Pro.jpg]
-![pro](images/SFNoteIntro2_File0/Pro.jpg)
 
-line 2가 기본, 3이 표준
-
-/Users/kth/OneDrive/Bear Notes/
 We’re on the home stretch! If you’d like to see the rest of the Bear tour, see [[Welcome to Bear]], [[Organize and Publish]], and [[Tips & Tricks]].
 
 ## Additional Features
@@ -14,7 +10,7 @@ Bear and most of its core features are free to use on iPad, iPhone, and Mac. We 
 [Get a single Bear Pro subscription](bear://x-callback-url/open-bear-pro) for all your devices to unlock more powerful features, beautiful themes, and supports Bear’s future development:
 
 * *Sync* all your notes between Bear for iPad, iPhone, and Mac, powered by iCloud. Learn more about Bear's sync and autosave in [[Organize and Publish]]
-*Lock notes and Bear*. Encrypt individual notes with a password only you know, and lock Bear with Face/Touch ID or device passcode
+*Lock notes and Bear*. Encrypt individual notes with a password only you know, and lock Bear with Face/Touch ID or device passcode 
 * *Export* your notes to a variety of additional, flexible formats for publishing and sharing elsewhere, including PDF, Word (DOCX), HTML, and JPG. Learn more about Bear’s export features in [[Organize and Publish]]
 * *Beautiful Themes* so you can pick just the right creative environment
 
