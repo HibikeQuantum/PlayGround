@@ -51,9 +51,8 @@ _언더라인_
 
 ::marked String::
 
-// :: 을 만나면 ==marked String==
-- This is a red colored line
-+ This is a green colored line
+// :: 을 만나면 marked String
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `ㅇ강조!`
 
 file
 
