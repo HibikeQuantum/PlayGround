@@ -52,7 +52,11 @@ _언더라인_
 ::marked String::
 
 // :: 을 만나면 marked String
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `ㅇ강조!`
+```diff
++ Green Marked String
+- Red next
+```
+none text
 
 file
 
