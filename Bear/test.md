@@ -54,7 +54,8 @@ _언더라인_
 // :: 을 만나면 marked String
 ```diff
 + Marked String
-``` none text
+```
+none text
 
 file
 
