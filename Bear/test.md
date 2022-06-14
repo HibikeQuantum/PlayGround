@@ -51,6 +51,10 @@ _언더라인_
 
 ::marked String::
 
+// :: 을 만나면 ==marked String== //`==으로 치환`
+- This is a red colored line
++ This is a green colored line
+
 file
 
 [file:5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt]
