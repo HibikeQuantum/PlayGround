@@ -1,11 +1,11 @@
 # Bear Pro with sync, lock, export, and themes
 [image:SFNoteIntro2_File0/Pro.jpg]
 ![pro](images/SFNoteIntro2_File0/Pro.jpg)
+P1 - line 2가 기본, 3이 표준
 
-line 2가 기본, 3이 표준
-
-/Users/kth/OneDrive/Bear Notes/
 We’re on the home stretch! If you’d like to see the rest of the Bear tour, see [[Welcome to Bear]], [[Organize and Publish]], and [[Tips & Tricks]].
+We’re on the home stretch! If you’d like to see the rest of the Bear tour, see [[Welcome to Bear]], [[Organize and Publish]], and [[Tips & Tricks]].
+P1 - [Tips__Tricks.md](https://github.com/jadetypehoon/PlayGround/blob/master/Bear/Tips__Tricks.md)
 
 ## Additional Features
 Bear and most of its core features are free to use on iPad, iPhone, and Mac. We want everyone to be able to write beautifully and organize notes with our unique tools.
