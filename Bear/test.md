@@ -51,7 +51,7 @@ _언더라인_
 
 ::marked String::
 
-// :: 을 만나면 ==marked String== //`==으로 치환`
+// :: 을 만나면 ==marked String==
 - This is a red colored line
 + This is a green colored line
 
