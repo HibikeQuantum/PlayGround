@@ -76,5 +76,6 @@ image
 3) Navi.md 에선 가장 nested한 구조를 표현해서 링크를 표시한다.
 4) 본문에선 <br>
 ```diff
-- [welcome/Bear](/Bear/Welcome_to_Bear.md)
+[welcome/Bear](/Bear/Welcome_to_Bear.md)
 ```
+[welcome/Bear](/Bear/Welcome_to_Bear.md)
