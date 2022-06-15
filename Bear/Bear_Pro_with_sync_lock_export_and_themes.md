@@ -1,5 +1,5 @@
 # Bear Pro with sync, lock, export, and themes
-[image:SFNoteIntro2_File0/Pro.jpg]
+[image:SFNoteIntro0_File1/Bear 3 columns.png]
 
 We’re on the home stretch! If you’d like to see the rest of the Bear tour, see [[Welcome to Bear]], [[Organize and Publish]], and [[Tips & Tricks]].
 
