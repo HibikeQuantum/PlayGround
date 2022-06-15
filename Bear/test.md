@@ -57,11 +57,11 @@ _언더라인_
 그냥 이렇게 강제 개행시키고 기능을 지원하는게 좋겠다.
 
 file
-
 [file:5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt]
-[file:상대주소]를 보면 
+이런 패턴을 보면
+[myimsi.txt](https://github.com/HibikeQuantum/PlayGround/blob/master/Bear/files/5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt)
+이렇게 바꿔준다.
 
-#mine/test
 
 image
 [image:SFNoteIntro0_File1/Bear 3 columns.png]
@@ -69,3 +69,4 @@ image
 ![alt text](images/SFNoteIntro2_File0/Pro.jpg)
 이렇게 바꿔준다.
 
+#mine/test
