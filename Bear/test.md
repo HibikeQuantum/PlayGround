@@ -66,6 +66,6 @@ file
 image
 [image:SFNoteIntro0_File1/Bear 3 columns.png]
 이런 텍스트가 보이면 
-![alt text](images/SFNoteIntro2_File0/pro.jpg)
+![alt text](images/SFNoteIntro2_File0/Pro.jpg)
 이렇게 바꿔준다.
 
