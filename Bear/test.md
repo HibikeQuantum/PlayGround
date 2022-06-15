@@ -69,4 +69,12 @@ image
 ![alt text](images/SFNoteIntro2_File0/Pro.jpg)
 이렇게 바꿔준다.
 
-#mine/test
+태그패턴 처리방법 정리
+#welcome/Bear
+1) #으로부터 한덩이를 자르고 제일 마지막까지 '/'으로 잘라서 nested한 구조로 저장한다.(+예상되는 URL도 쌍으로) 파싱과정에서 notag문서는 여기에 없다.
+2) 이제 파싱을 시작한다. 이때는 이걸 만나면 찾아서 URL로 replace하면된다.
+3) Navi.md 에선 가장 nested한 구조를 표현해서 링크를 표시한다.
+4) 본문에선 <br>
+```diff
+- [welcome/Bear](/Bear/Welcome_to_Bear.md)
+```
