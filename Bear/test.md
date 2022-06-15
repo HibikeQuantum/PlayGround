@@ -62,3 +62,10 @@ file
 [file:상대주소]를 보면 
 
 #mine/test
+
+image
+[image:SFNoteIntro0_File1/Bear 3 columns.png]
+이런 텍스트가 보이면 
+![alt text](https://github.com/HibikeQuantum/PlayGround/tree/master/Bear/images/SFNoteIntro2_File0/pro.jpg)
+이렇게 바꿔준다.
+
