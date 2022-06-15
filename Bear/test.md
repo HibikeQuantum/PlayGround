@@ -1,17 +1,18 @@
-# test⭐️
+# test ⭐️
+헤드는 바꾸지 않아도 된다.
+
 라인세퍼레이터
 ---
-*볼드체*
+"세퍼레이터는 개행---으로 바꿔준다. 위쪽 글자가 두꺼워져보이도록 바꾸는데 불필요하다.
 
-//* *은 **볼드체** 로 바꿔주고
+*볼드체*
+"* *은 **볼드체** 로 바꿔주고
 
 /이텔릭/
-
-/이태릭/은 //이태릭//으로 바꿔주고
+"/이태릭/은 *이태릭* 으로 바꿔주고
 
 _언더라인_
-
-// 언더라인은 <u> </u>
+" 언더라인은 <u>언더라인</u>
 
 -스트라이크-
 
@@ -59,7 +60,7 @@ _언더라인_
 file
 [file:5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt]
 이런 패턴을 보면
-[myimsi.txt](https://github.com/HibikeQuantum/PlayGround/blob/master/Bear/files/5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt)
+[💾myimsi.txt](https://github.com/HibikeQuantum/PlayGround/blob/master/Bear/files/5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt)
 이렇게 바꿔준다.
 
 
@@ -74,8 +75,6 @@ image
 1) #으로부터 한덩이를 자르고 제일 마지막까지 '/'으로 잘라서 nested한 구조로 저장한다.(+예상되는 URL도 쌍으로) 파싱과정에서 notag문서는 여기에 없다.
 2) 이제 파싱을 시작한다. 이때는 이걸 만나면 찾아서 URL로 replace하면된다.
 3) Navi.md 에선 가장 nested한 구조를 표현해서 링크를 표시한다.
-4) 본문에선 <br>
-```diff
-[welcome/Bear](/Bear/Welcome_to_Bear.md)
-```
-[welcome/Bear](/Bear/Welcome_to_Bear.md)
+4) 본문에선 아래와 같이 표현
+[🔗welcome/Bear](/Bear/Welcome_to_Bear.md)
+4) URL은 부모면 내비게이트 md, 말단 노트 풀패스 md
