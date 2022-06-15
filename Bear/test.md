@@ -50,15 +50,15 @@ _언더라인_
 
 
 ::marked String::
-
-// :: 을 만나면 marked String
+=>
 ```diff
-+ Marked String
++ marked String
 ```
-none text
+그냥 이렇게 강제 개행시키고 기능을 지원하는게 좋겠다.
 
 file
 
 [file:5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt]
+[file:상대주소]를 보면 
 
 #mine/test
