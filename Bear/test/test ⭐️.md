@@ -64,7 +64,7 @@
 + 순수 marked String
 ```
 
-안녕하세요!
+안녕하세요! 
 ```diff
 + marked String
 ```
@@ -84,14 +84,15 @@ file
 
 
 image
-![](../BearImages/89C5883A-B535-4FB6-907A-3B29FF56E088-82667-0000032FC3D87CF3/Bear 3 columns.png)
+![](../BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen Shot 2022-07-03 at 7.47.50.png)
+
 이런 텍스트가 보이면
-![alt text](images/Bear 3 columns.png)
+![alt text](image*****s*****Pro.jpg)
 이렇게 바꿔준다.
 1
 태그패턴 처리방법 정리
 <!-- #welcome/Bear #test -->
-1) 한덩이를 자르고 제일 마지막까지 '/'으로 잘라서 nested한 구조로 저장한다.(+예상되는 URL도 쌍으로) 파싱과정에서 notag문서는 여기에 없다.
+1) 한덩이를 자르고 제일 마지막까지 ‘/‘으로 잘라서 nested한 구조로 저장한다.(+예상되는 URL도 쌍으로) 파싱과정에서 notag문서는 여기에 없다.
 2) 이제 파싱을 시작한다. 이때는 이걸 만나면 찾아서 URL로 replace하면된다.
 3) Navi.md 에선 가장 nested한 구조를 표현해서 링크를 표시한다.
 4) 본문에선 아래와 같이 표현
