@@ -1,4 +1,0 @@
-# ghost file
-goggogogo
-
-#mine
