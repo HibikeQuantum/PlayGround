@@ -59,16 +59,8 @@ _베어 언더라인_ → ***깃 언더라인*** _베어 언더라인 두번째_
 ```
 
 :: not marked String::
-```diff
-+ 순수 marked String
-```
-
-안녕하세요! 
-```diff
-+ marked String
-```
- 안녕하세요!
-
+::순수 marked String::
+안녕하세요! ::marked String:: 안녕하세요!
 =>
 ```diff
 + marked String
@@ -89,12 +81,7 @@ image
 ![alt text](image****s****Pro.jpg)
 이렇게 바꿔준다.
 2
-[image:001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/
-```diff
-+ image
-```
-.png]
-
+![](../../BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/::image::.png)
 12
 
 태그패턴 처리방법 정리
