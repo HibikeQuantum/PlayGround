@@ -96,7 +96,7 @@ image
 ```
 .png]
 
-1
+12
 
 태그패턴 처리방법 정리
 <!-- #welcome/Bear #test -->
