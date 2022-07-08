@@ -3,23 +3,22 @@
 
 !라인세퍼레이터
 
-
 ---
 세퍼레이터는 개행---으로 바꿔준다. 위쪽 글자가 두꺼워져보이도록 바꾸는데 불필요하다.
 
 볼드체
-**Bear BOLD**는 ***GIT BOLD TALIC***로 바꿔주고
-**합**
-**내 껀 이것도 해준다!** gogo
+*Bear BOLD*는 **GIT BOLD TALIC**로 바꿔주고
+*합*
+*내 껀 이것도 해준다! * gogo
 
 /베어 이태릭/ 은
-**깃 이태릭** 으로
+*깃 이태릭* 으로
 
 /논
 이테릭/
 
-***언더라인***
-***베어 언더라인*** → ****깃 언더라인**** ***베어 언더라인 두번째***
+_언더라인_
+_베어 언더라인_ → ***깃 언더라인*** _베어 언더라인 두번째_
 
 -스트라이크-
 -베어 스트라이크- 는  ~~깃 스트라이크~~
@@ -55,7 +54,7 @@
   "exportTrash": false,
   "exportImages": true,
   "exportFiles": true,
-  "outputDir": "*****~*****Bear Notes"
+  "outputDir": "****~****Bear Notes"
 }
 ```
 
@@ -77,7 +76,7 @@
 그냥 이렇게 강제 개행시키고 기능을 지원하는게 좋겠다.
 
 file
-[💾myimsi.txt](https://github.com/HibikeQuantum/PlayGround/blob/master/Bear/files/5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt)
+[file:5C01D883-4077-4954-8E28-B7C91ED285B7-67965-000005BA6002A679/myimsi.txt]
 이런 패턴을 보면
 [💾myimsi.txt](https://github.com/PlayGround/master/files/myimsi.txt)
 이렇게 바꿔준다.
@@ -87,7 +86,7 @@ image
 ![](../../BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen Shot 2022-07-03 at 7.47.50.png)
 
 이런 텍스트가 보이면
-![alt text](image*****s*****Pro.jpg)
+![alt text](image****s****Pro.jpg)
 이렇게 바꿔준다.
 2
 [image:001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/
@@ -104,7 +103,7 @@ image
 2) 이제 파싱을 시작한다. 이때는 이걸 만나면 찾아서 URL로 replace하면된다.
 3) Navi.md 에선 가장 nested한 구조를 표현해서 링크를 표시한다.
 4) 본문에선 아래와 같이 표현
-[🔗welcom*****e*****Bear/Welcome***to***Bear.md)
+[🔗welcom****e****Bear/Welcome_to_Bear.md)
 4) URL은 부모면 내비게이트 md, 말단 노트 풀패스 md
 
 <!-- {BearID:C026DB37-57BB-4D63-B26D-BF8F5AD21A84-67965-000005B4CA4ACA15} -->
