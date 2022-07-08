@@ -90,6 +90,14 @@ image
 ![alt text](image*****s*****Pro.jpg)
 이렇게 바꿔준다.
 2
+[image:001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/
+```diff
++ image
+```
+.png]
+
+
+
 태그패턴 처리방법 정리
 <!-- #welcome/Bear #test -->
 1) 한덩이를 자르고 제일 마지막까지 ‘/‘으로 잘라서 nested한 구조로 저장한다.(+예상되는 URL도 쌍으로) 파싱과정에서 notag문서는 여기에 없다.
