@@ -81,7 +81,7 @@ image
 ![alt text](image****s****Pro.jpg)
 이렇게 바꿔준다.
 2
-![](../../BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E//test_⭐️)
+![](../../BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/test_⭐️)
 12
 
 태그패턴 처리방법 정리
