@@ -75,7 +75,7 @@ file
 
 
 image
-[image:C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen Shot 2022-07-03 at 7.47.50.png]
+![](../../BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/test_⭐️)
 
 이런 텍스트가 보이면
 ![alt text](image****s****Pro.jpg)
