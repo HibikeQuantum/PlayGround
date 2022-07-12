@@ -82,7 +82,7 @@ file
 
 
 image
-![](BearImages/89C5883A~~B535~~4FB6-907A-3B29FF56E088~~82667~~0000032FC3D87CF3**Bear 3 columns.png)
+[image:89C5883A~~B535~~4FB6-907A-3B29FF56E088~~82667~~0000032FC3D87CF3**Bear 3 columns.png]
 이런 텍스트가 보이면
 ![alt text](image*****s*****Pro.jpg)
 이렇게 바꿔준다.

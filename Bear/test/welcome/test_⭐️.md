@@ -75,13 +75,13 @@ file
 
 
 image
-![](../../BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen Shot 2022-07-03 at 7.47.50.png)
+[image:C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen Shot 2022-07-03 at 7.47.50.png]
 
 이런 텍스트가 보이면
 ![alt text](image****s****Pro.jpg)
 이렇게 바꿔준다.
 2
-![](../../BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/::image::.png)
+![](../../BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E//test_⭐️)
 12
 
 태그패턴 처리방법 정리
