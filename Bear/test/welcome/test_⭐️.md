@@ -125,11 +125,19 @@ mark_conv
 
 
 
-::순수 marked String::
+```diff
++ 순수 marked String
+```
 
 
 
-안녕하세요! ::marked String:: 안녕하세요!
+
+안녕하세요! 
+```diff
++ marked String
+```
+ 안녕하세요!
+
 
 =>
 
