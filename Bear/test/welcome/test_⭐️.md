@@ -73,7 +73,7 @@ underline_conv
 
 todo***box***conv
 
--	투두가 완성되느냐 
+-	투두가 완성되느냐 1
 
 +	투두완료가 완성되느냐
 
