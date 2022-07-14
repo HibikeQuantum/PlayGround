@@ -73,9 +73,9 @@ underline_conv
 
 todo***box***conv
 
--	[ ]투두가 완성되느냐 1
+-	[ ] 투두가 완성되느냐 1
 
-+	[x]투두완료가 완성되느냐
++	[x] 투두완료가 완성되느냐
 
 
 
@@ -85,11 +85,11 @@ todo***box***conv
 
 // -tab은 엠프티박스
 
--	[ ]엠프티
+-	[ ] 엠프티
 
 // +tab는 체크드박스
 
-+	[x]체크드
++	[x] 체크드
 
 
 
@@ -147,7 +147,7 @@ mark_conv
 
 ```diff
 
-+	[x]marked String
++	[x] marked String
 
 ```
 
