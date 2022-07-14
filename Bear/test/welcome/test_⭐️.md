@@ -73,19 +73,19 @@ underline_conv
 
 todo****box****conv
 
-- 투두
+-	투두
 
-+ 투두완료
++	투두완료
 
 
 
 // -tab은 엠프티박스
 
-- 엠프티
+-	엠프티
 
 // +tab는 체크드박스
 
-+ 체크드
++	체크드
 
 
 
@@ -125,25 +125,17 @@ mark_conv
 
 
 
-```diff
-+ 순수 marked String
-```
+::순수 marked String::
 
 
 
-
-안녕하세요! 
-```diff
-+ marked String
-```
- 안녕하세요!
-
+안녕하세요! ::marked String:: 안녕하세요!
 
 =>
 
 ```diff
 
-+ marked String
++	marked String
 
 ```
 
@@ -183,7 +175,7 @@ image_conv2
 
 
 
-갈릴리시프트엔터
+갈릴리시프트엔터4
 
 갈릴리마을
 
