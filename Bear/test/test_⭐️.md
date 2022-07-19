@@ -157,13 +157,13 @@ mark_conv
 
 image_conv
 
-![](BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen_Shot_2022-07-03_at_7.47.50.png)
+![](/BearImages/C9BC8F82-6A30-4165-B911-55C63AC4718E-76434-0000075928935A8B/Screen_Shot_2022-07-03_at_7.47.50.png)
 
 이런 _가 들어간 이미지가 텍스트가 보이면 바꿔주고 프리뷰에서 보이도록 한다.
 
 image_conv2
 
-![](BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/::image::.png)
+![](/BearImages/001DC9A8-B6F9-4C3E-98E6-01BDDEA6AA83-76434-0000077576BE419E/::image::.png)
 
 잘 보이십니까?
 
