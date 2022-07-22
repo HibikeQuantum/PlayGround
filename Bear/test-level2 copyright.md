@@ -35,9 +35,9 @@ bold_conv
 
 **합** 일반 텍스트 **내 껀 이것도 해준다!** gogo
 
+123
 
-
-italic_conv
+italic_conv1
 
 *베어 이태릭*은 **깃 이태릭**으로
 
