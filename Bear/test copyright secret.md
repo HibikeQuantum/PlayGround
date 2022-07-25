@@ -1,6 +1,6 @@
 # test copyright secret
 
-#copyright #test #secret
+#test #copyright #secret
 
 ```배시
 
