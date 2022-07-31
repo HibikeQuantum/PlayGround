@@ -101,7 +101,7 @@ mark_conv 테스트
 :: not marked String::
 
 ```diff
-+ marked String
++ marked Stringㄹㅇ 여기테스트
 ```
 
 
@@ -116,7 +116,7 @@ mark_conv 테스트
 
 ```diff
 
-+ marked String
++ marked String ㄹㅇ 여긴 안움직여도 됨
 
 ```
 
