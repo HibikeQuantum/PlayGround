@@ -670,7 +670,7 @@ sed -n "s/<code>\(.*\)><\/code>/\1/p"
 
 ```bash
 
-err_coint=`grep -c "ERROR" /var/log/\`host_anme\`.log`
+err***coint=`grep -c "ERROR" /var/log/\`host***anme\`.log`
 
 ```
 
@@ -706,13 +706,13 @@ pure mode
 
 ```bash
 
-cat << '__EOT__'  
+cat << '_***EOT***_'  
 
 $변수 //$변수 출력
 
 \$변수 //이렇게 쓰면  \$변수
 
-__EOT__
+_***EOT***_
 
 ```
 
@@ -1091,7 +1091,7 @@ while read ipadd
 
 ## FTP
 
-* ftp 동작을 스크립트로 하기. `ftp -n $server” << __EOT__` 가 핵심. 히어 도큐먼트로 `user "$user" "$passwd"`  `binary` `get "$file"` 등등 쓰고 싶은 명령어를 쭉쭉쓰다가 `__EOT__`를 해주면 된다. 
+* ftp 동작을 스크립트로 하기. `ftp -n $server” << _***EOT******` 가 핵심. 히어 도큐먼트로 `user "$user" "$passwd"`  `binary` `get "$file"` 등등 쓰고 싶은 명령어를 쭉쭉쓰다가 `******EOT***_`를 해주면 된다. 
 
 * 이런 시크릿을 담은 스크립트는 700 권한으로 관리한다.
 

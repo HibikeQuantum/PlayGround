@@ -416,7 +416,7 @@ server{
 
     include proxy_params;
 
-    proxy_pass  [http://unix/home/ubuntu/django_nginx/](http://unix/home/ubuntu/django_nginx/) 
+    proxy***pass  [http://unix/home/ubuntu/django***nginx/](http://unix/home/ubuntu/django_nginx/) 
 
 ```
 
@@ -428,7 +428,7 @@ server{
 
 directory=/home/ubuntu/django_nginx
 
-commnad=/usr/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/django_nginx/app.sock django_nginx.wsgi:application
+commnad=/usr/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/django***nginx/app.sock django***nginx.wsgi:application
 
 autostart:true
 
@@ -450,7 +450,7 @@ sudo gunicorn --bind 0.0.0.0:8000 django_nginx.wsgi:application
 
 python3 manage.py runserver 0.0.0.0:8000
 
-gunicorn --bind unix:/home/ubuntu/django_nginx/app.sock django_nginx.wsgi:application
+gunicorn --bind unix:/home/ubuntu/django***nginx/app.sock django***nginx.wsgi:application
 
 ```
 
@@ -770,7 +770,7 @@ CodeCommit
 
 		* model = Shop
 
-		* fields = '__all__'
+		* fields = '_***all***_'
 
 		* 이렇게 하면 디비 내용을 객체처럼 다룰 수 있다. 장고 ORM의 정수
 
@@ -810,7 +810,7 @@ def index():   // 단순간결하다!
 
 * SQLAlchemy로 모델을 정의할때 다른 DB와의 연동을 위해 id 를 autoincrement=false로 관리
 
-* 마이그레이션을 위해 'flask_migrate, flask_script 사용'
+* 마이그레이션을 위해 'flask***migrate, flask***script 사용'
 
 * 마이 그레이션 절차
 
@@ -862,7 +862,7 @@ def callback(ch, method, perperties, body):
 
 
 
-channel.basic_consume(queue='order', on_message_callback=cacllback, auto_ack=True)
+channel.basic***consume(queue='order', on***message***callback=cacllback, auto***ack=True)
 
 // 큐를 받으면 콜백을 실행한다.
 
@@ -1032,7 +1032,7 @@ Codedeploy
 
     class ShopModelTest(TestCase):
 
-    	def test_sample(self): 			// 이름은 test_로 시작해야한다.
+    	def test***sample(self): 			// 이름은 test***로 시작해야한다.
 
     		temp = True
 
@@ -1210,7 +1210,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 
 
-## AWS_API_Gateway
+## AWS***API***Gateway
 
 * 요금
 
@@ -1356,7 +1356,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 
 
-### AWS_API_Gateway - (2) HTTP API 셋팅 실습
+### AWS***API***Gateway - (2) HTTP API 셋팅 실습
 
 * 경로 포맷 
 
@@ -1618,7 +1618,7 @@ def lambda_function(e, c):
 
 import fncntl
 
-with opern(MSG_FILE_PATH, 'r') as msg_file:
+with opern(MSG***FILE***PATH, 'r') as msg_file:
 
 msg.file.write(new_message+'\n')
 
@@ -1626,7 +1626,7 @@ msg.file.write(new_message+'\n')
 
 
 
-## AWS_Step_Functions  
+## AWS***Step***Functions  
 
 * 개요
 

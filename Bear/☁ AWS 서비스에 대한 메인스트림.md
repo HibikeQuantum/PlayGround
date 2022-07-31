@@ -10,7 +10,7 @@
 
 [링크](https://aws.amazon.com/ko/blogs/korea/how-to-use-trust-policies-with-iam-roles-html/)
 
-**신뢰 관계** – 이 정책은 역할을 맡을 수 있는 보안 주체와 조건을 정의합니다. 이를 IAM 역할에 대한  [리소스 기반 정책](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html)  이라고도 합니다. 이 정책을 간단히 ‘신뢰 정책’이라고 지칭합니다.
+**신뢰 관계** – 이 정책은 역할을 맡을 수 있는 보안 주체와 조건을 정의합니다. 이를 IAM 역할에 대한  [리소스 기반 정책](https://docs.aws.amazon.com/IAM/latest/UserGuide/access***policies***identity-vs-resource.html)  이라고도 합니다. 이 정책을 간단히 ‘신뢰 정책’이라고 지칭합니다.
 
 이렇게 관계를 맺어놓고 Principal, Condition 속성을 이용해 신뢰를 강화할 수 있다.
 

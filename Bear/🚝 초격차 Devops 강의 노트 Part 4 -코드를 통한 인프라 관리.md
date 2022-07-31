@@ -206,7 +206,7 @@ output "vpcs" { value: data.aws_vpcs.this } // 출력
 
 provider "aws" { resion = "north-east-2" }
 
-resource "aws_instance" "my_unbuntu"{
+resource "aws***instance" "my***unbuntu"{
 
   ami = "ami-id..."
 
@@ -244,9 +244,9 @@ data "aws_ami" "ubntu" { //캐노니칼 직접 생산자 지정
 
 } 
 
-resource "aws_instance" "my_unbuntu"{ //가지고 온 정보 적용
+resource "aws***instance" "my***unbuntu"{ //가지고 온 정보 적용
 
-  ami = "data.aws_ami.ubuntu.ami_id"
+  ami = "data.aws***ami.ubuntu.ami***id"
 
   instance_type = "t2.micro"
 
@@ -280,7 +280,7 @@ module "vpv" {
 
 }
 
-module "subnet_group__public" { name = "${module.vpc.name}-public" vpc_id = module.vpc.id 
+module "subnet***group******public" { name = "${module.vpc.name}-public" vpc***id = module.vpc.id 
 
 subnets = {
 
@@ -292,13 +292,13 @@ subnets = {
 
 // 리터럴 처리를 할때만 "${}" 나머지는 그냥 자연스레 기술하면된다.
 
-module "route_table__public" { 
+module "route***table***_public" { 
 
   ipv4_routes = [{
 
       cidr_block = "0.0.0.0/0"
 
-      gateway_id = module.vpc.internet_gateway_id
+      gateway***id = module.vpc.internet***gateway_id
 
     }]
 
@@ -322,7 +322,7 @@ module "route_table__public" {
 
 * Variable Definition Precedence (우선순위)
 
-	1. OS_Env. TF_VAR_[NAME] (e.g TF_VAR_vpc_name="test")
+	1. OS***Env. TF***VAR***[NAME] (e.g TF***VAR***vpc***name="test")
 
 	2. terraform.tfvars
 
@@ -330,7 +330,7 @@ module "route_table__public" {
 
 vpc_name="fastCampus"
 
-unset TF_VAR_vpc_name
+unset TF***VAR***vpc_name
 
 ```
 
@@ -432,7 +432,7 @@ resource "iam-user" "count" {
 
 output { // *은 전체유저를 칭함
 
-  value = aws_iam_user.count.*.arn
+  value = aws***iam***user.count.*.arn
 
 }
 
@@ -454,7 +454,7 @@ for_each = toset ([ //형변환 함수 toset
 
 output {
 
-  values = values(user.for_each_set).*.arn //count와 동일함.
+  values = values(user.for***each***set).*.arn //count와 동일함.
 
   values = keys(...*...) //키값만 불러옴
 
@@ -502,13 +502,13 @@ resoruce "aws_vpc" "this" {
 
 }
 
-resource "aws_internet_gw" "this" { // 1일 때만 GW 생성
+resource "aws***internet***gw" "this" { // 1일 때만 GW 생성
 
-  count = var.internet_gw_enalbed ? 1 : 0 
+  count = var.internet***gw***enalbed ? 1 : 0 
 
   
 
-  vpc_id = aws_vpc.this.id
+  vpc***id = aws***vpc.this.id
 
 }
 
@@ -550,7 +550,7 @@ variable "users" {
 
 }
 
-resource "aws_iam_user" "this" {
+resource "aws***iam***user" "this" {
 
   for user in var.users {
 
@@ -560,7 +560,7 @@ resource "aws_iam_user" "this" {
 
   user = each.key
 
-  groups = each.value.is_dev ? [aws_iam_group.dev.name, aws_iam_group.employee.name] : ,[aws_iam_group.employee.name]
+  groups = each.value.is***dev ? [aws***iam***group.dev.name, aws***iam***group.employee.name] : ,[aws***iam_group.employee.name]
 
 }
 
@@ -608,7 +608,7 @@ resource "aws_iam_user" "this" {
 
 ```shell
 
-tf state mv 'aws_iam_group.dev' 'aws_iam_gorup.this["dev"]'
+tf state mv 'aws***iam***group.dev' 'aws***iam***gorup.this["dev"]'
 
 Succesfuly moved 1 object(s).
 
@@ -620,7 +620,7 @@ Succesfuly moved 1 object(s).
 
 	* 코드를 바로 지우면 apply할때 해당 리소스를 destroy함
 
-`terrafirn state rm 'aws_iam_user_policy,dev["alice"]'`
+`terrafirn state rm 'aws***iam***user_policy,dev["alice"]'`
 
 하면 state 에서 해당 유저가 빠지고 지운 코드를 apply 해도 destroy 가 이뤄지지 않음. 
 
@@ -814,7 +814,7 @@ tf terraform apply -var-file=dev.tfvars
 
 ```terraform
 
-data "terraform_remote_state" "network" {
+data "terraform***remote***state" "network" {
 
   backend = "local"
 
@@ -838,9 +838,9 @@ data "terraform_remote_state" "network" {
 
 locals { 	//일단 로컬 이름로 레퍼런스 해주고
 
-  vpc_name      = data.terraform_remote_state.network.outputs.vpc_name
+  vpc***name      = data.terraform***remote***state.network.outputs.vpc***name
 
-  subnet_groups = data.terraform_remote_state.network.outputs.subnet_groups
+  subnet***groups = data.terraform***remote***state.network.outputs.subnet***groups
 
 } 
 
@@ -974,9 +974,9 @@ locals {
 
     {
 
-      vpc_cidr = local.vpc.cidr_block
+      vpc***cidr = local.vpc.cidr***block
 
-      public_ip = aws_eip.openvpn.public_ip
+      public***ip = aws***eip.openvpn.public_ip
 
     }
 
@@ -994,9 +994,9 @@ locals {
 
 ```terraform
 
-resource "aws_eip_association" "openvpn" {
+resource "aws***eip***association" "openvpn" {
 
-  instance_id =  [aws_instance.openvpn.id] 
+  instance***id =  [aws***instance.openvpn.id] 
 
   allocation_id =  [aws.eip.openvpn.id] 
 
@@ -1312,7 +1312,7 @@ amazon1 anssible_host=1.1.1.1 // 이렇게 cn을 설정할 수 있다.
 
 ```vars.inv
 
-amazon1 anssible_host=1.1.1.1 ansible_user-ubuntu
+amazon1 anssible***host=1.1.1.1 ansible***user-ubuntu
 
 // SSH로 통신을 한다고 했는데 계정이 EC2-USER, ubuntu잖아 기본이 
 
@@ -1358,7 +1358,7 @@ ubuntu
 
 ```bash
 
-ansible localhost -m setup >> ansible_facts // setup은 Facts를 수집하는 모듈이다. 굉장히 많은 정보가 수집된다. ansible_facts // 이 파일에 접근해서 참조가능`
+ansible localhost -m setup >> ansible***facts // setup은 Facts를 수집하는 모듈이다. 굉장히 많은 정보가 수집된다. ansible***facts // 이 파일에 접근해서 참조가능`
 
 --become // 사용자 전환을 위한 옵션(DF. ROOT)
 
@@ -1516,7 +1516,7 @@ handler:
 
 ```vars.inv
 
-user_name=posit0 user_comment="from inv:"
+user***name=posit0 user***comment="from inv:"
 
 ```
 
@@ -1554,7 +1554,7 @@ user_name: "posix0" \n comment: "my comment"
 
 커맨드라인으로 주는법
 
-`ansible-playbook -i playbook.yaml -e "user_comment=hello user_shell=/bin/sh"`
+`ansible-playbook -i playbook.yaml -e "user***comment=hello user***shell=/bin/sh"`
 
 → 우선 순위 제일 높음
 
@@ -1734,7 +1734,7 @@ when: users.stdout.find('claud') == -1
 
 // collection.AWS 를 셋팅한다.
 
-ansible - i default.inv ubuntu - m amazon.aws.ec2_metadata_facts
+ansible - i default.inv ubuntu - m amazon.aws.ec2***metadata***facts
 
 ```
 
@@ -1752,7 +1752,7 @@ ansible - i default.inv ubuntu - m amazon.aws.ec2_metadata_facts
 
   set_fact : // 호스트 단위의 변수처럼 쓸 수 있다. dict2는 K-V Dict를 배열로 바꿈["key:v"]
 
-    vpc_cidr: {{ansible_facts | dict2items | selectattr('key', 'match', '^ec2_network_interfaces_macs_.*_vpc_ip4_cidr_block$') |  map (attribute='value'))[0] }}"
+    vpc***cidr: {{ansible***facts | dict2items | selectattr('key', 'match', '^ec2***network***interfaces***macs***.****vpc***ip4***cidr***block$') |  map (attribute='value'))[0] }}"
 
 // $는 표현식의 끝을 의미, map은 js의 map과 비슷. 조건문을 단 이터레이터, 파이프라인을 따라서 수집한 팩츠를 뽑아내는 중이다 
 
@@ -1840,13 +1840,13 @@ canonical name
 
 
 
-state: "{{ openvpn_create_client_config | default(false) | ternary('stated', 'present')
+state: "{{ openvpn***create***client_config | default(false) | ternary('stated', 'present')
 
 // config값을 bool로 관리. ternary는 트루면 1번쨰 값, 반대면 2번째 값. present는 도커를 생성만 하고 실행하지 않는다.
 
 
 
-docker_container_exec: // 도커 컨테이너에 대해 명령을 내리는 모듈
+docker***container***exec: // 도커 컨테이너에 대해 명령을 내리는 모듈
 
 	container: openvpn
 
@@ -1866,7 +1866,7 @@ docker_container_exec: // 도커 컨테이너에 대해 명령을 내리는 모�
 
 '"END PRIVATE KEY" in result.stdout'
 
-when: openvpn_create_client_config | default(false)
+when: openvpn***create***client_config | default(false)
 
 ```
 

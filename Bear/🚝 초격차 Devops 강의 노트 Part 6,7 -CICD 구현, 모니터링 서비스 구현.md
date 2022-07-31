@@ -220,9 +220,9 @@ Tips
 
 aws ecr get-login...
 
-export IMAGE=${ECR_DOCKER_IMAGE}
+export IMAGE=${ECR***DOCKER***IMAGE}
 
-export TAG=${ECR_DOCKER_IMAGE}
+export TAG=${ECR***DOCKER***IMAGE}
 
 docker-compose -f compose.yaml down;
 
@@ -398,13 +398,13 @@ hooks:
 
 2. 아티팩트  `artifacts { ... }` 에서 빌드 결과물을 컨트롤하고 있다. 
 
-3. `deployment_gorup.tf`의 `resource deployment_config` 에서 `minimum_healthy_hosts`를 정의할 수 있다.  디폴트는 한번에 하나씩 하는 전략. (1개니까 여기선 주석처리했고 복수 노드를 대상으로 배포 할땐 사용한다.)
+3. `deployment***gorup.tf`의 `resource deployment***config` 에서 `minimum***healthy***hosts`를 정의할 수 있다.  디폴트는 한번에 하나씩 하는 전략. (1개니까 여기선 주석처리했고 복수 노드를 대상으로 배포 할땐 사용한다.)
 
 4. 개인적으로 관심있게 본 부분
 
 ```main.tf
 
-user_data  = data.template_file.userdata.rendered
+user***data  = data.template***file.userdata.rendered
 
 # user_data를 프로비전하도록 하고
 
@@ -616,7 +616,7 @@ jobs:
 
    steps:
 
-   uses: dev-chilbuji/devops_custom_action@master
+   uses: dev-chilbuji/devops***custom***action@master
 
 ```
 
@@ -670,7 +670,7 @@ jobs:
 
     - name: Send slack message # 메시지 발송
 
-      uses: dev-hibike/devops_custom_actions@master
+      uses: dev-hibike/devops***custom***actions@master
 
       with:
 
@@ -678,7 +678,7 @@ jobs:
 
       env:
 
-        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+        SLACK***TOKEN: ${{ secrets.SLACK***TOKEN }}
 
         SLACK_MESSAGE: Push event!!
 
@@ -716,7 +716,7 @@ jobs:
 
 	3. `config.yml`에서 build - test - deploy 단계를 워크플로우로 정의
 
-	4. jobs내의 executor에 대해선 `setup_remote_docker`를 구성해줘야 한다. 
+	4. jobs내의 executor에 대해선 `setup***remote***docker`를 구성해줘야 한다. 
 
 ```
 
@@ -776,7 +776,7 @@ jobs:
 
 ### 프로젝트
 
-_프로젝트는 어플리케이션으로 구성되고 하나의 어플리케이션은 여러 워크로드로 구성된다._
+***프로젝트는 어플리케이션으로 구성되고 하나의 어플리케이션은 여러 워크로드로 구성된다.***
 
 * `어플리케이션 생성`
 
@@ -1152,7 +1152,7 @@ jobs:
 
   steps: // ... (중략) 테스트 스탭
 
-   -persist_to_workspace:
+   -persist***to***workspace:
 
       root: .
 
@@ -1172,7 +1172,7 @@ cd:
 
 ```yaml
 
-          git clone https://github.com/dev-hibike/devops_k8s.git && cd devops_k8s;
+          git clone https://github.com/dev-hibike/devops***k8s.git && cd devops***k8s;
 
 
 
@@ -1244,15 +1244,15 @@ workflows:
 
 // main.tf
 
-  public_subnet_tags  = local.public_subnet_tags
+  public***subnet***tags  = local.public***subnet***tags
 
-  private_subnet_tags = local.private_subnet_tags
+  private***subnet***tags = local.private***subnet***tags
 
 // *.auto.tfvars
 
-	private_subnet_tags = { "kubernetes.io/role/internal-elb": 1 }
+	private***subnet***tags = { "kubernetes.io/role/internal-elb": 1 }
 
-	public_subnet_tags  = { "kubernetes.io/role/elb": 1 } 
+	public***subnet***tags  = { "kubernetes.io/role/elb": 1 } 
 
 // 1 또는 빈값을 넣어야하는데 이건 eks 리소스 독을 보면 알 수 있다. 이 태그가 있음으로서 LB CTLR이 일을 할 수 있게 된다. 
 
@@ -1516,13 +1516,13 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 	1. `Define pattern` - 키워드를 패턴을 잡거나 `access.log`처럼 형식이 있거나 하겠지. 그걸 원하는 대로 잡을 수 있다. 
 
-	2. filter pattern `${$.target_processing_time = 0.001 }`  
+	2. filter pattern `${$.target***processing***time = 0.001 }`  
 
 	3. Metric Value를 설정한다. ->  잡은 패턴 값 그대로 쓸 수도 있고 1 로 쓸 수도 있다. (필드값을 따오고 싶으면 $로 참조)
 
 3. 이제 `Log Groups`  -> `Metric filter` 탭에서 설정한 값을 확인할 수 있다 
 
-4. 이제 Niti 설정 -> 추가 설정 만들값을 고른다.`$.target_processing_time` 선택
+4. 이제 Niti 설정 -> 추가 설정 만들값을 고른다.`$.target***processing***time` 선택
 
 
 
@@ -1574,7 +1574,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 	* 프로메테우스에서 데이터를 일컫는, 검색을 하면 특정 시간대를 보여준다. `동일 시간대의 샘플 묶음을 인스턴스 = 벡터`
 
-	* `prometheus_http_requests_total [1m]` 이렇게 검색을 할 수 있는데 이건 *레인지 벡터*라한다.
+	* `prometheus***http***requests_total [1m]` 이렇게 검색을 할 수 있는데 이건 *레인지 벡터*라한다.
 
 		* 하나의 샘플 안에 스칼라는 여러개의 스칼라를 가진다.
 
@@ -1584,7 +1584,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 * PromQL
 
-	* instance Vector selector 의 동작 코드가 200인 애들만 보고 싶다면? `prometheus_http_requests_total{code=“2—“)` regex나 논리표현도 지원한다. `code!=“200”`
+	* instance Vector selector 의 동작 코드가 200인 애들만 보고 싶다면? `prometheus***http***requests_total{code=“2—“)` regex나 논리표현도 지원한다. `code!=“200”`
 
 	* `offset 1m` 1분전 데이터를 가져오고 싶다. UNIX epoch도 쓸 수 있다. 
 
@@ -1600,15 +1600,15 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 		* one to one 
 
-`method_code:http_errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m` 코드를 무시하고 두개를 검색하고 같은 검색이 된것끼리 나누기 연산을 했다.
+`method***code:http***errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m` 코드를 무시하고 두개를 검색하고 같은 검색이 된것끼리 나누기 연산을 했다.
 
 		* one to Many
 
 			* 카디널리티가 높다. (모수)가 많다. (숫자가 많다) Group left면 모수가 많은 쪽이 왼쪽에 가야 한다.
 
-	`method_code:http_errors:rate5m / ignoring(code) group_left method:http_requests:rate5m`
+	`method***code:http***errors:rate5m / ignoring(code) group***left method:http***requests:rate5m`
 
-	_MyOp: 이렇게 결과를 쉽게 조작해서 의도된 좋은 데이터를 모니터링의 기준으로 삼을 수 있는게 환상적이네_
+	***MyOp: 이렇게 결과를 쉽게 조작해서 의도된 좋은 데이터를 모니터링의 기준으로 삼을 수 있는게 환상적이네***
 
 
 
@@ -1622,7 +1622,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 	* 어떤 쿼리를 했는지 저장할 수 있는 로그를 지정할 수도 있다.
 
-		* `global, rule_files, scrape_configs, alerting, remote_write, remote_read, storage`
+		* `global, rule***files, scrape***configs, alerting, remote***write, remote***read, storage`
 
 	* 자주 쓰거나 부하가 큰 것들은 캐시를 지정해놓을 수 있다.
 
@@ -1632,7 +1632,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
       - alert: alerts:cpu_usage:prometheus:80
 
-        expr: rate(process_cpu_seconds_total{job=~"prometheus"}[1m]) * 100 > 0
+        expr: rate(process***cpu***seconds_total{job=~"prometheus"}[1m]) * 100 > 0
 
 ```
 
@@ -1670,7 +1670,7 @@ scrape_configs:
 
  - job_name: ‘dj-custom-file-sd’ # 별도의 타겟을 지정하게 되고 설정한 내용을 웹에서 볼 수 있다.
 
-   file_sd_configs:
+   file***sd***configs:
 
      - files:
 
@@ -1696,7 +1696,7 @@ scrape_configs:
 
    scheme: http
 
-   http_sd_configs: //동적으로 타겟서비스를 찾아내는 리소스
+   http***sd***configs: //동적으로 타겟서비스를 찾아내는 리소스
 
      - follow_redirects: false
 
@@ -1772,7 +1772,7 @@ server:
 
       - url: https://github.com/dev-hibike/devops_k8s.git
 
-      - url: https://github.com/dev-hibike/devops_sample_app_python.git
+      - url: https://github.com/dev-hibike/devops***sample***app_python.git
 
 
 
@@ -1788,7 +1788,7 @@ server:
 
 * 프로메테우스가 이해할 수 있는 메트릭을 제공해주는 라이브러리를 사용해 만들 수 있다. `exporter`를 사용하면 만들지 않고 알아서 제공하게 할 수도 있다. 
 
-* 단독실행되던 도커 옆에 `node_exporter`를 붙여서 컴포즈하고 `scrape_configs`에 잡을 등록해주면 끝. 
+* 단독실행되던 도커 옆에 `node***exporter`를 붙여서 컴포즈하고 `scrape***configs`에 잡을 등록해주면 끝. 
 
 	* 수집 셋팅이 끝나면 그라파나에서 대시보드 마켓에서 대시보드 설정
 
@@ -1840,7 +1840,7 @@ server:
 
 	* `host.docker.internal` 도커에서 내부에서 로컬호스트를 가르킬 수 있도록 쓰는 도메인
 
-	* `__address__`는 target 리소스에 등록한 호스트들을 가르킨다.
+	* `_***address***_`는 target 리소스에 등록한 호스트들을 가르킨다.
 
 * `prometheus-flask-exporter` (라이브러리 형태로 exporter)
 
@@ -1852,13 +1852,13 @@ server:
 
 ## Kubernetes 리소스를 상태를 수집? node-exporter-Kube
 
-* 프로메테우스에 대해 네임 스페이스 기준으로 쿼리를 할 수 있다. `label_values(kube_namespace_created,exported_namespace)`   결과가 탭으로 나뉜다.
+* 프로메테우스에 대해 네임 스페이스 기준으로 쿼리를 할 수 있다. `label***values(kube***namespace***created,exported***namespace)`   결과가 탭으로 나뉜다.
 
-* `sum(kube_pod_labels(exported_namespace=“$namespace:”})` → 이렇게 하면 적용중인 네임스페이스의 파드라벨의 합을 보여준다.
+* `sum(kube***pod***labels(exported_namespace=“$namespace:”})` → 이렇게 하면 적용중인 네임스페이스의 파드라벨의 합을 보여준다.
 
-* `kube_service_createdexported_namespace=“$namespace:”, pod=~"$service.*})` -> Kubernetes 를 제외하고 상단 셀렉터에서 고른 서비스를 쿼리. 멀티밸류는 꺼줘야 원하는 값이 나온다.
+* `kube***service***createdexported_namespace=“$namespace:”, pod=~"$service.*})` -> Kubernetes 를 제외하고 상단 셀렉터에서 고른 서비스를 쿼리. 멀티밸류는 꺼줘야 원하는 값이 나온다.
 
-	* `container_cpu_usage_seconds_total{namespace=$namespace”, image=“”, pod=~”$service.*”}[1m`  전체 CPU  자원 점유량을 표현, `contiainer_memory_res`를 사용하면  메모리 사용량을 체크할 수 있다. 
+	* `container***cpu***usage***seconds***total{namespace=$namespace”, image=“”, pod=~”$service.*”}[1m`  전체 CPU  자원 점유량을 표현, `contiainer***memory***res`를 사용하면  메모리 사용량을 체크할 수 있다. 
 
 * 사이드 메뉴 사용법 주절주절 딱보면 다 알 수 있다.
 
@@ -1892,7 +1892,7 @@ templates: p[] # title, text 등 자주 쓰는 컨텐츠를 템플릿으로 관�
 
 ```
 
-* smtp_auth_password 등은 계정에서 앱 패스워드를 발급할 수 있는데 보통 그걸 입력하면된다. 슬랙도 마찬가지다.
+* smtp***auth***password 등은 계정에서 앱 패스워드를 발급할 수 있는데 보통 그걸 입력하면된다. 슬랙도 마찬가지다.
 
 ```prometheus.yml
 
@@ -1994,11 +1994,11 @@ alerting:
 
 ```docker-compose.yml 
 
-ES_SETTING_BOOTSTRAP_MEMORY__LOCK:”true”
+ES***SETTING***BOOTSTRAP***MEMORY***_LOCK:”true”
 
 node.roles: master
 
-cluster.initial_master_node: esm01
+cluster.initial***master***node: esm01
 
 discovery.seed_hosts: esm01, esd01, esd02
 
@@ -2018,7 +2018,7 @@ discovery.seed_hosts: esm01, esd01, esd02
 
 		* REP 샤드가 Assign안 되어있을때 옐로우
 
-	* `GET _cluster/setting?inlcude_defaults=true` 동시성 리밸런스 등 설정 내용을 확인가능 (이게 튜닝포인트)
+	* `GET ***cluster/setting?inlcude***defaults=true` 동시성 리밸런스 등 설정 내용을 확인가능 (이게 튜닝포인트)
 
 ```
 

@@ -76,7 +76,7 @@ git reset —hard 하면 스테이지 끌어내리고 파일도 바구고 다
 
 ## Gitlab CI 워크숍 자료
 
-* [https://workshop.infograb.io/gitlab-ci/00_workshop_info/](https://workshop.infograb.io/gitlab-ci/00_workshop_info/) 
+* [https://workshop.infograb.io/gitlab-ci/00***workshop***info/](https://workshop.infograb.io/gitlab-ci/00***workshop***info/) 
 
 * SPRING 코드 따라서 플로우를 따라해보기 좋음.
 

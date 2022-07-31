@@ -22,7 +22,7 @@
 
 ### CH01_03~07 환경구성 및 미니쿠베
 
-_docker, docker-compose, kubectl, kustomize,  minikube_
+***docker, docker-compose, kubectl, kustomize,  minikube***
 
 🐭 rehash: Re-computes the internal hash table.
 
@@ -274,11 +274,11 @@ HY_HOST=hello.com
 
 * 도커 레이어 아키텍쳐
 
-	* `docker build -t app .`  을 통해 base OS, apt Package, install pip, source Code, Update Entrypoint 이런 과정을 수행하고 이게 _Image Layers_ 이고 Read only
+	* `docker build -t app .`  을 통해 base OS, apt Package, install pip, source Code, Update Entrypoint 이런 과정을 수행하고 이게 ***Image Layers*** 이고 Read only
 
 	* 도커는 이 각 단계를 레이어로 관리함으로서 작업수요는 줄인다. 
 
-	* `docker run app`  을 통해 실행하면 _ContainerLayer_ 가 생겨난다. 이건 RW 
+	* `docker run app`  을 통해 실행하면 ***ContainerLayer*** 가 생겨난다. 이건 RW 
 
 * 호스트볼륨
 
@@ -362,7 +362,7 @@ HY_HOST=hello.com
 
 	* 컨테이너에 직접 들어가서 명령어를 수행한 다음 commit을 해서 이미지를 만들 수 있음.
 
-`docker commit -a 2022campus -m "add my_file" my_ubuntu my-ubuntu:v1`
+`docker commit -a 2022campus -m "add my***file" my***ubuntu my-ubuntu:v1`
 
 `sha256:a961....` 이미지 생성 확인.
 
@@ -492,7 +492,7 @@ RUN \
 
 	* `FROM light-base AS release`  릴리즈 단계
 
-	* `COPY --from=build /app/node_modules ./node_modules` 이전 단계에서 수행한 내용 (`npm install`의 결과물을 복사. 의존성이 커질 수록 이 효과가 커진다. 레이어를 효과적으로 관리하기 위해선 초반에 고정적이고 후반에 가변적인 명령어를 다뤄야 한다.
+	* `COPY --from=build /app/node***modules ./node***modules` 이전 단계에서 수행한 내용 (`npm install`의 결과물을 복사. 의존성이 커질 수록 이 효과가 커진다. 레이어를 효과적으로 관리하기 위해선 초반에 고정적이고 후반에 가변적인 명령어를 다뤄야 한다.
 
 
 
@@ -612,7 +612,7 @@ db:
 
   environment:
 
-  - MYSQL_ROOT_PASSWORD=wordpress # '-' 를 이용해 정의하면 배열
+  - MYSQL***ROOT***PASSWORD=wordpress # '-' 를 이용해 정의하면 배열
 
 ...
 
@@ -624,9 +624,9 @@ wordpress:
 
   environment:
 
-    WORDPRESS_DB_HOST: db:3306 # --> 오브젝트 형식의 정의
+    WORDPRESS***DB***HOST: db:3306 # --> 오브젝트 형식의 정의
 
-    WORDPRESS_DB_USER: user123 
+    WORDPRESS***DB***USER: user123 
 
 ```
 
@@ -660,7 +660,7 @@ services:
 
     environment:
 
-      GF_INSTALL_PLUGINS: grafana-clock-panel
+      GF***INSTALL***PLUGINS: grafana-clock-panel
 
     port: 
 
@@ -724,7 +724,7 @@ volumes:
 
 	* overlay network 를 통해 하나의 네트워크 처럼 동작하게 해준다. (Service discovery가 이것)
 
-* _What is Container Orchestration?_ - 여러 머신으로 구성된 클러스터 상에서 컨테이너를 효율적으로 관리하기 위한 시스템 (운영체제는 하나의 머신에서 프로세스를 관리하기 위한 프로세스 오케스트레이션 시스템이잖아) → 덕분에 사용자가 OS에 대해 신경을 쓸일이 적어졌다. 해방됐다!라고 표현하기도 한다.
+* ***What is Container Orchestration?*** - 여러 머신으로 구성된 클러스터 상에서 컨테이너를 효율적으로 관리하기 위한 시스템 (운영체제는 하나의 머신에서 프로세스를 관리하기 위한 프로세스 오케스트레이션 시스템이잖아) → 덕분에 사용자가 OS에 대해 신경을 쓸일이 적어졌다. 해방됐다!라고 표현하기도 한다.
 
 * 기존에도 노마드, 메소스(DC/OS), 도커스웜, 랜처(간단한게 장점) 등 있었지만 선택받은 쿠버네티스
 
@@ -1388,7 +1388,7 @@ kubectl get pod // 이렇게 하면 타입들이 변한걸 확인 가능
 
       env:
 
-      - name: MYSQL_ROOT_PASSSWORD #실행하고 들어가면 $PASSWORD 해보면 보인다.
+      - name: MYSQL***ROOT***PASSSWORD #실행하고 들어가면 $PASSWORD 해보면 보인다.
 
 ```
 
@@ -1406,7 +1406,7 @@ metadata:
 
 data: # 대개 spec을 가지나 data 키를 가진다.
 
-  MYSQL_ROOT_PASSWORD: fastcampus 
+  MYSQL***ROOT***PASSWORD: fastcampus 
 
   MYSQL_DATABASE: devops
 
@@ -1432,7 +1432,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
         env:
 
-        - name: MYSQL_ROOT_PASSWORD
+        - name: MYSQL***ROOT***PASSWORD
 
           valueFrom:
 
@@ -1440,7 +1440,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
               name: mysql-config
 
-              key: MYSQL_ROOT_PASSWORD
+              key: MYSQL***ROOT***PASSWORD
 
 ```
 
@@ -2246,7 +2246,7 @@ secretGenerator:
 
   literals:
 
-  - MYSQL_ROOT_PASSWORD=fastcampus
+  - MYSQL***ROOT***PASSWORD=fastcampus
 
 
 
