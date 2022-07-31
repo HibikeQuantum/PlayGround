@@ -186,11 +186,15 @@ serivce sendmail status
 
 VM 대신 IPC 포탈에서도 재기동을 할 수 있게 해놓았고 그걸 권장한다. 프로세스를 지켜..(..??) 그래야 IPC팀에서 그걸 고친데! 종합장애 관리 대시보드란게 있는데 각 장애에 대해 영향도를 평가할 수 있는 공간이 있다.
 
+```
+
 def ilaya1():
 
     current***func***name = sys.***getframe().f***code.co_name
 
     print ("The current running function name : {}".format(current***func***name))
+
+```
 
 
 
