@@ -894,7 +894,10 @@ if [ "$tommorow" = "01" ]; then
 
 * `tar rvf $archieveFile $targetFile`  -r (append) 를 이용해 기존 아카이브에 파일을 추가할 수 있다.
 
-::아카이브 파일이 없으면 에러 안내고 생성하므로 주의)::
+```diff
++ 아카이브 파일이 없으면 에러 안내고 생성하므로 주의)
+```
+
 
 
 

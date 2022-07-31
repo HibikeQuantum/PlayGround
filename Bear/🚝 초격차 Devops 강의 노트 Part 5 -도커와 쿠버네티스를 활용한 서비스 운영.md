@@ -1164,7 +1164,11 @@ spec:
 
 * ClusterIP 
 
-	* 서비스 네트워크 IP/PORT 정보 → ::spec.clusterIP:spec.ports[*].port::
+	* 서비스 네트워크 IP/PORT 정보 → 
+```diff
++ spec.clusterIP:spec.ports[*].port
+```
+
 
 	* ⭐️ 파드에 부여하는 CIDR 대역과 서비스에 부여되는 ClusterIP CIDR 가 독립적으로 존재한다.  클러스터는 서비스를 가지고 서비스는 ClusterIP 를 가진다. 이곳으로 오는 요청은 LoadBalance 내부 DNS를 통해 서비스 이름으로 통신도 가능
 
@@ -1214,7 +1218,11 @@ spec:
 
 * NodePort를 외부에 노출하기
 
-	* 서비스 네트워크 IP/PORT 정보 ::<NodeIP:spec.port[*].nodePort::
+	* 서비스 네트워크 IP/PORT 정보 
+```diff
++ <NodeIP:spec.port[*].nodePort
+```
+
 
 	* 쿠너네티스의 모든 동일 포트를 개방하여 서비스에 접근가능케함
 
@@ -1262,7 +1270,11 @@ spec:
 
 * LoadBalancer (보통 클라우드 프로바이더의 로드밸런서와 연동하여 쓴다)
 
-	* 서비스 네트워크 IP/Port 정보 ::spec.loadBalancerlp:spec.ports[*].port::
+	* 서비스 네트워크 IP/Port 정보 
+```diff
++ spec.loadBalancerlp:spec.ports[*].port
+```
+
 
 	* 클라우드 프로바이더에서 제공하는 로드밸런서를 동적으로 생성하는 방식. minikube 에선 패스. (할수는 있지만) MetalLB 같은 기술을 쓰면 On Poremise에서도 로드밸런스 타입 사용가능.
 

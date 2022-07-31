@@ -88,13 +88,21 @@
 
 *VPC, subnet, route Table, VPC peering, DHCP options, Virtual Gate, Internet Gateway* ⇒  비용 X
 
-::`NAT Gateway, PrivateLink, Site to Site VPN:: 과금
+```diff
++ `NAT Gateway, PrivateLink, Site to Site VPN
+```
+ 과금
+
 
 * IAM
 
 	* 많은 리소스를 생성해도 과금 없음
 
-	* ::User, Group, Role, Policy::
+	* 
+```diff
++ User, Group, Role, Policy
+```
+
 
 * "공짜 서비스로 IaC를 연습하자"
 

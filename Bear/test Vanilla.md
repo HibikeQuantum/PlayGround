@@ -8,25 +8,7 @@
 
 이건 바닐라
 
-
-
 ```
-
-``
-
-건드리지마!
-
-
-
-``
-
-
-
-!헤드는 바꾸지 않아도 된다.1
-
-
-
-line_conv (밑에 두번 개행이 정상)
 
 ---
 
@@ -34,17 +16,9 @@ line_conv (밑에 두번 개행이 정상)
 
 
 
-bold_conv 1
+**bold_conv 1** 이건 볼드로 유지되는가?
 
-*Bear BOLD 1 ast*는 **GIT BOLD TALIC 2 ast**로 바꿔주고
-
-*합* 일반 텍스트 *내 껀 이것도 해준다! * gogo
-
-1231231
-
-italic_conv12
-
-/베어 이태릭/은 *깃 이태릭*으로
+*italic_conv12* 이건 이태릭이다.
 
 
 
@@ -56,7 +30,7 @@ italic_conv12
 
 underline_conv
 
-_베어 언더라인_ → ***깃 bold italic으로 치환 * 3개 *** 
+~베어 언더라인~ → ***깃 bold italic으로 치환 * 3개 *** 
 
 _베어 언더라인 두번째_
 
@@ -94,9 +68,9 @@ _베어 언더라인 두번째_
 
 todo_box_conv
 
-- 투두가 완성되느냐 1
+- [ ] 투두가 완성되느냐 1
 
-+ 투두완료가 완성되느냐
+- [x] 투두완료가 완성되느냐
 
 
 
@@ -150,11 +124,19 @@ mark_conv
 
 
 
-::순수 marked String::
+```diff
++ 순수 marked String
+```
 
 
 
-안녕하세요! ::marked String:: 안녕하세요!
+
+안녕하세요! 
+```diff
++ marked String
+```
+ 안녕하세요!
+
 
 =>
 

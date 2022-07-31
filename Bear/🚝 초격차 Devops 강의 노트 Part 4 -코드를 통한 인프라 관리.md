@@ -1220,7 +1220,11 @@ docker run
 
 
 
-::168.254.169.254:: → EC2 meta data Server. 여기에 쿼리하면 다 줌.
+```diff
++ 168.254.169.254
+```
+ → EC2 meta data Server. 여기에 쿼리하면 다 줌.
+
 
 `most_recent = true` → 그룹으로 끌고와서 가장 최근것을 사용
 
