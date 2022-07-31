@@ -56,6 +56,8 @@
 
 `CMD+SHIFT+O` -> Symbol find (변수 및 펑션 검색)
 
+`CMD+SHIFT+L` -> log it 
+
 ## Sapari
 
 Customizing key (not work other env)
