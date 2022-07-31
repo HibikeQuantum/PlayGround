@@ -670,7 +670,7 @@ sed -n "s/<code>\(.*\)><\/code>/\1/p"
 
 ```bash
 
-err***coint=`grep -c "ERROR" /var/log/\`host***anme\`.log`
+err_coint=`grep -c "ERROR" /var/log/\`host_anme\`.log`
 
 ```
 
@@ -706,13 +706,13 @@ pure mode
 
 ```bash
 
-cat << '_***EOT***_'  
+cat << '__EOT__'  
 
 $변수 //$변수 출력
 
 \$변수 //이렇게 쓰면  \$변수
 
-_***EOT***_
+__EOT__
 
 ```
 

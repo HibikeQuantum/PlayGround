@@ -416,7 +416,7 @@ server{
 
     include proxy_params;
 
-    proxy***pass  [http://unix/home/ubuntu/django***nginx/](http://unix/home/ubuntu/django_nginx/) 
+    proxy_pass  [http://unix/home/ubuntu/django_nginx/](http://unix/home/ubuntu/django_nginx/) 
 
 ```
 
@@ -428,7 +428,7 @@ server{
 
 directory=/home/ubuntu/django_nginx
 
-commnad=/usr/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/django***nginx/app.sock django***nginx.wsgi:application
+commnad=/usr/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/django_nginx/app.sock django_nginx.wsgi:application
 
 autostart:true
 
@@ -450,7 +450,7 @@ sudo gunicorn --bind 0.0.0.0:8000 django_nginx.wsgi:application
 
 python3 manage.py runserver 0.0.0.0:8000
 
-gunicorn --bind unix:/home/ubuntu/django***nginx/app.sock django***nginx.wsgi:application
+gunicorn --bind unix:/home/ubuntu/django_nginx/app.sock django_nginx.wsgi:application
 
 ```
 
@@ -862,7 +862,7 @@ def callback(ch, method, perperties, body):
 
 
 
-channel.basic***consume(queue='order', on***message***callback=cacllback, auto***ack=True)
+channel.basic_consume(queue='order', on_message_callback=cacllback, auto_ack=True)
 
 // 큐를 받으면 콜백을 실행한다.
 

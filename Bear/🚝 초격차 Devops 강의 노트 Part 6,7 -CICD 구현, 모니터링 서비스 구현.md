@@ -220,9 +220,9 @@ Tips
 
 aws ecr get-login...
 
-export IMAGE=${ECR***DOCKER***IMAGE}
+export IMAGE=${ECR_DOCKER_IMAGE}
 
-export TAG=${ECR***DOCKER***IMAGE}
+export TAG=${ECR_DOCKER_IMAGE}
 
 docker-compose -f compose.yaml down;
 
@@ -404,7 +404,7 @@ hooks:
 
 ```main.tf
 
-user***data  = data.template***file.userdata.rendered
+user_data  = data.template_file.userdata.rendered
 
 # user_data를 프로비전하도록 하고
 
@@ -616,7 +616,7 @@ jobs:
 
    steps:
 
-   uses: dev-chilbuji/devops***custom***action@master
+   uses: dev-chilbuji/devops_custom_action@master
 
 ```
 
@@ -670,7 +670,7 @@ jobs:
 
     - name: Send slack message # 메시지 발송
 
-      uses: dev-hibike/devops***custom***actions@master
+      uses: dev-hibike/devops_custom_actions@master
 
       with:
 
@@ -678,7 +678,7 @@ jobs:
 
       env:
 
-        SLACK***TOKEN: ${{ secrets.SLACK***TOKEN }}
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 
         SLACK_MESSAGE: Push event!!
 
@@ -1152,7 +1152,7 @@ jobs:
 
   steps: // ... (중략) 테스트 스탭
 
-   -persist***to***workspace:
+   -persist_to_workspace:
 
       root: .
 
@@ -1172,7 +1172,7 @@ cd:
 
 ```yaml
 
-          git clone https://github.com/dev-hibike/devops***k8s.git && cd devops***k8s;
+          git clone https://github.com/dev-hibike/devops_k8s.git && cd devops_k8s;
 
 
 
@@ -1244,15 +1244,15 @@ workflows:
 
 // main.tf
 
-  public***subnet***tags  = local.public***subnet***tags
+  public_subnet_tags  = local.public_subnet_tags
 
-  private***subnet***tags = local.private***subnet***tags
+  private_subnet_tags = local.private_subnet_tags
 
 // *.auto.tfvars
 
-	private***subnet***tags = { "kubernetes.io/role/internal-elb": 1 }
+	private_subnet_tags = { "kubernetes.io/role/internal-elb": 1 }
 
-	public***subnet***tags  = { "kubernetes.io/role/elb": 1 } 
+	public_subnet_tags  = { "kubernetes.io/role/elb": 1 } 
 
 // 1 또는 빈값을 넣어야하는데 이건 eks 리소스 독을 보면 알 수 있다. 이 태그가 있음으로서 LB CTLR이 일을 할 수 있게 된다. 
 
@@ -1632,7 +1632,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
       - alert: alerts:cpu_usage:prometheus:80
 
-        expr: rate(process***cpu***seconds_total{job=~"prometheus"}[1m]) * 100 > 0
+        expr: rate(process_cpu_seconds_total{job=~"prometheus"}[1m]) * 100 > 0
 
 ```
 
@@ -1670,7 +1670,7 @@ scrape_configs:
 
  - job_name: ‘dj-custom-file-sd’ # 별도의 타겟을 지정하게 되고 설정한 내용을 웹에서 볼 수 있다.
 
-   file***sd***configs:
+   file_sd_configs:
 
      - files:
 
@@ -1696,7 +1696,7 @@ scrape_configs:
 
    scheme: http
 
-   http***sd***configs: //동적으로 타겟서비스를 찾아내는 리소스
+   http_sd_configs: //동적으로 타겟서비스를 찾아내는 리소스
 
      - follow_redirects: false
 
@@ -1772,7 +1772,7 @@ server:
 
       - url: https://github.com/dev-hibike/devops_k8s.git
 
-      - url: https://github.com/dev-hibike/devops***sample***app_python.git
+      - url: https://github.com/dev-hibike/devops_sample_app_python.git
 
 
 
@@ -1994,11 +1994,11 @@ alerting:
 
 ```docker-compose.yml 
 
-ES***SETTING***BOOTSTRAP***MEMORY***_LOCK:”true”
+ES_SETTING_BOOTSTRAP_MEMORY__LOCK:”true”
 
 node.roles: master
 
-cluster.initial***master***node: esm01
+cluster.initial_master_node: esm01
 
 discovery.seed_hosts: esm01, esd01, esd02
 

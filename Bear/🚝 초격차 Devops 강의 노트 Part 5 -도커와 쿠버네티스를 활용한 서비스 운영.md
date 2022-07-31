@@ -612,7 +612,7 @@ db:
 
   environment:
 
-  - MYSQL***ROOT***PASSWORD=wordpress # '-' 를 이용해 정의하면 배열
+  - MYSQL_ROOT_PASSWORD=wordpress # '-' 를 이용해 정의하면 배열
 
 ...
 
@@ -624,9 +624,9 @@ wordpress:
 
   environment:
 
-    WORDPRESS***DB***HOST: db:3306 # --> 오브젝트 형식의 정의
+    WORDPRESS_DB_HOST: db:3306 # --> 오브젝트 형식의 정의
 
-    WORDPRESS***DB***USER: user123 
+    WORDPRESS_DB_USER: user123 
 
 ```
 
@@ -660,7 +660,7 @@ services:
 
     environment:
 
-      GF***INSTALL***PLUGINS: grafana-clock-panel
+      GF_INSTALL_PLUGINS: grafana-clock-panel
 
     port: 
 
@@ -1388,7 +1388,7 @@ kubectl get pod // 이렇게 하면 타입들이 변한걸 확인 가능
 
       env:
 
-      - name: MYSQL***ROOT***PASSSWORD #실행하고 들어가면 $PASSWORD 해보면 보인다.
+      - name: MYSQL_ROOT_PASSSWORD #실행하고 들어가면 $PASSWORD 해보면 보인다.
 
 ```
 
@@ -1406,7 +1406,7 @@ metadata:
 
 data: # 대개 spec을 가지나 data 키를 가진다.
 
-  MYSQL***ROOT***PASSWORD: fastcampus 
+  MYSQL_ROOT_PASSWORD: fastcampus 
 
   MYSQL_DATABASE: devops
 
@@ -1432,7 +1432,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
         env:
 
-        - name: MYSQL***ROOT***PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
 
           valueFrom:
 
@@ -1440,7 +1440,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
               name: mysql-config
 
-              key: MYSQL***ROOT***PASSWORD
+              key: MYSQL_ROOT_PASSWORD
 
 ```
 
@@ -2246,7 +2246,7 @@ secretGenerator:
 
   literals:
 
-  - MYSQL***ROOT***PASSWORD=fastcampus
+  - MYSQL_ROOT_PASSWORD=fastcampus
 
 
 

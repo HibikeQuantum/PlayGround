@@ -190,9 +190,9 @@ VM 대신 IPC 포탈에서도 재기동을 할 수 있게 해놓았고 그걸 �
 
 def ilaya1():
 
-    current***func***name = sys.***getframe().f***code.co_name
+    current_func_name = sys._getframe().f_code.co_name
 
-    print ("The current running function name : {}".format(current***func***name))
+    print ("The current running function name : {}".format(current_func_name))
 
 ```
 
