@@ -654,9 +654,23 @@ sh ./(쓰고 싶은 쉘)이렇게만 하면 끝. 마치 소스에 붙인것 처�
 
 ## sed
 
-sed -n 출력을 따로 안한다. "s/some/thing/p" 마지막 인자로 p를 주면패턴을 찾았을때만 출력한다.
+* `-n`  옵션을 주면 기본적으로 출력을 따로 안한다. "s/some/thing/p" 마지막 인자로 p를 주면패턴을 찾았을때만 출력한다.
 
-sed -n "s/<code>\(.*\)><\/code>/\1/p"
+* `sed -n "s/<code>\(.*\)><\/code>/\1/p"` -> code 블럭 사이의 내용만 잡아서 \1로 replace
+
+* `sed “s/\(…\)/\1-/“` 이것도 정규식이다. 3개의 문자를 그룹으로(후방참조를 위해) 그리고 \1 로호출하고 -를 붙여서 Replace
+
+
+
+## tr -d 
+
+특정문자 삭제에 사용 `’\n’`
+
+
+
+## POSIX 문자클래스
+
+`[[blank:]]` 스페이스, 탭 같은 공백에 해당하는 문자를 칭함
 
 
 
@@ -1199,6 +1213,8 @@ awk -F, ‘{sum += $3} END {print sum / NR}’ "$1" > ${filename}.avg
 
 * `{code that exec each line} END {code that exec at last}` 표현이 awk출력을 좌우하게 된다. 
 
+* 값 좌우의 공백을 없앨때도 자주 쓴다.
+
 * Useful code snippet - 최고 높은 값 기준 추출하기
 
 `max=$(awk -F, ‘{print $3}’ “$csvfile” | sort -nr | head -n 1)`
@@ -1249,6 +1265,10 @@ Deginate numb of * by func arg as
 
 * [ -n ] null 이 아니면 참 
 
+* `grep ‘^[0-9]\{7\}$’ ` -> 숫자 7자리. 이런식으로 정규식을 쓸 수도 있구나.
+
+* 
+
 
 
 ## unique
@@ -1276,6 +1296,12 @@ Deginate numb of * by func arg as
 ### paste -d
 
 파일을 횡방향으로 연결
+
+
+
+## printf
+
+1. 몇칸을 차지할지 정렬을 어디로 할지 지정 가능
 
 
 
