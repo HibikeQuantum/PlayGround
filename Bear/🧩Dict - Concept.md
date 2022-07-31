@@ -2,7 +2,6 @@
 
 #Business&Finance
 
-
 ---
 
 # 참고할만한 정보들

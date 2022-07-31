@@ -1,7 +1,6 @@
-# 🚝 초격차 Devops 강의 노트 Part 1,2,3 ~~Devops 문화, AWS 기본, 아키텍트 설계~~
+# 🚝 초격차 Devops 강의 노트 Part 1,2,3 -Devops 문화, AWS 기본, 아키텍트 설계-
 
 #Devops/lesson #lesson 
-
 
 ---
 
@@ -87,38 +86,29 @@
 
 * VPC 리소스들
 
-**VPC, subnet, route Table, VPC peering, DHCP options, Virtual Gate, Internet Gateway** ⇒  비용 X
+*VPC, subnet, route Table, VPC peering, DHCP options, Virtual Gate, Internet Gateway* ⇒  비용 X
 
-```diff
-+ `NAT Gateway, PrivateLink, Site to Site VPN
-```
- 과금
-
+::`NAT Gateway, PrivateLink, Site to Site VPN:: 과금
 
 * IAM
 
 	* 많은 리소스를 생성해도 과금 없음
 
-	* 
-```diff
-+ User, Group, Role, Policy
-```
-
+	* ::User, Group, Role, Policy::
 
 * "공짜 서비스로 IaC를 연습하자"
 
 * AWS 멀티 사용자 프로파일이 필요할 수가 있다. 
 
-	* .*aws*config
+	* ./aws/config
 
-	* aws sts get~~caller~~identity
+	* aws sts get-caller-identity
 
-****calculator aws* 이런 서비스도 존재한다. 
+* *calculator aws* 이런 서비스도 존재한다. 
 
 	* 실습할때도 실무할때도 항상 계산하도록
 
 * 하나의 서비스에 여러 서비스가 얽혀있어서 리소스 잔여물을 처리하기가 힘들다. AWS-NUKE 로 한번에 처리 가능
-
 
 ---
 
@@ -444,7 +434,7 @@ stdout_logfile=/logs/gunicorn1.out.log
 
 
 
-**배포 명령** 
+*배포 명령* 
 
 ```shell
 
@@ -576,7 +566,7 @@ uwsgi.ini  //소켓 위치와 uwsgi 가 실행되는 위치를 명시
 
 * 파게이트를 생성하고 서비스도 해야한다. (VPC에 연결)
 
-`ecs create_service —cluster [NAME] ~~-service-name --task~~definition ~~-vpc~~configuration`
+`ecs create_service —cluster [NAME] --service-name --task-definition --vpc-configuration`
 
 * 지우게 되면 ECS 도 같이 관리해주므로 EC2 에는 남는게 없다.
 
@@ -590,11 +580,11 @@ uwsgi.ini  //소켓 위치와 uwsgi 가 실행되는 위치를 명시
 
 	* ECS CLI 가 별도로 존재, 도커 컴포즈와는 문법이 다름
 
-	****GPG*로 퍼블릭키를 통해 ECS CLI 에 권한 부여
+	* *GPG*로 퍼블릭키를 통해 ECS CLI 에 권한 부여
 
-		* `gpg ~~o ecs~~cli [URL ecs~~linux~~latest.asc]`
+		* `gpg -o ecs-cli [URL ecs-linux-latest.asc]`
 
-		* `gpg ~~-verify ecs~~cli.asc *user/local/bin*ecs-cli`
+		* `gpg --verify ecs-cli.asc /user/local/bin/ecs-cli`
 
 
 
@@ -654,7 +644,7 @@ AWS-KMS  Key management service
 
 	* hardware security modules 저장소에 저장함.
 
-	****Cloud-trail*로 어떤 key를 어떻게 사용하는지 로그 남김
+	* *Cloud-trail*로 어떤 key를 어떻게 사용하는지 로그 남김
 
 * Datakey 는 4KB보다 더 큰 파일에 사용
 
@@ -686,7 +676,7 @@ AWS-KMS  Key management service
 
 	* boto3, 액세스키, 등등 모두 이렇게 사용하면 좋다.
 
-****비용*
+* *비용*
 
 	* 2만건 액세스 무료. 1$ 0.03$, KMS 1개 1$
 
@@ -716,11 +706,11 @@ CodeCommit
 
 	* aws iam create-policy Policy.json 생성
 
-	* aws iam list~~attached-user~~policy 생성된 정책을 IAM 적용
+	* aws iam list-attached-user-policy 생성된 정책을 IAM 적용
 
 	* aws iam create-role
 
-	* aws iam attach~~role~~policy
+	* aws iam attach-role-policy
 
 	* 코드디플로이 - 어플리케이션 생성
 
@@ -772,7 +762,7 @@ CodeCommit
 
 		* model = Shop
 
-		* fields = '_***all***_'
+		* fields = '__all__'
 
 		* 이렇게 하면 디비 내용을 객체처럼 다룰 수 있다. 장고 ORM의 정수
 
@@ -784,7 +774,7 @@ CodeCommit
 
 이걸 통해 도커안에서 뭘 변경해도 바로 로컬에 반영이 되고 DB 도 마찬가지다..
 
-	****매번 개발환경을 셋팅해야하는 참사는 이제 없다(!‼)*
+	* *매번 개발환경을 셋팅해야하는 참사는 이제 없다(!‼)*
 
 
 
@@ -812,7 +802,7 @@ def index():   // 단순간결하다!
 
 * SQLAlchemy로 모델을 정의할때 다른 DB와의 연동을 위해 id 를 autoincrement=false로 관리
 
-* 마이그레이션을 위해 'flask***migrate, flask***script 사용'
+* 마이그레이션을 위해 'flask_migrate, flask_script 사용'
 
 * 마이 그레이션 절차
 
@@ -1034,7 +1024,7 @@ Codedeploy
 
     class ShopModelTest(TestCase):
 
-    	def test***sample(self): 			// 이름은 test***로 시작해야한다.
+    	def test_sample(self): 			// 이름은 test_로 시작해야한다.
 
     		temp = True
 
@@ -1054,13 +1044,13 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 * 사용
 
-~/eb-flask$ eb init ~~p python~~3.7 flask~~tutorial -~~region us~~east~~2
+~/eb-flask$ eb init -p python-3.7 flask-tutorial --region us-east-2
 
-~/eb~~flask$ eb create flask~~env
+~/eb-flask$ eb create flask-env
 
 ~/eb-flask$ eb open
 
-~/eb~~flask$ eb terminate flask~~env
+~/eb-flask$ eb terminate flask-env
 
 ~/eb-flask$ eb deploy
 
@@ -1078,13 +1068,13 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 	0. EC2생성
 
-	1. apt update, python3 설치,  export PATH=$PATH:*opt/aws/eb/linux/python2.7*
+	1. apt update, python3 설치,  export PATH=$PATH:/opt/aws/eb/linux/python2.7/
 
-	2. export PATH=~*.local*bin:$PATH
+	2. export PATH=~/.local/bin:$PATH
 
-	3. curl ~~O  [http:*/bootstrap.pypa.io/get-pip.py](http://bootstrap.pypa.io*get~~pip.py) 
+	3. curl -O  [http://bootstrap.pypa.io/get-pip.py](http://bootstrap.pypa.io/get-pip.py) 
 
-	4. pip3 install awsebcli ~~-upgrade -~~user // awscli 도 설치
+	4. pip3 install awsebcli --upgrade --user // awscli 도 설치
 
 	5. awscli configure
 
@@ -1094,7 +1084,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 	8. virtualenv ~/eb-virt
 
-	9. source ~*eb-virt/bin*activate
+	9. source ~/eb-virt/bin/activate
 
 	10. pip install django==2.2
 
@@ -1114,13 +1104,13 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
   WSGIPath: ebdjango.wsgi:application
 
-  /public: *public  /*왼쪽으로 접근하면 오른쪽으로 처리한다.
+  /public: /public  //왼쪽으로 접근하면 오른쪽으로 처리한다.
 
 	0. vi setting.py & allowed_hosts = "*"
 
 	1. cd .. & deactivate  // 가상환경 exit
 
-	2. eb init ~~p python~~3.6 django-tutorial  // 배포할 EB환경을 생성한다. 이게 거의 80%
+	2. eb init -p python-3.6 django-tutorial  // 배포할 EB환경을 생성한다. 이게 거의 80%
 
 	3. eb init
 
@@ -1182,7 +1172,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 		* 그냥 함수, 트리거되면 실행된다.
 
-**Lambda**
+*Lambda*
 
 	* 요금
 
@@ -1212,7 +1202,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 
 
-## AWS***API***Gateway
+## AWS_API_Gateway
 
 * 요금
 
@@ -1234,11 +1224,11 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 * 서비스 개요
 
-	****API를 손쉽게 생성, 게시, 유지관리, 모니터링 및 보안 유지할 수 있는 완전관리형 서비스*
+	* *API를 손쉽게 생성, 게시, 유지관리, 모니터링 및 보안 유지할 수 있는 완전관리형 서비스*
 
 	* 프론트에서 URL을 호출하는데 백엔드 호스트 주소가 변하게 되면 까다롭다. 그래서 그냥 무조건 게이트웨이로 가게하면 변경이 자유로워진다. 
 
-		* gate*a → .com		gate*b → org  이렇게 라우팅 가능
+		* gate/a → .com		gate/b → org  이렇게 라우팅 가능
 
 	* 서비스의 구조가 자주 바뀔 수 있는 마이크로서비스의 경우 더 유용하다.
 
@@ -1256,7 +1246,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 	* Cross origin HTTP request
 
-		* case 1) 다른 도메인에서 호출한다.  `http:*/fc.com 에서  http:/*fc.org를 호출한다?`
+		* case 1) 다른 도메인에서 호출한다.  `http://fc.com 에서  http://fc.org를 호출한다?`
 
 마이크로 서비스라면 이런걸 또 허용해야겠지(Standard 함수) ⇒  이런걸 허용하기 위한 인증작업을 CORS(cross origin resource sharing) 이라 한다. 
 
@@ -1270,15 +1260,15 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 			* 요청내용: OPTIONS
 
-			* GET, Content~~Types, Authorization, x-api~~key
+			* GET, Content-Types, Authorization, x-api-key
 
 			* "난 너 URI 에 이런 타입으로 하고 싶어!"
 
 		* 허용 《클라이언트 ← 서버》 
 
-			**요청내용: Access Method : GET, POST  , Content~~type, Access-Control-Allow~~Origin:**
+			* 요청내용: Access Method : GET, POST  , Content-type, Access-Control-Allow-Origin: *
 
-			**"GET, POST 된다. 내가 허용할 오리진은** 이다."
+			* "GET, POST 된다. 내가 허용할 오리진은 * 이다."
 
 		* 실제 API콜 《클라이언트 → 서버》 
 
@@ -1300,7 +1290,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 	* 목표: 경로를 생성하고 Lambda 와 연결
 
-	* 우선 '경로' 생성 e.g) *shop*
+	* 우선 '경로' 생성 e.g) /shop/
 
 		* method, URL path 입력
 
@@ -1358,11 +1348,11 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 
 
-### AWS***API***Gateway - (2) HTTP API 셋팅 실습
+### AWS_API_Gateway - (2) HTTP API 셋팅 실습
 
 * 경로 포맷 
 
-	* shop*{id} 			/* 패스 파라미터
+	* shop/{id} 			// 패스 파라미터
 
 		* 이게 요청되면 람다에서 받는 함수의 인자가 궁금해진다. 
 
@@ -1370,7 +1360,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 		*  [pathparameter.id](http://pathparameter.id)  항목
 
-	* shop*1?filter=1	/* 쿼리 파라미터
+	* shop/1?filter=1	// 쿼리 파라미터
 
 		* queryStringParamerts.filter 항목
 
@@ -1400,7 +1390,7 @@ CodeBeanStalk 콩줄기, EB, (free for aws resource)
 
 		* 배포 스테이지에 리소스를 배포한 것이다.
 
-			* *first*shops
+			* /first/shops
 
 			* 이렇게 배포가 제일 앞에
 
@@ -1428,9 +1418,9 @@ lamdaFunction:${stageVariable.version}
 
 		* 변수로 입력 그 후 CLI 에서 권한을 입력해줘야한다.
 
-			* aws lambda add~~permission --function~~name … func:stable
+			* aws lambda add-permission --function-name … func:stable
 
-			* aws lambda add~~permission --function~~name …  func:new
+			* aws lambda add-permission --function-name …  func:new
 
 	* 스테이지 생성
 
@@ -1614,13 +1604,13 @@ def lambda_function(e, c):
 
 		* 액세스 지점: Message, 
 
-		* Mount: *mnt*msg
+		* Mount: /mnt/msg
 
 	* 실제 사용 예제
 
 import fncntl
 
-with opern(MSG***FILE***PATH, 'r') as msg_file:
+with opern(MSG_FILE_PATH, 'r') as msg_file:
 
 msg.file.write(new_message+'\n')
 
@@ -1628,7 +1618,7 @@ msg.file.write(new_message+'\n')
 
 
 
-## AWS***Step***Functions  
+## AWS_Step_Functions  
 
 * 개요
 

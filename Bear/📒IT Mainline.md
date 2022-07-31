@@ -2,7 +2,6 @@
 
 #devops/Mainline  #mainline
 
-
 ---
 
 
@@ -11,7 +10,7 @@ WEB - Nginx
 
 WAS - 톰캣/서블릿 등 앱(로직)=컨테이너를 가동해주는 서비스
 
-Cache by AWS lightsail -  [https:*/blog.lael.be/post/7605](https://blog.lael.be/post*7605) 
+Cache by AWS lightsail -  [https://blog.lael.be/post/7605](https://blog.lael.be/post/7605) 
 
 APM Application Performance Management
 
@@ -49,7 +48,7 @@ ADG DR ( Ative Data Guard Disaster Recovery)
 
 ⎯⎯⎯⎯⎯⎯- 단어 뜻 찾기 ⎯⎯⎯⎯⎯⎯ 
 
-**Amazon Machine Image**
+*Amazon Machine Image*
 
 
 
@@ -117,9 +116,9 @@ SVN
 
 And don't worry if you forgot to tag—you can always specify an older revision and tag anytime:
 
-$ svn copy -r 11 file:*//var/svn/repos/test*trunk \
+$ svn copy -r 11 file:///var/svn/repos/test/trunk \
 
-           file:*//var/svn/repos/test/tags*0.6.32-prerelease \
+           file:///var/svn/repos/test/tags/0.6.32-prerelease \
 
            -m "Forgot to tag at rev 11"
 
@@ -139,7 +138,7 @@ The xattr command can be used to display, modify or remove the extended attribut
 
 
 
-docker run ~~d -~~name my-nginx nginx
+docker run -d --name my-nginx nginx
 
 → 깔끔하게 컨테이너들을 실행하고 끝내자!
 
@@ -161,7 +160,7 @@ k8s Node 는 다른 레플리카셋을 크로스하게 가진다.
 
 
 
-*var/spool*clientmqueue
+/var/spool/clientmqueue
 
 메일 서비스를 꺼놓으면 큐가 차오르게 된다. 매일을 누가 보내는지 알아내서 처리해야한다.
 
@@ -189,10 +188,9 @@ VM 대신 IPC 포탈에서도 재기동을 할 수 있게 해놓았고 그걸 �
 
 def ilaya1():
 
-    current***func***name = sys.***getframe().f***code.co_name
+    current_func_name = sys._getframe().f_code.co_name
 
-    print ("The current running function name : {}".format(current***func***name))
-
+    print ("The current running function name : {}".format(current_func_name))
 
 
 
@@ -223,7 +221,6 @@ A) 회사에서 일하는 두가지 사람
 
 
 위의 사람들이 5억을 받습니다. 리스크를 지지 않으면 타입2는 없다. 페이스북에 떨어져 와츠앱을 창업하여 페이스북에 회사를 판 개발자의 사례
-
 
 ---
 

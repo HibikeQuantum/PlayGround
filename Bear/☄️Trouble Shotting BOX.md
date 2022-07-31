@@ -2,7 +2,6 @@
 
 #Devops/T-Shotting
 
-
 ---
 
 
@@ -15,7 +14,7 @@ TIL 1) 네스티드한 구조가 이상하게 구현되었일때 console에서 �
 
 ### 2차
 
-`from rest***framework.compat import unicode***to_repr`
+`from rest_framework.compat import unicode_to_repr`
 
 이 라이브러리가 버그가 있어서 업데이트가 됬는데 의존성을 업데이트하지 않아서 계속 버그가 남. 그렇다고 라이브러리를 쓸수도 없고 그래서 버림.
 
@@ -26,7 +25,6 @@ TIL 1) 네스티드한 구조가 이상하게 구현되었일때 console에서 �
 * 인증서를 발급해서 CNAME으로 인증을 받고 (route 53에서 인증용 cname을 발급) 
 
 * route53에선 duchoo.site 레코드를 생성해서 4가지 이름을 발급함.
-
 
 ---
 
@@ -76,7 +74,7 @@ TIL 1) 네스티드한 구조가 이상하게 구현되었일때 console에서 �
 
 문제: 경로를 변수로 넣으면 nginx -t 는 넘어가는데 실제 req가 오면 에러가 발생한다. 결국 제대로 넣는 수 밖에 없다! 위에서 한건 임시 방편 
 
-해결: http:*/unix:*
+해결: http://unix:/
 
 개선: 코드는 무조건 확실하게 확인!! 잘 안보였음 : 콜론이 빠져서 안된거였음.
 
@@ -102,7 +100,7 @@ TIL 1) 네스티드한 구조가 이상하게 구현되었일때 console에서 �
 
 해결: 코드 실행순서 변경
 
-os.environ.setdefault("DJANGO***SETTINGS***MODULE", 'order.settings') 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'order.settings') 
 
 → 환경변수를 컨트롤 하는 패키지와 코드들이 순서대로 있는건 기본
 

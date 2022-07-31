@@ -2,7 +2,6 @@
 
 #devops/Mainline
 
-
 ---
 
 
@@ -12,7 +11,6 @@
 * PEM (Privacy Enhanced Mail)은 Base64 로 인코딩한 텍스트 형식의 파일
 
 ```bash
-
 
 -----BEGIN OPENSSH PRIVATE KEY-----
 
@@ -72,7 +70,6 @@ target1 : denpendency1 denpendency2
 
 * 그래서 그냥 세부 스크립트를 직접 실행해도 결과는 같다.
 
-
 ---
 
 
@@ -87,13 +84,12 @@ target1 : denpendency1 denpendency2
 
 ###  1차논리
 
-**x가 물질이면 x는 원자다.**
+*x가 물질이면 x는 원자다.*
 
--	[ ] 정의역 (Domain), 전칭기호 (Universial Quantifier), 존재기호(Existential Quantifier)로 정보를 표현하는것이 1차논리
+- 정의역 (Domain), 전칭기호 (Universial Quantifier), 존재기호(Existential Quantifier)로 정보를 표현하는것이 1차논리
 
--	[ ] 지식을 1차논리로 표현하고 논리적 사고를 통해 참과 거짓을 추론한다. 이런 추론에는 자원이 소모된다.
+- 지식을 1차논리로 표현하고 논리적 사고를 통해 참과 거짓을 추론한다. 이런 추론에는 자원이 소모된다.
 
--	[ ] 컴퓨터는 또는 논리모델은 물리적 한계를 가지고 있다. 효율적인 목표 달성을 위해 수학적 기술이 필요해진다.
+- 컴퓨터는 또는 논리모델은 물리적 한계를 가지고 있다. 효율적인 목표 달성을 위해 수학적 기술이 필요해진다.
 
--	[ ] 논리적 구술의 단위
-
+- 논리적 구술의 단위

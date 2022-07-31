@@ -1,4 +1,4 @@
-# 🚝 초격차 Devops 강의 노트 Part 4 ~~코드를 통한 인프라 관리~~
+# 🚝 초격차 Devops 강의 노트 Part 4 -코드를 통한 인프라 관리-
 
 #Devops/lesson #lesson 
 
@@ -64,7 +64,7 @@ ARM Temlplate, Terraform, Pulumi, CludFormation
 
 ## CHAPTER 2 테라폼을  이용한 인프라 관리
 
-@Terraform_v1.2 [*Users/kth/document*학습자료 참고]
+@Terraform_v1.2 [/Users/kth/document/학습자료 참고]
 
 * 워크스페이스간 동일한 패키지가 설치되는 문제를 컨트롤하기 위해 plugin-cache 를 설정 (중복을 피할 수 있음) ~/.terraform.c
 
@@ -120,7 +120,7 @@ ARM Temlplate, Terraform, Pulumi, CludFormation
 
 		* data "" // 리소스를 출력한다. EOT 파일 입력 시작 끝
 
-	* aws set get~~caller~~identity
+	* aws set get-caller-identity
 
 		* 인증 설정 확인
 
@@ -141,7 +141,6 @@ output "vpcs" { value: data.aws_vpcs.this } // 출력
 		* 정의 → 플랜 → 적용
 
 		* 플랜에서는 각 단계에서 나오는 diff 메시지와 destroy 항목을 볼 수 있다.
-
 
 ---
 
@@ -169,13 +168,13 @@ output "vpcs" { value: data.aws_vpcs.this } // 출력
 
 	* root module / child module 로 구분할 수 있다.
 
-	* a*b/c 중 a가 b*c를 가져온다고 할때 a가 루트가 되고 b/c는 차일드가 된다.
+	* a/b/c 중 a가 b/c를 가져온다고 할때 a가 루트가 되고 b/c는 차일드가 된다.
 
 * Naming and comment
 
 	* 네이밍 규칙	: `알파뱃, 숫자(첫글자X), 언더스코어, 하이픈`
 
-	**주석 규칙		: `#text, //text, /**text*/`
+	* 주석 규칙		: `#text, //text, /*text*/`
 
 * Style Conventions
 
@@ -311,7 +310,7 @@ module "route_table__public" {
 
 
 
-## **HCL VAR & INPUT & OUTPUT**
+## *HCL VAR & INPUT & OUTPUT*
 
 * 변수를 통해 프로그래밍적으로 자원을 컨트롤 
 
@@ -323,7 +322,7 @@ module "route_table__public" {
 
 * Variable Definition Precedence (우선순위)
 
-	1. OS***Env. TF***VAR***[NAME] (e.g TF***VAR***vpc***name="test")
+	1. OS_Env. TF_VAR_[NAME] (e.g TF_VAR_vpc_name="test")
 
 	2. terraform.tfvars
 
@@ -339,9 +338,9 @@ unset TF_VAR_vpc_name
 
 	4. '*.auto.tfvars' 
 
-	5. ~~var // -var~~file
+	5. -var // -var-file
 
-`tf apply ~~var~~file=test.tfvars`
+`tf apply -var-file=test.tfvars`
 
 ⇒  사용할 변수파일 지정
 
@@ -475,7 +474,7 @@ resource {
 
 * 주의사항
 
-	* `count` 는 리스트 형식(1~~2-3-4~~5)으로 데이터를 관리한다.
+	* `count` 는 리스트 형식(1-2-3-4-5)으로 데이터를 관리한다.
 
 		* 수시로 리스트가 변하니 관리하기 까다로움 
 
@@ -621,7 +620,7 @@ Succesfuly moved 1 object(s).
 
 	* 코드를 바로 지우면 apply할때 해당 리소스를 destroy함
 
-`terrafirn state rm 'aws***iam***user_policy,dev["alice"]'`
+`terrafirn state rm 'aws_iam_user_policy,dev["alice"]'`
 
 하면 state 에서 해당 유저가 빠지고 지운 코드를 apply 해도 destroy 가 이뤄지지 않음. 
 
@@ -885,7 +884,7 @@ config = yamldecode(templatefile(....)
 
 ### Terraform 프로비저너와 EC2 userdata 속성
 
-소스:  `*hashicorp*aws`
+소스:  `/hashicorp/aws`
 
 EC2 유저 데이터, 부팅시점에 사용자 생성 설치 등등 AMI에서 사용함.
 
@@ -991,7 +990,7 @@ locals {
 
 // 1194 포트로 도커를 서비스 하고 "${public_ip}" 이렇게 변수를 사용했다. 
 
-*/ ${split("*",  vpc_cidr)[0] 이렇게 테라폼 내장 함수도 사용가능
+// ${split("/",  vpc_cidr)[0] 이렇게 테라폼 내장 함수도 사용가능
 
 ```terraform
 
@@ -1009,13 +1008,13 @@ resource "aws_eip_association" "openvpn" {
 
 4. 생성하고 public ec2 접속!
 
-`cat var*log/cloud~~int~~output.log /* 생성직후엔 도커를 설치하는 서버 모습 을 볼 수 있다.`
+`cat var/log/cloud-int-output.log // 생성직후엔 도커를 설치하는 서버 모습 을 볼 수 있다.`
 
 5. sh 로 생성된 vpn config 파일을 실행하면 Tunnelblick 앱에서 연결을 해준다. 
 
 	1. 이제 openvpn 으로 프라이빗 망에 연결
 
-	2. 프라이빗 DNS 에서만 된다. `ip~~10-222-2~~6.ap.. internal`  이런 주소는 오직 내부망에서만 쿼리
+	2. 프라이빗 DNS 에서만 된다. `ip-10-222-2-6.ap.. internal`  이런 주소는 오직 내부망에서만 쿼리
 
 
 
@@ -1097,7 +1096,7 @@ packer build -except="null.two", "null.one"
 
 ```
 
-**그롭 명령어가 먹는다. -only="**.one"
+* 그롭 명령어가 먹는다. -only="*.one"
 
 
 
@@ -1139,7 +1138,7 @@ source "amazon-ebs" "" {
 
 
 
-### Post~~processor (후처리기) (~~s 복수형도 별도로 존재한다)
+### Post-processor (후처리기) (-s 복수형도 별도로 존재한다)
 
 후처리기 플러그인
 
@@ -1221,11 +1220,7 @@ docker run
 
 
 
-```diff
-+ 168.254.169.254
-```
- → EC2 meta data Server. 여기에 쿼리하면 다 줌.
-
+::168.254.169.254:: → EC2 meta data Server. 여기에 쿼리하면 다 줌.
 
 `most_recent = true` → 그룹으로 끌고와서 가장 최근것을 사용
 
@@ -1337,13 +1332,13 @@ ubuntu
 
 * 플레이북 대신 바로 명령을 전달하는 방법
 
-`ansible host-pattern ~~m module [~~a 'module option'] [-i inventory] ` 	
+`ansible host-pattern -m module [-a 'module option'] [-i inventory] ` 	
 
 → 이게 기본적인 사용법
 
-`ansible -i amazon.inv -m ping all ~~u ec2~~user`
+`ansible -i amazon.inv -m ping all -u ec2-user`
 
-→ 쉘과 달리 순서가 중요하지가 않다. 이렇게 바로 접근을 위해선 ssh에이전트를 설치해놓거나  ssh-add ~~K [name.pem] 명령어를 통해 pem 교환을 해놔야한다. 또는 접속시 --private~~key [name.pem] 을 사용한다.
+→ 쉘과 달리 순서가 중요하지가 않다. 이렇게 바로 접근을 위해선 ssh에이전트를 설치해놓거나  ssh-add -K [name.pem] 명령어를 통해 pem 교환을 해놔야한다. 또는 접속시 --private-key [name.pem] 을 사용한다.
 
 * 여기서 사용한 `-m ping`은 ICMP Ping과 다르다. 대상호스트에 연결 후 파이선 사용가능여부를 확인하는 모듈이다.
 
@@ -1413,13 +1408,13 @@ $ asible-playbook -i inventory install-nginx.yaml
 
 : 사람들이 만들어놓은 많은 모듈이 존재한다.
 
-****Collection index*
+* *Collection index*
 
 	* ansible.builtin - 효과적인 사용을 위한 기본. 이것만 봐도 절반은 하겠다!
 
-* `"name=fastcampus shell=bin*bash"` 	/* 스페이스를 구분자로 속성을 줄 수도 있다.
+* `"name=fastcampus shell=bin/bash"` 	// 스페이스를 구분자로 속성을 줄 수도 있다.
 
-****linefile 포맷*
+* *linefile 포맷*
 
 ```yaml
 
@@ -1435,11 +1430,11 @@ name:*  //resolve.conf에서 찾고 없으면 추가해라라는 뜻
 
 
 
-****Freeform* //  프리폼은 이렇게 기술함.
+* *Freeform* //  프리폼은 이렇게 기술함.
 
 `command : echo "hello world"`
 
-****Ansible_POSIX* 
+* *Ansible_POSIX* 
 
 	* 리눅스의 rsync 를 앤서블에서 쓸 수 있게 해주는 모듈
 
@@ -1555,7 +1550,7 @@ user_name: "posix0" \n comment: "my comment"
 
 커맨드라인으로 주는법
 
-`ansible-playbook -i playbook.yaml -e "user***comment=hello user***shell=*bin*sh"`
+`ansible-playbook -i playbook.yaml -e "user_comment=hello user_shell=/bin/sh"`
 
 → 우선 순위 제일 높음
 
@@ -1591,7 +1586,7 @@ with_items:
 
 
 
-**loop** // 이게 권장되는 문법
+*loop* // 이게 권장되는 문법
 
 ```loop.yaml
 
@@ -1651,7 +1646,7 @@ user:		// 실행. 하여 딕셔너리 이터레이터
 
 ```
 
-****conclusion 이것 말고도 다양한 루프 사용방법이 있음* 이걸로 모잘라면 API 문서 참고
+* *conclusion 이것 말고도 다양한 루프 사용방법이 있음* 이걸로 모잘라면 API 문서 참고
 
 
 
@@ -1659,7 +1654,7 @@ user:		// 실행. 하여 딕셔너리 이터레이터
 
 : 조건문은 운영체제에 따라 다른 것을 하고 싶을때 주로 사용
 
-**when**
+*when*
 
 ```when.yaml
 

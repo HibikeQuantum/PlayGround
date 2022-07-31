@@ -2,12 +2,11 @@
 
 #Devops/data
 
-
 ---
 
 ## Data Structure  session (2019)
 
-**summary**
+*summary*
 
 * 알고리즘을 생각할때 첫 생각은 자료구조로 시작한다.
 

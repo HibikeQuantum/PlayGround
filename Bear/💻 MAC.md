@@ -2,7 +2,6 @@
 
 #Devops/OS_INFRA
 
-
 ---
 
 ### 공통
@@ -34,7 +33,6 @@
 `CMD OPT H` -> 액티브 빼고 다 최소화
 
 `Force 1 tap` - 데이터 탐색 (사전)
-
 
 ---
 
@@ -74,13 +72,11 @@ Vanilla
 
 
 
-
 ---
 
 ### Customized Key
 
 F6을 F13으로 쓰기로 함. 프린트는 그걸로 하면된다.
-
 
 ---
 
@@ -97,7 +93,6 @@ customizing key (not work other env)
 `CTRL + F13` 스크롤 캡처
 
 `CTRL + CMD + SHIFT + F13` 복합 캡처 모드
-
 
 ---
 
@@ -137,13 +132,11 @@ gc 제일 강하게 git gc —aggressive —prune=now
 
 
 
-
 ---
 
 ## Reminder
 
 `CMD + ] ` → make subtask. only work list screen not work other view like schedule, today.
-
 
 ---
 
@@ -151,13 +144,11 @@ gc 제일 강하게 git gc —aggressive —prune=now
 
 `CTL + SHIFT + M` 마크업 미리보기.
 
-
 ---
 
 ## Brew
 
 * brew tap → Add Repository 
-
 
 ---
 

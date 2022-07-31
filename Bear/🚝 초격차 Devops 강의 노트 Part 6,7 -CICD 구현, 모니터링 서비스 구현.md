@@ -1,7 +1,6 @@
-# 🚝 초격차 Devops 강의 노트 Part 6,7 ~~CICD 구현, 모니터링 서비스 구현~~
+# 🚝 초격차 Devops 강의 노트 Part 6,7 -CICD 구현, 모니터링 서비스 구현-
 
 #Devops/lesson #lesson
-
 
 ---
 
@@ -27,7 +26,6 @@
 
 	* 예를 들어 임베디드 제품이라면? 디펜던시가 있는 프로젝트라면? 특정 시점에 배포를 해야한다면? 이런 니즈를 처리하는게 Delivery
 
-
 ---
 
 ## Chapter 2 AWS IaaS CI/CD
@@ -43,7 +41,6 @@
 * 플러그인 검색, SMTP 설정, 깃허브 설정, 크레덴셜 등록(AWS API 콜을 위한), 
 
 * 파이프라인 잡을 만들고 여기에서 스크립트로 잡을 구성했다.
-
 
 ---
 
@@ -83,7 +80,7 @@
 
 1. Provision the following →  VPC, NAT, SUBNET, Bastion, Jenkins, RouteTable, SG, IGW
 
-2. `tf apply ~~-auto~~ap prove`
+2. `tf apply --auto-ap prove`
 
 3. EC2 접속후 `git remote -v`결과로 클론, 허드슨이 제공하는 공식 스크립트로 젠킨스 설치
 
@@ -103,9 +100,9 @@ ll /var/run/ | grep docker // 이렇게 보면 docker를 3개 볼 수 있는데 
 
 ```
 
-6. 권한 부여 `usermod ~~aG docker ec2~~user`  socket에 접근 할 수 있도록 하기 위한 조치. 소켓은 root, docker 그룹에 속한다. 가지고 있으므로 ec2-user 에게 권한을 준다. 명령어를 내린 다음 재로그인해야 적용. 
+6. 권한 부여 `usermod -aG docker ec2-user`  socket에 접근 할 수 있도록 하기 위한 조치. 소켓은 root, docker 그룹에 속한다. 가지고 있으므로 ec2-user 에게 권한을 준다. 명령어를 내린 다음 재로그인해야 적용. 
 
-7. `cat *etc*passwd | grep jenkins` 젠킨스 유저가 도커를 컨트롤 할 수 있게 `sudo usermod -aG docker jenkins` 이제 젠킨스도 도커를 컨트롤 할 수 있다.
+7. `cat /etc/passwd | grep jenkins` 젠킨스 유저가 도커를 컨트롤 할 수 있게 `sudo usermod -aG docker jenkins` 이제 젠킨스도 도커를 컨트롤 할 수 있다.
 
 
 
@@ -113,11 +110,11 @@ ll /var/run/ | grep docker // 이렇게 보면 docker를 3개 볼 수 있는데 
 
 * DIND 구조와 DOOD 구조
 
-**Docker in Docker**
+*Docker in Docker*
 
-	**도커데몬 안의 도커 (딘드) 에서 소스 코드를 빌드한다면 딘드가 여러개있을때 독립적인 환경을 구성할 수 있는게 장점. 대신 딘드가 리눅스의**Cgroups*에 접근해야하므로 권한을 많이 가지게 되고 딘드가 침해당하면 호스트가 침해당하게 되는 문제가 있어 권장하지는 않는다.
+	* 도커데몬 안의 도커 (딘드) 에서 소스 코드를 빌드한다면 딘드가 여러개있을때 독립적인 환경을 구성할 수 있는게 장점. 대신 딘드가 리눅스의 *Cgroups*에 접근해야하므로 권한을 많이 가지게 되고 딘드가 침해당하면 호스트가 침해당하게 되는 문제가 있어 권장하지는 않는다.
 
-**DOOD(Docker out of Docker)**
+*DOOD(Docker out of Docker)*
 
 	* 도커데몬 대신 도커 클라이언트로 두드를 실행한다. 유닉스 소켓(docker.sock)을 통해 요청을 하여 마더 도커 데몬과 통신을 한다. 보안 취약을 극복할 수 있지만 두드 컨테이너는 네임페이스를 마더와 공유하기 때문에 여러 두드가 생기게되면 사이드이펙트가 발생.  격리를 포기한다는 뜻.
 
@@ -129,13 +126,13 @@ ll /var/run/ | grep docker // 이렇게 보면 docker를 3개 볼 수 있는데 
 
 		* 두드는 소켓에 대한 권한을 가지면 된다. 
 
-		**호스트는**docker:999*그룹을 jenkins 실행 계정에 실행한다.
+		* 호스트는 *docker:999*그룹을 jenkins 실행 계정에 실행한다.
 
 		* 이때 액세스 권한에 주의한다. sock을 others에 다 풀어줘도 해결이 될 수 있지만 보안 문제가 발생한다.
 
 
 
-**DOOD 실습시나리오**github receive push Req -> Pipeline -> Delivery*
+* DOOD 실습시나리오 *github receive push Req -> Pipeline -> Delivery*
 
 1. 파일 구성
 
@@ -163,12 +160,11 @@ volumes:
 
 2. 젠킨스 초기 설정 →  젠킨스 URL 발행 → 로드밸런스나 다른 서비스에서 젠킨스를 참조할때 사용
 
-3. 젠킨스에는 **Pipeline script from SCM(Source Control Management)** 라는 옵션이 있다. 깃에서 스크립트를 가져오게 와서 사용함. 이러면 매번 웹 인풋박스를 통해 잡을 매니페스트 하지 않고 체계적으로 관리할 수 있게 된다. GItOPS 구현
+3. 젠킨스에는 *Pipeline script from SCM(Source Control Management)* 라는 옵션이 있다. 깃에서 스크립트를 가져오게 와서 사용함. 이러면 매번 웹 인풋박스를 통해 잡을 매니페스트 하지 않고 체계적으로 관리할 수 있게 된다. GItOPS 구현
 
 4. 깃허브에서 발행한 레포, hook 권한을 준 키를 입력한다.  
 
 5. WEB hook 설정을 한다. 젠킨스 주소, json, 이벤트를 설정 이제 웹훅을 통해 트리거되는 모습을 볼 수 있다. 
-
 
 ---
 
@@ -178,7 +174,7 @@ volumes:
 
 * `when { expression { return params.DOCKER_IMAGE }` 이런식으로 사용한다.
 
-****빌드는 캐시에 영향을 많이 받는다.*
+* *빌드는 캐시에 영향을 많이 받는다.*
 
 
 
@@ -186,7 +182,7 @@ volumes:
 
 1. 빌드(`docker build -t test:1`
 
-2. 테스트(`docker run --rm test:1 root*.local/bin*pytest -v`)
+2. 테스트(`docker run --rm test:1 root/.local/bin/pytest -v`)
 
 3. 이미지 푸시
 
@@ -210,10 +206,9 @@ Tips
 
  * 빌드 캐시는 디스크를 빨리 채우게 되고 운영에 지장을 줄 수 있다. 도커 GCE(Garbage collection engine)가 정기적으로 관리하도록 해야한다. 
 
-	****prune* 이란 컨셉에 의한 캐시 정리는 문제의 원인이 되기도 한다. 가끔 하는 작업이거나 동시에 병렬 또는 시퀀스를 가질때 문제가 된다.  A가 작업을 끝내고 이미지를 prune으로 날리면 A에 대해 의존성을 가지는 B가 실패하게 된다. Race condition.  따라서 배치잡을 통해 할 것.
+	* *prune* 이란 컨셉에 의한 캐시 정리는 문제의 원인이 되기도 한다. 가끔 하는 작업이거나 동시에 병렬 또는 시퀀스를 가질때 문제가 된다.  A가 작업을 끝내고 이미지를 prune으로 날리면 A에 대해 의존성을 가지는 B가 실패하게 된다. Race condition.  따라서 배치잡을 통해 할 것.
 
 	* 컨테이너만 Prune의 대상이 아니다. 이미지, 볼륨, 네트워크, 시스템 오브젝트 모두 대상
-
 
 ---
 
@@ -235,7 +230,7 @@ docker-compose -f compose.yaml up -d';
 
 ```
 
-2. **Input** 타입을 통해 유저에게 물어보고 입력 여부에 따라 프로세스를 분기하면 delivery를 컨트롤 할 수 있다. (이거 좋네!?) 빌드는 하되 배포하지 않는걸 통해 리소스 효율과 딜리버리를 달성할 수 있다. 
+2. *Input* 타입을 통해 유저에게 물어보고 입력 여부에 따라 프로세스를 분기하면 delivery를 컨트롤 할 수 있다. (이거 좋네!?) 빌드는 하되 배포하지 않는걸 통해 리소스 효율과 딜리버리를 달성할 수 있다. 
 
 3.  파이프라인을 이용할 수 있는 젠킨스 최신 버전은 스테이별로 진행상황을 볼 수 있다. 로그도 따로 등록된다.
 
@@ -251,7 +246,6 @@ docker-compose -f compose.yaml up -d';
 
 	* 위의 실습은 젠킨스의 기능을 순수하게 활용하기 위한 예제 다른 서비스를 보통 쓴다. 패커나 쿠버네티스
 
-
 ---
 
 ## 슬랙연동
@@ -259,7 +253,6 @@ docker-compose -f compose.yaml up -d';
 ### 설치 및 연동 과정
 
 1. slack app directory → Jen Config → Jen 애드온에서 notification 추가 → 시스템 설정 slack에 워크스페이스, 토큰, 채널 입력  
-
 
 ---
 
@@ -296,7 +289,6 @@ Host target
 6. 스테이지를 분산하게 되면 생기는 에러를 주의해서 파이프라인 작성(스테이지간 의존성)
 
 	* EC2를 잠시 띄었다가 다시 내리는 방식으로 처리할 수도 있다. 플러그인을 믿어.
-
 
 
 
@@ -406,7 +398,7 @@ hooks:
 
 2. 아티팩트  `artifacts { ... }` 에서 빌드 결과물을 컨트롤하고 있다. 
 
-3. `deployment***gorup.tf`의 `resource deployment***config` 에서 `minimum***healthy***hosts`를 정의할 수 있다.  디폴트는 한번에 하나씩 하는 전략. (1개니까 여기선 주석처리했고 복수 노드를 대상으로 배포 할땐 사용한다.)
+3. `deployment_gorup.tf`의 `resource deployment_config` 에서 `minimum_healthy_hosts`를 정의할 수 있다.  디폴트는 한번에 하나씩 하는 전략. (1개니까 여기선 주석처리했고 복수 노드를 대상으로 배포 할땐 사용한다.)
 
 4. 개인적으로 관심있게 본 부분
 
@@ -498,7 +490,6 @@ sh```
 
 deployment config 의 타입에 따라 성공판단 기준도 바뀐다. AllAtOnce, HalfAtTime 일부의 실패도 성공으로 받아들이는 타입은 조심해서 사용해야겠지.
 
-
 ---
 
 ## AWS CodePipeline
@@ -507,15 +498,15 @@ deployment config 의 타입에 따라 성공판단 기준도 바뀐다. AllAtOn
 
 * 지원하는 스테이지 Stage
 
-	****Source* 지원 서비스 - 깃헙, 코드커밋, ECR, S3 (다른 소스를 쓰고 싶으면 S3에 후크를 걸면 된다.
+	* *Source* 지원 서비스 - 깃헙, 코드커밋, ECR, S3 (다른 소스를 쓰고 싶으면 S3에 후크를 걸면 된다.
 
-	****Build* - 코드빌드, 젠킨스, 팀시티, 클라우드비
+	* *Build* - 코드빌드, 젠킨스, 팀시티, 클라우드비
 
-	****Test* - 코드빌드, 디바이스팜, S3 
+	* *Test* - 코드빌드, 디바이스팜, S3 
 
-	****Deployment*  - 클라우드 포메이션, S3, ECS
+	* *Deployment*  - 클라우드 포메이션, S3, ECS
 
-	****Approval* -  휴먼 디시전, Invoke(람다, 스탭펑션 호출)
+	* *Approval* -  휴먼 디시전, Invoke(람다, 스탭펑션 호출)
 
 * 스테이지별로 아웃풋을 정의하고 다음 스테이지에서 또 호출해서 쓴다.
 
@@ -531,7 +522,6 @@ deployment config 의 타입에 따라 성공판단 기준도 바뀐다. AllAtOn
 
 		3. slack -> configure slack channel
 
-
 ---
 
 ## Chapter 4 외부 SaaS를 이용한 CI/CD
@@ -546,15 +536,15 @@ deployment config 의 타입에 따라 성공판단 기준도 바뀐다. AllAtOn
 
 * Github Actions 컴포넌트 구성
 
-	****Workflows* (전체를 아우르는 상위 개념)
+	* *Workflows* (전체를 아우르는 상위 개념)
 
-	****Events* (push, pr, release, schedule)
+	* *Events* (push, pr, release, schedule)
 
-	****Jobs* (스탭의 묶음, 러너가 실행하는것, 의존성있는 실행도 지원)
+	* *Jobs* (스탭의 묶음, 러너가 실행하는것, 의존성있는 실행도 지원)
 
-	****Steps* (shell 실행을 말한다. 스탠드얼론)
+	* *Steps* (shell 실행을 말한다. 스탠드얼론)
 
-	****Runners* (실행자, 애저의 서버를 활용할 수도 있고, on-premise도 지원
+	* *Runners* (실행자, 애저의 서버를 활용할 수도 있고, on-premise도 지원
 
 * 정의하는 방법
 
@@ -581,7 +571,6 @@ jobs:
 	* 무시할 패스와 이벤트를 일으킬 패스를 구분할 수 있다.
 
 	* 셋팅 후 이벤트가 일어나면 Actions 탭에서 워크플로우를 조회할 수 있다. 젠킨스 없이도 바로 할수 있는게 재밌는 포인트.
-
 
 ---
 
@@ -611,7 +600,6 @@ needs: [ci] // ci 작업이 끝나면 실행하겠다.
 
 ```
 
-
 ---
 
 ## CH04_03 Custom Action
@@ -634,7 +622,7 @@ jobs:
 
 ### 커스텀 액션의 용도
 
-**복수의 REPO에서 각자 슬랙과 통신해야한다고 했을때 각 프로젝트마다 로직과 토큰을 관리해야 한다면 관리비용이 커진다. `커스텀 액션`을 정의해놓으면 참조를 통해**reuseable*을 보장할 수 있다.  
+* 복수의 REPO에서 각자 슬랙과 통신해야한다고 했을때 각 프로젝트마다 로직과 토큰을 관리해야 한다면 관리비용이 커진다. `커스텀 액션`을 정의해놓으면 참조를 통해 *reuseable*을 보장할 수 있다.  
 
 * 기존에는 저장소마다 토큰을 발급하고 로직을 작성해 이벤트를 일으켰다면 커스텀은 액션은`incomming 토큰`을 발급해서 여기를 모든 저장소가 호출하여 이벤트를 처리하게 만든것이다.
 
@@ -712,7 +700,6 @@ jobs:
 
 	* Orbs : 재사용성이 높은 코드스니펫 (마켓이 있다)
 
-
 ---
 
 ## CH04_05  CircleCI 실습
@@ -729,7 +716,7 @@ jobs:
 
 	3. `config.yml`에서 build - test - deploy 단계를 워크플로우로 정의
 
-	4. jobs내의 executor에 대해선 `setup***remote***docker`를 구성해줘야 한다. 
+	4. jobs내의 executor에 대해선 `setup_remote_docker`를 구성해줘야 한다. 
 
 ```
 
@@ -742,7 +729,6 @@ jobs:
 ### Context 
 
 시크릿을 저장해놓는 공간. Orbs에서 요구하는 키값을 미리 저장해놓으면 알아서 읽는다. 그래서 코드를 줄줄이 적지 않아도 된다. (GitHub 는 하나하나 정의해줘야함) 
-
 
 ---
 
@@ -766,7 +752,6 @@ jobs:
 
 	* argocd-redis
 
-
 ---
 
 ## CH03 declarative-setup
@@ -779,19 +764,19 @@ jobs:
 
 ### 메뉴와 개념
 
-	****repository* - 연동규칙 by http, SSH
+	* *repository* - 연동규칙 by http, SSH
 
-	****Cluster*를 추가하면 현재 아르고가 실행중인 클러스터 말고도 외부 클러스터에 워크로드를 실행할 수 있다.
+	* *Cluster*를 추가하면 현재 아르고가 실행중인 클러스터 말고도 외부 클러스터에 워크로드를 실행할 수 있다.
 
-	****Project* == 네임스페이스와 동일한 로지컬 스코프
+	* *Project* == 네임스페이스와 동일한 로지컬 스코프
 
-	****Role*을 만들어서 path에 따른 권한을 할당, Account 기반 권한관리도 가능하다
+	* *Role*을 만들어서 path에 따른 권한을 할당, Account 기반 권한관리도 가능하다
 
 
 
 ### 프로젝트
 
-***프로젝트는 어플리케이션으로 구성되고 하나의 어플리케이션은 여러 워크로드로 구성된다.***
+_프로젝트는 어플리케이션으로 구성되고 하나의 어플리케이션은 여러 워크로드로 구성된다._
 
 * `어플리케이션 생성`
 
@@ -879,7 +864,6 @@ Change source in REPO -> Out of Sink -> 젠킨스가 감시하고 있다가 트�
 
 ```
 
-
 ---
 
 
@@ -927,7 +911,6 @@ apps:
 ```
 
 * 모든 앱에 적용될 종속적인 정보를 한곳(app of apps)에서만 설정하면 나머지는 설정한 값을 따라가 준다.  
-
 
 ---
 
@@ -979,8 +962,7 @@ argocd account update-password --acount alice
 
 ```
 
-	* `p, <role*user/group>, <resource>, <action>, <approject>*<object>, allow`  순서에 따라 권한을 Define
-
+	* `p, <role/user/group>, <resource>, <action>, <approject>/<object>, allow`  순서에 따라 권한을 Define
 
 ---
 
@@ -1030,14 +1012,13 @@ server:
 
 	3. 깃랩, LDAP 다양한 서비스 지원
 
-
 ---
 
 
 
 ## CH07 Kubernetes CICD with Actions
 
-****Actions를 사용한 앱 업데이트 과정*
+* *Actions를 사용한 앱 업데이트 과정*
 
 App repo update -> image update -> `config repo - values.yaml` 업데이트 -> ArgoCD 가 싱크를 맞추고 -> POD 업데이트 
 
@@ -1049,7 +1030,7 @@ App repo update -> image update -> `config repo - values.yaml` 업데이트 -> A
 
 * 구체적인 Actions 동작과정
 
-	1. App repo, `.*github/workflows*cdcd-k8s.yml`
+	1. App repo, `./github/workflows/cdcd-k8s.yml`
 
 ```yaml
 
@@ -1101,7 +1082,7 @@ service:
 
 
 
-`.github*workflows*cicd-k7s.yaml`
+`.github/workflows/cicd-k7s.yaml`
 
 ```yaml
 
@@ -1151,10 +1132,9 @@ jobs:
 
 	* 외부에서 로컬호스트 서비스에 접근할 수 있도록 해주는 서비스, 현재 쿠버가 로컬에서 서비스 중이므로 외부서비스가 클러스터에 접근 할 수 없기 때문에 필요한 서비스 (EKS나 직접 EC2에서 쓴다면 LoadBalancer 가 그 역할을 한다.
 
-	* `http:*/12312323.ngrok.io` → `http:/*localhost:30080` 이렇게 해준다. 
+	* `http://12312323.ngrok.io` → `http://localhost:30080` 이렇게 해준다. 
 
 		* 주소를 발행 -> GitHub Setting 에 생성된 URL을 등록한다. 
-
 
 ---
 
@@ -1230,14 +1210,13 @@ workflows:
 
 	* 깃헙액션이 레포지토리 단위의 배포환경 설정에 특화되어 있다면, Circle CI는 중앙관리형 배포환경 관리가 가능해진다.  성능도 액션보다 빠르다.
 
-****전체 워크플로우*
+* *전체 워크플로우*
 
 	 1. App Repo의 변화를 Circle이 알아차리고 컨픽 Repo를 업데이트
 
 	 2. 그리고 컨픽 Repo에 걸려있는 Web hook이 Ngrok를 거쳐 현재 개발중인 로컬의 Argo를 콜. 
 
 	 3. 파드가 배포된다.
-
 
 ---
 
@@ -1253,7 +1232,7 @@ workflows:
 
 ### Tips
 
-* Attach limit이 다르다.  [amazon~~eks-ami*eni-max-pods.txt at master · awslabs*amazon-eks~~ami · GitHub](https:*/github.com/awslabs/amazon~~eks-ami/blob/master/files*eni-max~~pods.txt) 이게 Packer 의 EKS config 리소스 배포 
+* Attach limit이 다르다.  [amazon-eks-ami/eni-max-pods.txt at master · awslabs/amazon-eks-ami · GitHub](https://github.com/awslabs/amazon-eks-ami/blob/master/files/eni-max-pods.txt) 이게 Packer 의 EKS config 리소스 배포 
 
 
 
@@ -1291,12 +1270,11 @@ workflows:
 
 
 
-**Tips**
+*Tips*
 
 * `yq` :  `jq` 와 비슷한 커맨드. 파일의 내용을 바꿔준다. (json → yaml이 됐을뿐)
 
 예를 들어 `yq e ‘.test = “no”’ ingnore.yml`   test란 키를 찾아서 no로 바꾼다는 의미
-
 
 ---
 
@@ -1315,7 +1293,6 @@ workflows:
 * 실습시나리오: `external, public, private` 3단 VPC 구조
 
 	* Application LoadBalancer  , CloudWatch, RDS, EC2, Slack, Prometheus, ElasticSearch, 장애에 대한 조치방안 설정
-
 
 ---
 
@@ -1342,7 +1319,6 @@ workflows:
 	* Alarm을 이용하면 스케일링, 문제가 있는 인스턴스를 스탑하는 작업(ec2 action), system mag actions(특정 시스템에 대해 명령어를 내린다거나) , SNS 토픽 발행
 
 		-> 특정 프로세스가 행이 걸리면 가서 크러시 내고 덤프를 저장하는 거 해보자 재밌겠다
-
 
 ---
 
@@ -1374,7 +1350,6 @@ workflows:
 
 * 대시보드는 히니 하나 안만들어도 기본적인 대시보드를 셋팅해놓았다. 
 
-
 ---
 
 
@@ -1387,13 +1362,13 @@ workflows:
 
 2. 별도의 롤을 EC2 에 attach (CloudWatchAgentServerPolicy)
 
-3. 설치는 `userdata.sh	` , `amazon~~cloudwatch~~agent` 를 yum 으로 설치
+3. 설치는 `userdata.sh	` , `amazon-cloudwatch-agent` 를 yum 으로 설치
 
-4. `sudo *opt/aws/amazon~~cloudwatch-agent/bin*… config~~wizard` (telegraph 기반으로 만들어진 에이전트다.)
+4. `sudo /opt/aws/amazon-cloudwatch-agent/bin/… config-wizard` (telegraph 기반으로 만들어진 에이전트다.)
 
-위자드 형태로 config를 생성해준다. on-premise를 지원한다 ~~> 클라우드 + on~~premise 혼합 구성도 가능하다.
+위자드 형태로 config를 생성해준다. on-premise를 지원한다 -> 클라우드 + on-premise 혼합 구성도 가능하다.
 
-`*opt/aws/amazon~~cloudwatch~~agent/bin*config.json`에 생성된 값 확인가능
+`/opt/aws/amazon-cloudwatch-agent/bin/config.json`에 생성된 값 확인가능
 
 5. API DOC → 수집가능한 메트릭의 리스트  
 
@@ -1435,10 +1410,9 @@ sudo amazon-cloudwatch-agent-ctl \
 
 	* userdata 리소스를 이용해서 에이전트와 config를 넣으면 편하게 수집가능
 
-		* 동일하게 셋팅을 했으니 `CloudWatch -> Log groups -> *aws/ec2/var/log*messages` 그룹에 들어가면 인스턴스 아이디별로 로그가 수집이 되는걸 볼 수 있다. 
+		* 동일하게 셋팅을 했으니 `CloudWatch -> Log groups -> /aws/ec2/var/log/messages` 그룹에 들어가면 인스턴스 아이디별로 로그가 수집이 되는걸 볼 수 있다. 
 
 		* 잘 트래킹하고 싶으면 시간을 잘 동기화 시킬것  `timedatectl set-timezone Asia/Seoul`
-
 
 ---
 
@@ -1456,7 +1430,7 @@ sudo amazon-cloudwatch-agent-ctl \
 
 ## S3에 쌓이는 로그 정보를 처리하기
 
-1. **Athena**가 직접 해석해서 서비스. 그냥 RDB처럼 보이는데 저장공간은 S3를 쓴다. 5TB에 아주 쬐금 과금 됨. 
+1. *Athena*가 직접 해석해서 서비스. 그냥 RDB처럼 보이는데 저장공간은 S3를 쓴다. 5TB에 아주 쬐금 과금 됨. 
 
 	1. 쿼리 결과를 저장할 S3를 지정한다.
 
@@ -1464,12 +1438,11 @@ sudo amazon-cloudwatch-agent-ctl \
 
 	3. 이제 SQL이랑 동일하게 쿼리를 하면 결과를 볼 수 있다.
 
-2. **AWS Lambda**가 주기적으로 패턴을 잡아서 호출
+2. *AWS Lambda*가 주기적으로 패턴을 잡아서 호출
 
 	* 모든 걸 클라우드에서 하고 싶다! 그럴때 사용하는 전략
 
 	* S3이벤트를 받아서 파싱 후 클라우드 워치로 전송하는 코드.  보내는 포맷은 json, alb 선택가능.
-
 
 ---
 
@@ -1483,26 +1456,25 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 * 알람의 옵션들
 
-	****datapoint*: period 이내에 몇번의 유효판단을 요구할지 지정한다. 높으면 빨리 판단하지만 오탐이 많을 수 있겠지.
+	* *datapoint*: period 이내에 몇번의 유효판단을 요구할지 지정한다. 높으면 빨리 판단하지만 오탐이 많을 수 있겠지.
 
-	****Alarm Status* : OK ALARM INSUFFICIENT DATA
+	* *Alarm Status* : OK ALARM INSUFFICIENT DATA
 
 * 누락 데이터 처리전략 
 
-	****notBreaching* (data treat empty data as good)
+	* *notBreaching* (data treat empty data as good)
 
-	****breaching* (breaching the threshold) Breaching -> 구멍을 뚫다.
+	* *breaching* (breaching the threshold) Breaching -> 구멍을 뚫다.
 
-	****ignore*(알람 상태를 유지)
+	* *ignore*(알람 상태를 유지)
 
-	****missing*
+	* *missing*
 
-****subscription filter* 를 통해 이벤트 소스(에러)가 발생하면?
+* *subscription filter* 를 통해 이벤트 소스(에러)가 발생하면?
 
 	* 액션 -> lambda, kinesis, opensearch 다만 이런건 `datapoint` 기능이 없다. -> 기다릴 수가 없다는 뜻.
 
 	* 로그의 발생을 metric으로 만들면 datapoint 처럼 동작 시킬 수 있다.
-
 
 ---
 
@@ -1544,18 +1516,17 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 	1. `Define pattern` - 키워드를 패턴을 잡거나 `access.log`처럼 형식이 있거나 하겠지. 그걸 원하는 대로 잡을 수 있다. 
 
-	2. filter pattern `${$.target***processing***time = 0.001 }`  
+	2. filter pattern `${$.target_processing_time = 0.001 }`  
 
 	3. Metric Value를 설정한다. ->  잡은 패턴 값 그대로 쓸 수도 있고 1 로 쓸 수도 있다. (필드값을 따오고 싶으면 $로 참조)
 
 3. 이제 `Log Groups`  -> `Metric filter` 탭에서 설정한 값을 확인할 수 있다 
 
-4. 이제 Niti 설정 -> 추가 설정 만들값을 고른다.`$.target***processing***time` 선택
+4. 이제 Niti 설정 -> 추가 설정 만들값을 고른다.`$.target_processing_time` 선택
 
 
 
-**Chapter 2 Summary** -> 로그를 메트릭 수치화 해서 대시보드에서 보거나 Noti로 연동할 수 있다.
-
+*Chapter 2 Summary* -> 로그를 메트릭 수치화 해서 대시보드에서 보거나 Noti로 연동할 수 있다.
 
 
 
@@ -1587,23 +1558,23 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 * Metric type
 
-	****Counter* (cumulative metric only up)
+	* *Counter* (cumulative metric only up)
 
-	****Gauge* (up & down)
+	* *Gauge* (up & down)
 
-	****Histogram* (sables observations) 흑담비..? 예를 들어 응답속도가 0.3초보다 낮은 애들만 모으고 싶다! 이렇게 선언하여 버켓에 데이터를 저장할 수 있다. 서버측의 서버측 계산이 많다.
+	* *Histogram* (sables observations) 흑담비..? 예를 들어 응답속도가 0.3초보다 낮은 애들만 모으고 싶다! 이렇게 선언하여 버켓에 데이터를 저장할 수 있다. 서버측의 서버측 계산이 많다.
 
-	****Summary*: 특정 기간 동안의 클라이언트 사이드에서 계산을 해서 서버로 던진다.
+	* *Summary*: 특정 기간 동안의 클라이언트 사이드에서 계산을 해서 서버로 던진다.
 
 * 메트릭의 구성
 
-	**name, label key = label value, metric value**(scalar)*
+	* name, label key = label value, metric value*(scalar)*
 
-****샘플* 
+* *샘플* 
 
 	* 프로메테우스에서 데이터를 일컫는, 검색을 하면 특정 시간대를 보여준다. `동일 시간대의 샘플 묶음을 인스턴스 = 벡터`
 
-	**`prometheus***http***requests_total [1m]` 이렇게 검색을 할 수 있는데 이건**레인지 벡터*라한다.
+	* `prometheus_http_requests_total [1m]` 이렇게 검색을 할 수 있는데 이건 *레인지 벡터*라한다.
 
 		* 하나의 샘플 안에 스칼라는 여러개의 스칼라를 가진다.
 
@@ -1613,11 +1584,11 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 * PromQL
 
-	* instance Vector selector 의 동작 코드가 200인 애들만 보고 싶다면? `prometheus***http***requests_total{code=“2—“)` regex나 논리표현도 지원한다. `code!=“200”`
+	* instance Vector selector 의 동작 코드가 200인 애들만 보고 싶다면? `prometheus_http_requests_total{code=“2—“)` regex나 논리표현도 지원한다. `code!=“200”`
 
 	* `offset 1m` 1분전 데이터를 가져오고 싶다. UNIX epoch도 쓸 수 있다. 
 
-	****operation*  → 인스턴스 벡터를 대상으로만 사용할 수 있다. 
+	* *operation*  → 인스턴스 벡터를 대상으로만 사용할 수 있다. 
 
 		* sum, min, max, avg, stddev, count, count_values(값 별로 몇개 인지), bottomk(가장 작은), tops, quantile(분위수)
 
@@ -1629,15 +1600,15 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 		* one to one 
 
-`method***code:http***errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m` 코드를 무시하고 두개를 검색하고 같은 검색이 된것끼리 나누기 연산을 했다.
+`method_code:http_errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m` 코드를 무시하고 두개를 검색하고 같은 검색이 된것끼리 나누기 연산을 했다.
 
 		* one to Many
 
 			* 카디널리티가 높다. (모수)가 많다. (숫자가 많다) Group left면 모수가 많은 쪽이 왼쪽에 가야 한다.
 
-	`method***code:http***errors:rate5m / ignoring(code) group***left method:http***requests:rate5m`
+	`method_code:http_errors:rate5m / ignoring(code) group_left method:http_requests:rate5m`
 
-	***MyOp: 이렇게 결과를 쉽게 조작해서 의도된 좋은 데이터를 모니터링의 기준으로 삼을 수 있는게 환상적이네***
+	_MyOp: 이렇게 결과를 쉽게 조작해서 의도된 좋은 데이터를 모니터링의 기준으로 삼을 수 있는게 환상적이네_
 
 
 
@@ -1651,7 +1622,7 @@ collect(metrics, log) -> evaluation (static 판단 / abnormal 판단 지원) -> 
 
 	* 어떤 쿼리를 했는지 저장할 수 있는 로그를 지정할 수도 있다.
 
-		* `global, rule***files, scrape***configs, alerting, remote***write, remote***read, storage`
+		* `global, rule_files, scrape_configs, alerting, remote_write, remote_read, storage`
 
 	* 자주 쓰거나 부하가 큰 것들은 캐시를 지정해놓을 수 있다.
 
@@ -1735,7 +1706,7 @@ scrape_configs:
 
 ```
 
-`curl -XPOST ~~v http:*/localhost:9090/...*reload` 이렇게 해놓으면 파일 dj~~custom이란 디스커버리를 등록하여 체크한다. 이상태에서 서비스 호스트를 더 많이 추가하면 타겟이 추가되어도  자동으로 추가된다. 
+`curl -XPOST -v http://localhost:9090/.../reload` 이렇게 해놓으면 파일 dj-custom이란 디스커버리를 등록하여 체크한다. 이상태에서 서비스 호스트를 더 많이 추가하면 타겟이 추가되어도  자동으로 추가된다. 
 
 	* 이런 SD들이 거의 모든 AWS 서비스에 다 존재한다. 
 
@@ -1746,7 +1717,6 @@ scrape_configs:
 	* Add Label by host’s meta data
 
 * 룰 (얼럿, 사정저의 값으로 알람생성, 룰 - 캐시정보 생성)
-
 
 ---
 
@@ -1810,7 +1780,6 @@ server:
 
 쿠버네티스에 접근하기 위한 인그레스 LoadBalancer 및 인그레스 설정 추가만된다.
 
-
 ---
 
 
@@ -1819,13 +1788,13 @@ server:
 
 * 프로메테우스가 이해할 수 있는 메트릭을 제공해주는 라이브러리를 사용해 만들 수 있다. `exporter`를 사용하면 만들지 않고 알아서 제공하게 할 수도 있다. 
 
-* 단독실행되던 도커 옆에 `node***exporter`를 붙여서 컴포즈하고 `scrape***configs`에 잡을 등록해주면 끝. 
+* 단독실행되던 도커 옆에 `node_exporter`를 붙여서 컴포즈하고 `scrape_configs`에 잡을 등록해주면 끝. 
 
 	* 수집 셋팅이 끝나면 그라파나에서 대시보드 마켓에서 대시보드 설정
 
 
 
-### nginx~~prometheus~~exporter
+### nginx-prometheus-exporter
 
 	* exporter는 9133으로 수집한 정보를 노출하고 동시에 nginx의 메트릭을 관측한다.
 
@@ -1871,31 +1840,29 @@ server:
 
 	* `host.docker.internal` 도커에서 내부에서 로컬호스트를 가르킬 수 있도록 쓰는 도메인
 
-	* `_***address***_`는 target 리소스에 등록한 호스트들을 가르킨다.
+	* `__address__`는 target 리소스에 등록한 호스트들을 가르킨다.
 
-* `prometheus~~flask~~exporter` (라이브러리 형태로 exporter)
+* `prometheus-flask-exporter` (라이브러리 형태로 exporter)
 
 	* `import PrometheusMetrics` -> APM 같은 기분을 내준다. function level 에서 헤비한 작업을 한다고 했을때 그걸 측정하게 해주는 라이브러리. 코드로 등록하고, compose대시보드를 등록하고
-
 
 ---
 
 
 
-## Kubernetes 리소스를 상태를 수집? node~~exporter~~Kube
+## Kubernetes 리소스를 상태를 수집? node-exporter-Kube
 
-* 프로메테우스에 대해 네임 스페이스 기준으로 쿼리를 할 수 있다. `label***values(kube***namespace***created,exported***namespace)`   결과가 탭으로 나뉜다.
+* 프로메테우스에 대해 네임 스페이스 기준으로 쿼리를 할 수 있다. `label_values(kube_namespace_created,exported_namespace)`   결과가 탭으로 나뉜다.
 
-* `sum(kube***pod***labels(exported_namespace=“$namespace:”})` → 이렇게 하면 적용중인 네임스페이스의 파드라벨의 합을 보여준다.
+* `sum(kube_pod_labels(exported_namespace=“$namespace:”})` → 이렇게 하면 적용중인 네임스페이스의 파드라벨의 합을 보여준다.
 
-**`kube***service***createdexported_namespace=“$namespace:”, pod=~"$service.**})` -> Kubernetes 를 제외하고 상단 셀렉터에서 고른 서비스를 쿼리. 멀티밸류는 꺼줘야 원하는 값이 나온다.
+* `kube_service_createdexported_namespace=“$namespace:”, pod=~"$service.*})` -> Kubernetes 를 제외하고 상단 셀렉터에서 고른 서비스를 쿼리. 멀티밸류는 꺼줘야 원하는 값이 나온다.
 
-	**`container***cpu***usage***seconds***total{namespace=$namespace”, image=“”, pod=~”$service.**”}[1m`  전체 CPU  자원 점유량을 표현, `contiainer***memory***res`를 사용하면  메모리 사용량을 체크할 수 있다. 
+	* `container_cpu_usage_seconds_total{namespace=$namespace”, image=“”, pod=~”$service.*”}[1m`  전체 CPU  자원 점유량을 표현, `contiainer_memory_res`를 사용하면  메모리 사용량을 체크할 수 있다. 
 
 * 사이드 메뉴 사용법 주절주절 딱보면 다 알 수 있다.
 
 	* value mapping (특정값에 도달하면 발동) 
-
 
 ---
 
@@ -1925,7 +1892,7 @@ templates: p[] # title, text 등 자주 쓰는 컨텐츠를 템플릿으로 관�
 
 ```
 
-* smtp***auth***password 등은 계정에서 앱 패스워드를 발급할 수 있는데 보통 그걸 입력하면된다. 슬랙도 마찬가지다.
+* smtp_auth_password 등은 계정에서 앱 패스워드를 발급할 수 있는데 보통 그걸 입력하면된다. 슬랙도 마찬가지다.
 
 ```prometheus.yml
 
@@ -1953,7 +1920,6 @@ alerting:
 
 * `Edit panel` →  `Rule, condition` -> `컨텐츠` 설정
 
-
 ---
 
 
@@ -1970,12 +1936,11 @@ alerting:
 
 	* 각각의 호스트를 접속해야한다는 전제조건이 생기는데, 클라우드 네이티브 환경에선 application 과 호스트가 디커플링된다. (종속성이 사라진다) 어떤 앱이 어떤 호스트에서 뜨는지 연결할 수가 없다.
 
-	**이 문제를 해결하기 위해 파일비트 데몬이 로그를 읽어서**Elasticsearch**로 보낸다. 여기서 더 필요하면**Kibana*가 일을 하면 된다.
+	* 이 문제를 해결하기 위해 파일비트 데몬이 로그를 읽어서 *Elasticsearch* 로 보낸다. 여기서 더 필요하면 *Kibana*가 일을 하면 된다.
 
-	**파일비트의 설정을 바꿔야하는 시나리오에서 하나씩 접속할 수는 없으니 설정의 관리와 로그의 파싱은**logstash*가 추상화 추상화 레이어로서 동작한다. HA를 구현하거나 queue 서비스를 합쳐서 메시지 정합성을 구현한다.
+	* 파일비트의 설정을 바꿔야하는 시나리오에서 하나씩 접속할 수는 없으니 설정의 관리와 로그의 파싱은 *logstash*가 추상화 추상화 레이어로서 동작한다. HA를 구현하거나 queue 서비스를 합쳐서 메시지 정합성을 구현한다.
 
 	* 로그들을 파이프라인으로 관리는게 이번 챕터의 목표
-
 
 ---
 
@@ -1991,9 +1956,9 @@ alerting:
 
 * Document
 
-	****데이터 단위(serialized json), collection of Field, Field=(key-value)*
+	* *데이터 단위(serialized json), collection of Field, Field=(key-value)*
 
-	****Index, collection of Document*
+	* *Index, collection of Document*
 
 	* primary shard, replica shard 를 통해 HA구현
 
@@ -2017,8 +1982,7 @@ alerting:
 
 * Stack Component
 
-	* 도큐먼트의 묶음이 Index(indices), 저장을 indexing ~~> es01(PRI-0,PRI~~3, REP~~1, REP~~4), es02(PRI~~1,PRI-4,REP-0,REP2), es03(PRI-2,REP~~3) 이렇게 데이터를 쪼개서 데이터를 보존한다. P가 죽으면 남은 서버의 R이 P로 승격하고 파괴된 REP 샤드는 남은 노드 중에 한개에 생성된다.
-
+	* 도큐먼트의 묶음이 Index(indices), 저장을 indexing -> es01(PRI-0,PRI-3, REP-1, REP-4), es02(PRI-1,PRI-4,REP-0,REP2), es03(PRI-2,REP-3) 이렇게 데이터를 쪼개서 데이터를 보존한다. P가 죽으면 남은 서버의 R이 P로 승격하고 파괴된 REP 샤드는 남은 노드 중에 한개에 생성된다.
 
 ---
 
@@ -2054,7 +2018,7 @@ discovery.seed_hosts: esm01, esd01, esd02
 
 		* REP 샤드가 Assign안 되어있을때 옐로우
 
-	* `GET ***cluster/setting?inlcude***defaults=true` 동시성 리밸런스 등 설정 내용을 확인가능 (이게 튜닝포인트)
+	* `GET _cluster/setting?inlcude_defaults=true` 동시성 리밸런스 등 설정 내용을 확인가능 (이게 튜닝포인트)
 
 ```
 
@@ -2070,18 +2034,17 @@ PUT devops/_doc/1
 
 ```
 
-	* `GET devops*_doc*1`으로  정보를 조회할 수 있다.
+	* `GET devops/_doc/1`으로  정보를 조회할 수 있다.
 
-	**`GET devops/_maaping`을 하면 다이나믹 타입을 결과를 알 수 있다.**ES는 다이나믹 매핑을 할때 가장 보수적인 매핑을 한다.* (즉 성능이 떨어진다, 튜닝할 부분이 있다) 이미 설정된 매핑은 바꿀 수가 없다. 
+	* `GET devops/_maaping`을 하면 다이나믹 타입을 결과를 알 수 있다. *ES는 다이나믹 매핑을 할때 가장 보수적인 매핑을 한다.* (즉 성능이 떨어진다, 튜닝할 부분이 있다) 이미 설정된 매핑은 바꿀 수가 없다. 
 
 	* 한번 매핑이 되고 나면 다른 타입을 넣으려고 할때 에러가 발생하기 시작한다.
 
-	* `DELETE develops*_doc*1`
+	* `DELETE develops/_doc/1`
 
-	* `POST devops*_update*1` `{ “doc”: { “title”:”devops1”}}`
+	* `POST devops/_update/1` `{ “doc”: { “title”:”devops1”}}`
 
 	* 직접 API를 날린다면 뭔가 이벤트 상황일것이다. 일반적으론 호출 할일이 없을테니까.
-
 
 ---
 
@@ -2105,9 +2068,9 @@ PUT devops/_doc/1
 
 		* Range : bytes > 100 and bytes < 1000
 
-		**Exist: currency:**
+		* Exist: currency: *
 
-		**Wildcard machine.os:win**
+		* Wildcard machine.os:win*
 
 * 컴포즈하고 샘플데이터 추가 -> Dev Tool -> 기본적인 KQL 로 조회가능
 
@@ -2128,7 +2091,6 @@ PUT devops/_doc/1
 * Stack Monitoring을 통해 관련 툴들의 헬스를 체크할 수 있다.
 
 	* 도커에 `metricbeat.yml` 을 등록해 `metricbeat`를 설정해 데이터를 노출시켜놓는다. 
-
 
 ---
 
@@ -2152,7 +2114,6 @@ PUT devops/_doc/1
 
 	* 이제 KIBANA - Stack Mag -> Create index pattern (name, timestamp) 로그가 수집되기 시작한다. 한줄짜리 메시지가 수집되기 시작하면 각 로그들이 키밸류로 다 쪼개져서 테이블로 만들 수 있는 상태가 된다.
 
-
 ---
 
 
@@ -2175,11 +2136,11 @@ output {} // 어디(엘라스틱 + 인덱스) 로 보낼지 , 메타정보를 �
 
 *  output은 인덱스 관리의 기준이 된다. (롤오버) ILM을 안쓰면 로그스태시에서 메타데이터로 날짜를 넣어(YYYY MM 같은) 인덱싱할 수 있다.
 
-****filter*
+* *filter*
 
 	* grok pattern: `PATTERN: {identifier}` 이런식으로 정의를 해놓으면 JSON으로 만들어준다. Serializer의 역할
 
-	****mutate*: 플러그인들이 많다. rename, uppercase, join, copy, sub 등 비트 사이의 추상계층이므로 여기서 값을 잘 정의해놓으면 비트에서 설정을 변경할 필요가 없어진다 . convert (ES가 마음대로 정해버리는 다이나믹 타입을 여기서 지정할 수 있다, 인덱스를 갈아 엎지않고 그냥 여기서 바꾸면 좋다.)
+	* *mutate*: 플러그인들이 많다. rename, uppercase, join, copy, sub 등 비트 사이의 추상계층이므로 여기서 값을 잘 정의해놓으면 비트에서 설정을 변경할 필요가 없어진다 . convert (ES가 마음대로 정해버리는 다이나믹 타입을 여기서 지정할 수 있다, 인덱스를 갈아 엎지않고 그냥 여기서 바꾸면 좋다.)
 
 ```
 
@@ -2207,7 +2168,6 @@ config.reload.automate: true // (프로세스를 자동으로 재기동 시켜�
 
 	* grok은 값을 후처리를 하기 위해 유용하다. For example, `geoip`플러그인은 퍼블릭 IP의 지리적 정보를 보여준다. 그러면 이걸 위해 Host IP를 grok으로 잡아서 인자(`source`)로 던져줘야한다. 
 
-
 ---
 
 
@@ -2225,7 +2185,6 @@ config.reload.automate: true // (프로세스를 자동으로 재기동 시켜�
 `host.docker.internal:9200`으로 output
 
 구성을 마치면 `index create`
-
 
 ---
 

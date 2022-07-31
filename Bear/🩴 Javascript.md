@@ -1,7 +1,6 @@
 # 🩴 Javascript
 
-#Devops*language*javascript
-
+#Devops/language/javascript
 
 ---
 
@@ -31,7 +30,7 @@ var obj {
 
 ```
 
-**객체가 어떻게 되든 c가 함수스코프가 되고**this**는**obj* 가 된다. 그래서 메소드호출은 언제나 객체가 this가 된다. 대신 객체 안이라도 => 익명함수가 되면 스코프가 생겨나지 않고 생겨나지 않으면 기본은 window.
+* 객체가 어떻게 되든 c가 함수스코프가 되고 *this* 는 *obj* 가 된다. 그래서 메소드호출은 언제나 객체가 this가 된다. 대신 객체 안이라도 => 익명함수가 되면 스코프가 생겨나지 않고 생겨나지 않으면 기본은 window.
 
 * 즉 다르게 말하면 애로우를 작성하면 함수가 작성된 시점의 스코프로 고정된다. 안바뀐다. 애로우로 안하면 실행되는 시점에서 함수스코프다 >> 객체는 스코프를 만들지 않는다. 그걸 생각해라.
 
@@ -41,23 +40,23 @@ var obj {
 
 * Instance를 만들어 낼 수 있는 객체(new 키워드를 를 쓸 수 있는)만 construct 를 가진다. 예를 들어 math는 construct가 없다. 계산만을 위해 존재하는 것.
 
-* 부모의 컨스트럭터를 실행하는게 super 키워드 → 명시적 실행. ES6 부터는 없어도 실행된다. 바벨 옵션에 따라 없어도 알아서 수행된다. create~~react~~app에는 옵션이 적용되어 있다.
+* 부모의 컨스트럭터를 실행하는게 super 키워드 → 명시적 실행. ES6 부터는 없어도 실행된다. 바벨 옵션에 따라 없어도 알아서 수행된다. create-react-app에는 옵션이 적용되어 있다.
 
 
 
 ## 인스턴스 메서드
 
--	[ ] 다시 확인
+- 다시 확인
 
 ## 프로토타입 메서드
 
--	[ ] 다시 확인
+- 다시 확인
 
 
 
 ## 프로토타입 표현
 
-`_***proto***_` 은 `[[prototype]]` 과 같다. 표기방식이 다른거다. 두가지가 읽는건 프로토타입체인,프로토링크
+`__proto__` 은 `[[prototype]]` 과 같다. 표기방식이 다른거다. 두가지가 읽는건 프로토타입체인,프로토링크
 
 `super` 키워드로 부모에 접근
 
@@ -65,7 +64,7 @@ var obj {
 
 * `new FFF` => FFF 를 컨스트럭터로 가지는. 생성자만 실행된 객체 인스턴스 생성하는 키워드
 
-`object create`를 하면 `(arg)`의 객체를 _***proto***_ 로 가르치는 생성자만 실행된 객체 반환
+`object create`를 하면 `(arg)`의 객체를 __proto__ 로 가르치는 생성자만 실행된 객체 반환
 
 
 
@@ -82,7 +81,6 @@ var obj {
 * `Fatch` 좀더 최신의 API
 
 * `URI` (Uniform Resource Identifier) ≈ URL
-
 
 ---
 
@@ -102,7 +100,7 @@ var obj {
 
 ## PM2
 
-***NodeJS 프로세스 관리 도구***
+**NodeJS 프로세스 관리 도구**
 
 * 자동 업데이트 변경사항 logging
 
@@ -110,23 +108,21 @@ var obj {
 
 * 모듈로 라이브러리를 지정해서 로직만 메인에 표시하고 구현된건 쪼개서 관리가능.
 
-
 ---
 
 
 
 ### snippet (vscode)
 
--	[ ] rcc : class component skeleton
+- rcc : class component skeleton
 
--	[ ] rrc→  class component skeleton with react-redux connect
+- rrc→  class component skeleton with react-redux connect
 
--	[ ] rrdc→ class component skeleton with react-redux connect and dispatch
+- rrdc→ class component skeleton with react-redux connect and dispatch
 
--	[ ] rsf : stateless named function skeleton
+- rsf : stateless named function skeleton
 
--	[ ] rsc : stateless component skeleton    (literal with arrow)
-
+- rsc : stateless component skeleton    (literal with arrow)
 
 ---
 
@@ -134,15 +130,15 @@ var obj {
 
 리액트 기초
 
-***Status*** :렌더같은 DOM의 변화에도 데이터를 계속 담고 밑으로 흘려줄 수 있음
+**Status** :렌더같은 DOM의 변화에도 데이터를 계속 담고 밑으로 흘려줄 수 있음
 
-***Props*** :Container(부모) 컴포넌트가 prop을 정하고 표현하는 컴포넌트에서 this.props로 받아서 처리
+**Props** :Container(부모) 컴포넌트가 prop을 정하고 표현하는 컴포넌트에서 this.props로 받아서 처리
 
 
 
 HOOK ( ~ React 16 )
 
-  `npm install —save eslint~~plugin-react~~hooks`
+  `npm install —save eslint-plugin-react-hooks`
 
 
 
@@ -188,11 +184,11 @@ HOOK ( ~ React 16 )
 
 ### HTML
 
--	[ ] BASIC
+- BASIC
 
   + block : 한줄 차지
 
-  + div 및 display: inline은 컨텐츠만큼의 hight 를 가진다. ***height 설정불가***
+  + div 및 display: inline은 컨텐츠만큼의 hight 를 가진다. **height 설정불가**
 
   + inline-block : height 설정가능
 
@@ -200,21 +196,21 @@ HOOK ( ~ React 16 )
 
 ### CORS(Cross-Origin Resource Sharing)
 
--	[ ] 이전에는 same 오리진 정책이 기본이였지만, CORS를 허용하면 다른 도메인에서도 요청가능 API활용이 많아진 시대에는 필요한 허용을 관리한다.
+- 이전에는 same 오리진 정책이 기본이였지만, CORS를 허용하면 다른 도메인에서도 요청가능 API활용이 많아진 시대에는 필요한 허용을 관리한다.
 
--	[ ] CORS는 시스템 수준에서 타 도메인 간 자원 호출을 승인하거나 차단하는 것을 결정한다.
+- CORS는 시스템 수준에서 타 도메인 간 자원 호출을 승인하거나 차단하는 것을 결정한다.
 
--	[ ] CORS는 웹 브라우저에서 외부 도메인 서버와 통신하기 위한 방식을 표준화한 스펙이다.
+- CORS는 웹 브라우저에서 외부 도메인 서버와 통신하기 위한 방식을 표준화한 스펙이다.
 
--	[ ] 서버와 클라이언트가 정해진 해더를 통해 서로 요청이나 응답에 반응할지 결정하는 방식으로 교차 출처 자원 공유.
+- 서버와 클라이언트가 정해진 해더를 통해 서로 요청이나 응답에 반응할지 결정하는 방식으로 교차 출처 자원 공유.
 
--	[ ] 이게 스트링파이안하면 갑자기 CORS를 딴지를 건다.;;
+- 이게 스트링파이안하면 갑자기 CORS를 딴지를 건다.;;
 
 
 
 ## 브라우저
 
--	[ ] 브라우저에서 미리 prefliGitHubt를 통해서 필요한 요청을 정의한 다음 본격 통신.
+- 브라우저에서 미리 prefliGitHubt를 통해서 필요한 요청을 정의한 다음 본격 통신.
 
 
 
@@ -222,7 +218,7 @@ HOOK ( ~ React 16 )
 
 #### xos 개발자모드 크롭 켜기 (옵션 안전 끔)
 
-open ~~na Google\ Chrome —args —disable-web~~security —user~~data~~dir=“*tmp*chrome_dev”
+open -na Google\ Chrome —args —disable-web-security —user-data-dir=“/tmp/chrome_dev”
 
 
 
@@ -292,7 +288,6 @@ Hint: props에 (state를 변경하는) event handler를 넘겨주면 다른 컴�
 
 
 
-
 ---
 
 
@@ -351,7 +346,7 @@ rules: {
 
 * async의 리턴은 `펜딩 프로미스 `이걸로 또 이어서 사용가능
 
-***await의 리턴은 리졸브된 값이다.***
+**await의 리턴은 리졸브된 값이다.**
 
 
 

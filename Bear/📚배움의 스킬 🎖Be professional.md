@@ -2,7 +2,6 @@
 
 #living #learning
 
-
 ---
 
 
@@ -221,7 +220,7 @@
 
 ## How to ask - Code session
 
-**Tips**
+*Tips*
 
 *  질문하기 위해 글로 적는게 문제를 분해하는 방법이다.
 
@@ -231,7 +230,7 @@
 
 * 묻는 사람에게 무엇을 검색 및 시도했는지 히스토리를 트래킹해서 전달한다.
 
-**Stack Overflow에 질문을 해보자**
+*Stack Overflow에 질문을 해보자*
 
 1. 키워드를 정확히하는게 핵심.
 

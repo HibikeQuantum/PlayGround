@@ -2,7 +2,6 @@
 
 #Devops/tools
 
-
 ---
 
 
@@ -77,7 +76,7 @@ git reset —hard 하면 스테이지 끌어내리고 파일도 바구고 다
 
 ## Gitlab CI 워크숍 자료
 
-* [https:*/workshop.infograb.io/gitlab~~ci/00***workshop***info/](https://workshop.infograb.io/gitlab~~ci*00***workshop***info/) 
+* [https://workshop.infograb.io/gitlab-ci/00_workshop_info/](https://workshop.infograb.io/gitlab-ci/00_workshop_info/) 
 
 * SPRING 코드 따라서 플로우를 따라해보기 좋음.
 
@@ -127,7 +126,7 @@ in its place.
 
 * 지라 CLI
 
-	* API 문서  [https:*/bobswift.atlassian.net/wiki/spaces/JCLI/pages/1059397481/getIssueList](https://bobswift.atlassian.net/wiki/spaces/JCLI/pages/1059397481*getIssueList) 
+	* API 문서  [https://bobswift.atlassian.net/wiki/spaces/JCLI/pages/1059397481/getIssueList](https://bobswift.atlassian.net/wiki/spaces/JCLI/pages/1059397481/getIssueList) 
 
 	* - -outputFormat
 
@@ -251,7 +250,7 @@ Graddle은 사용자 지정 task도 지원한다.
 
 * 젠킨스가 별 하찮은 이유로 잡이 실패하는 경우에 대한 설명
 
-"Jenkins is executing shell build steps using *bin*sh -xe by default. -x means to print every command executed. -e means to exit with failure if any of the commands in the script failed." 그렇기 때문에 만약 에러를 무시하고 진행할 필요가 있다면 다음 처럼 에러 코드를 반환하지 않도록 처리하면 된다.
+"Jenkins is executing shell build steps using /bin/sh -xe by default. -x means to print every command executed. -e means to exit with failure if any of the commands in the script failed." 그렇기 때문에 만약 에러를 무시하고 진행할 필요가 있다면 다음 처럼 에러 코드를 반환하지 않도록 처리하면 된다.
 
 ```
 
@@ -273,7 +272,7 @@ set -e
 
 ### sonar
 
-The SonarScanner for Maven is default scanner for Maven projects. The ability to execute the SonarQube analysis via a regular Maven goal makes it available anywhere Maven is available (developer build, CI server, etc.) ~~> 현재 OSS~~OM에선 코드인스펙트를 하고 보고서를 작성하는 용도로 사용중이다. 현재 프로젝트에서 사용중인 `pom.xml`을 보면 `<ruleset>.xml</>`을 지정해준다. 안에 보면 리턴하지 않는 함수, 선택지가 하나뿐인 case등에 대해 경고를 하는 룰이 지정되어있다.
+The SonarScanner for Maven is default scanner for Maven projects. The ability to execute the SonarQube analysis via a regular Maven goal makes it available anywhere Maven is available (developer build, CI server, etc.) -> 현재 OSS-OM에선 코드인스펙트를 하고 보고서를 작성하는 용도로 사용중이다. 현재 프로젝트에서 사용중인 `pom.xml`을 보면 `<ruleset>.xml</>`을 지정해준다. 안에 보면 리턴하지 않는 함수, 선택지가 하나뿐인 case등에 대해 경고를 하는 룰이 지정되어있다.
 
 
 

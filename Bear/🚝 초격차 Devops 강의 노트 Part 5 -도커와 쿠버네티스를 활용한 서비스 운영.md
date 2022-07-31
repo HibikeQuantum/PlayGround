@@ -1,7 +1,6 @@
-# 🚝 초격차 Devops 강의 노트 Part 5 ~~도커와 쿠버네티스를 활용한 서비스 운영~~
+# 🚝 초격차 Devops 강의 노트 Part 5 -도커와 쿠버네티스를 활용한 서비스 운영-
 
 #Devops/lesson #lesson
-
 
 ---
 
@@ -11,7 +10,7 @@
 
 ### CH01_01 개요
 
-**컨테이너 기술의 발전**
+*컨테이너 기술의 발전*
 
 1. Season Traditional:  동일한 바이너리에 대해 한가지 버전의 라이브러리만 사용할 수 있다. →  앱1, 2, 3이 다른 의존성을 가지고 싶을때 트리키한 방법을 썼어야 헀다.  → 효율성과 확장성이 낮아졌다.
 
@@ -23,7 +22,7 @@
 
 ### CH01_03~07 환경구성 및 미니쿠베
 
-***docker, docker-compose, kubectl, kustomize,  minikube***
+_docker, docker-compose, kubectl, kustomize,  minikube_
 
 🐭 rehash: Re-computes the internal hash table.
 
@@ -37,7 +36,7 @@ Kubernetes v1.23
 
 * 자 시작 명령어!
 
-`minikube start ~~-node 3 -~~driver=docker`
+`minikube start --node 3 --driver=docker`
 
 * 사용방법 
 
@@ -57,7 +56,7 @@ kubectl cluster-info  // 현재 어디에서 control-plane이 실행되고 있�
 
 * 기본적인 명령어
 
-`minikube [status*delete/pause/unpause/pause*stop]`
+`minikube [status/delete/pause/unpause/pause/stop]`
 
 * 많이 쓰는 명령어
 
@@ -81,7 +80,7 @@ kubectl cluster-info  // 현재 어디에서 control-plane이 실행되고 있�
 
 ### 도커 이미지와 컨테이너
 
-**도커구성요소**
+*도커구성요소*
 
 1. Docker Client: 도커 명령어(docker build, pull, run) 를 실행하는 대상
 
@@ -161,9 +160,9 @@ docker run [이미지 이름] [my-command]	실행할 명령어를 제일 마지�
 
 	* `docker stop $(docker ps -a -q)`  전체 컨테이너 아이디 전달하여 stop
 
-	* `docker rm`  `docker rm ~~f `  `docker run -~~rm` 
+	* `docker rm`  `docker rm -f `  `docker run --rm` 
 
-	**`docker container prune`**중지된 모든 컨테이너 삭제* //가지칠때 쓰는 단어
+	* `docker container prune`  *중지된 모든 컨테이너 삭제* //가지칠때 쓰는 단어
 
 * id는 꼭 다 입력 안해도 된다.
 
@@ -209,7 +208,7 @@ HY_HOST=hello.com
 
 
 
-`dokcer run ~~it --env~~file ./sample.env ubuntu:focal env`
+`dokcer run -it --env-file ./sample.env ubuntu:focal env`
 
 → 컨테이너에 진입하자 마자 env를 조회한다.
 
@@ -245,7 +244,7 @@ HY_HOST=hello.com
 
 * Expose vs publish
 
-	* `docker run ~~d -~~expose 80 ~~-name my~~nginx nginx`  expose는 그냥 문서적인 용도 실제 패킷이 포워드 되진 않는다.
+	* `docker run -d --expose 80 --name my-nginx nginx`  expose는 그냥 문서적인 용도 실제 패킷이 포워드 되진 않는다.
 
 * 네트워크
 
@@ -255,15 +254,15 @@ HY_HOST=hello.com
 
 	* Single Host Networking (bridge, host, none) / Multi Host Networking (클러스터 단계에서 실행할때 사용) 대표적으로 docker swarm
 
-	* `docker ~~it -~~net none container`  이렇게 실행한 다음 `inspect` 해보면 네트워크와 드라이버가 none 이 되어있는걸 볼 수 있다. 네트워크기능이 필요없거나 프라이빗한 네트워크를 쓰고 싶을때 사용한다.
+	* `docker -it --net none container`  이렇게 실행한 다음 `inspect` 해보면 네트워크와 드라이버가 none 이 되어있는걸 볼 수 있다. 네트워크기능이 필요없거나 프라이빗한 네트워크를 쓰고 싶을때 사용한다.
 
-	* `docker ~~it -~~network=host grafana/grafana` 이렇게 실행하면 바로 호스트 네트워크 3000번에 바로 붙는다. `inspect` 해보면 별도의 IP가 없는 모습을 볼 수 있다.
+	* `docker -it --network=host grafana/grafana` 이렇게 실행하면 바로 호스트 네트워크 3000번에 바로 붙는다. `inspect` 해보면 별도의 IP가 없는 모습을 볼 수 있다.
 
 	* 직접 브릿지를 만들기
 
 		*  `docker network create --driver=bridge 2022campus`  
 
-		* `docker run ~~d -~~network=2022campus ~~-net~~alias=hello nginx`  이렇게 하면 내부에서 도메인을 찾을 때 hello 를 쓸 수 있다. 이제 grafana 컨테이너에 들어가  `wget hello`를 하면 index.html 을 받을 수 있다. 반대로 nginx 컨테이너에 들어가 curl grafana:3000을 해도 .html문서를 송신하는걸 볼 수 있다. 
+		* `docker run -d --network=2022campus --net-alias=hello nginx`  이렇게 하면 내부에서 도메인을 찾을 때 hello 를 쓸 수 있다. 이제 grafana 컨테이너에 들어가  `wget hello`를 하면 index.html 을 받을 수 있다. 반대로 nginx 컨테이너에 들어가 curl grafana:3000을 해도 .html문서를 송신하는걸 볼 수 있다. 
 
 		* 호스트에서 `ifconfig` 를 해보면 veth, docker0 를 볼 수 있다.
 
@@ -275,15 +274,15 @@ HY_HOST=hello.com
 
 * 도커 레이어 아키텍쳐
 
-	* `docker build -t app .`  을 통해 base OS, apt Package, install pip, source Code, Update Entrypoint 이런 과정을 수행하고 이게 ***Image Layers*** 이고 Read only
+	* `docker build -t app .`  을 통해 base OS, apt Package, install pip, source Code, Update Entrypoint 이런 과정을 수행하고 이게 _Image Layers_ 이고 Read only
 
 	* 도커는 이 각 단계를 레이어로 관리함으로서 작업수요는 줄인다. 
 
-	* `docker run app`  을 통해 실행하면 ***ContainerLayer*** 가 생겨난다. 이건 RW 
+	* `docker run app`  을 통해 실행하면 _ContainerLayer_ 가 생겨난다. 이건 RW 
 
 * 호스트볼륨
 
-	* `docker -v *host/path:/guest*path`  이렇게 볼륨을 연결한다.
+	* `docker -v /host/path:/guest/path`  이렇게 볼륨을 연결한다.
 
 	* 컨테이너에서의 작업이 호스트의 디스크에 기록할 수 있다.
 
@@ -291,9 +290,9 @@ HY_HOST=hello.com
 
 	* Data를 쓰기위한 컨테이너를 작성하여 사용, 앱이 Data-only의 볼륨을 마운트
 
-	* `docker run ~~-name my~~volume -v *host/path:/guest*path focal`
+	* `docker run --name my-volume -v /host/path:/guest/path focal`
 
-	* `docker run ~~-voulme-from my~~volume`
+	* `docker run --voulme-from my-volume`
 
 	* 모든 셋팅된 컨테이너를 실행하면 다음 inspect 해보면 `source:... dest:...` 된걸 볼 수 있다. 
 
@@ -301,17 +300,17 @@ HY_HOST=hello.com
 
 	* 도커가 제공하는 볼륨 관리 기능을 통해 데이터를 보존
 
-	* `var*lib/docker/volumes/${volume-name}*_data` 에 저장이 된다.
+	* `var/lib/docker/volumes/${volume-name}/_data` 에 저장이 된다.
 
 	* 도커 볼륨 생성 `docker volume create --name db`  호스트 경로 대신 'db'를 쓰면 된다.
 
-	* 도커 볼륨 마운트 `docker run -v db:var*lib*mysql containerId`
+	* 도커 볼륨 마운트 `docker run -v db:var/lib/mysql containerId`
 
 	* `docker volume inspect db`  이렇게 하면 현재 사용중인 볼륨을 볼 수 있고 ls 로 실제 위치에 존재하는 파일을 읽을 수도 있다.
 
 * 읽기 전용 볼륨 연결
 
-	* `-v db:*guest*path:ro`  이렇게 뒤에 ':ro' 를 붙이면 리드온리로 마운트된다.
+	* `-v db:/guest/path:ro`  이렇게 뒤에 ':ro' 를 붙이면 리드온리로 마운트된다.
 
 
 
@@ -335,11 +334,11 @@ HY_HOST=hello.com
 
 * (json-file driver 사용시) 호스트 운영체제의 로그 경로 
 
-	* `cat *var/lib/docker/containers/${container_ID}*${container~~ID}~~json.log`  로그가 json 키로 되어 있는걸 볼 수 있다. keys → log:, stream:, time:
+	* `cat /var/lib/docker/containers/${container_ID}/${container-ID}-json.log`  로그가 json 키로 되어 있는걸 볼 수 있다. keys → log:, stream:, time:
 
 * 로그 용량 제한
 
-	* `docker run ~~-log-driver=json-file --log~~opt max~~size=3m --log~~opt max-file=5` 
+	* `docker run --log-driver=json-file --log-opt max-size=3m --log-opt max-file=5` 
 
 	* 운영환경에선 필수로 해야하고 컨테이너 단위 뿐만 아니라 도커엔진에서 전체적으로 설정도 가능
 
@@ -347,7 +346,7 @@ HY_HOST=hello.com
 
 	* 이렇게 쌓은 로그들을 Centralized Log MNG 서비스 ( elastic, sematext, splunk, cloudWatch)에 쌓으면 된다.
 
-	* json~~file 은 파일기반, journald 는 리눅스 저널, syslog는 TCP~~UDP, fluentd는 TCP를 통해 Log Shipper에 전달할 수 있고 Log Shipper는 CLM에 HTTP로 전달한다.
+	* json-file 은 파일기반, journald 는 리눅스 저널, syslog는 TCP-UDP, fluentd는 TCP를 통해 Log Shipper에 전달할 수 있고 Log Shipper는 CLM에 HTTP로 전달한다.
 
 	* Splunk, Gelf, Logentries, CloudWatch, Google Cloud는 직접적으로 수집할 수도 있다.
 
@@ -363,7 +362,7 @@ HY_HOST=hello.com
 
 	* 컨테이너에 직접 들어가서 명령어를 수행한 다음 commit을 해서 이미지를 만들 수 있음.
 
-`docker commit -a 2022campus ~~m "add my***file" my***ubuntu my~~ubuntu:v1`
+`docker commit -a 2022campus -m "add my_file" my_ubuntu my-ubuntu:v1`
 
 `sha256:a961....` 이미지 생성 확인.
 
@@ -375,7 +374,7 @@ HY_HOST=hello.com
 
 	* `docker build -t my_app:v1 ./`  -t 태그 지정 (디폴트 파일, Dockerfile 이용)
 
-	* `docker build -t my_app:v1 -f example*MyDockerfile .*`  -f 도커 파일 지정 
+	* `docker build -t my_app:v1 -f example/MyDockerfile ./`  -f 도커 파일 지정 
 
 	* Sending build context to Docker daemon → 중요한 메시지
 
@@ -387,7 +386,7 @@ HY_HOST=hello.com
 
 * .dockerignore
 
-	**`**/temp*`
+	* `*/temp*`
 
 	* `!README.md` 같은 방법을 통해 빌드 컨텍스트에서 무시할 파일들을 지시할 수 있다. 
 
@@ -403,7 +402,7 @@ HY_HOST=hello.com
 
 	* 빌드할때 값을 정의할 수도 있다. `ARG buildNo=1`
 
-	* `docker build ~~-build~~arg user=what_user ` 이렇게 정의하면 사용할 수 있는데  `ARG user` 라고 정의해주기 전에 참조하면 에러. 컨테이너 변수와 빌드 변수가 겹치면 ENV 지시어가 우선된다.
+	* `docker build --build-arg user=what_user ` 이렇게 정의하면 사용할 수 있는데  `ARG user` 라고 정의해주기 전에 참조하면 에러. 컨테이너 변수와 빌드 변수가 겹치면 ENV 지시어가 우선된다.
 
 ```
 
@@ -493,7 +492,7 @@ RUN \
 
 	* `FROM light-base AS release`  릴리즈 단계
 
-	* `COPY --from=build *app/node***modules .*node***modules` 이전 단계에서 수행한 내용 (`npm install`의 결과물을 복사. 의존성이 커질 수록 이 효과가 커진다. 레이어를 효과적으로 관리하기 위해선 초반에 고정적이고 후반에 가변적인 명령어를 다뤄야 한다.
+	* `COPY --from=build /app/node_modules ./node_modules` 이전 단계에서 수행한 내용 (`npm install`의 결과물을 복사. 의존성이 커질 수록 이 효과가 커진다. 레이어를 효과적으로 관리하기 위해선 초반에 고정적이고 후반에 가변적인 명령어를 다뤄야 한다.
 
 
 
@@ -549,7 +548,7 @@ RUN \
 
 * docker-compose 명령어
 
-	* `docker~~compose up`  docker run 과 유사 '~~d' 백그라운드
+	* `docker-compose up`  docker run 과 유사 '-d' 백그라운드
 
 		* 실행될떄는 정의했던 컨테이너와 볼륨 네트워크들이 만들어지는걸 볼 수 있다.
 
@@ -573,9 +572,9 @@ network:
 
 	* `docker-compose ls -a`  전체 프로젝트 상태를 확인
 
-	* `build~~web~~1` 여기서 1은 서비스 내에서 첫번째 인덱스를 의미
+	* `build-web-1` 여기서 1은 서비스 내에서 첫번째 인덱스를 의미
 
-	* `docker~~compose up -~~scale web=3`  스케일 업할때는 이런 명령어를 주면 된다.
+	* `docker-compose up --scale web=3`  스케일 업할때는 이런 명령어를 주면 된다.
 
 		* 호스트의 아무 포트나 사용해서 컨테이너를 증가시켜 5000번으로 연결하게 된다. 
 
@@ -709,7 +708,6 @@ volumes:
 
 * grafana를 켜서 시스템 설정에서 변경된 내용을 확인
 
-
 ---
 
 ## CH3 쿠버네티스의 이요한 컨테이너 오케스트레이션
@@ -726,7 +724,7 @@ volumes:
 
 	* overlay network 를 통해 하나의 네트워크 처럼 동작하게 해준다. (Service discovery가 이것)
 
-* ***What is Container Orchestration?*** - 여러 머신으로 구성된 클러스터 상에서 컨테이너를 효율적으로 관리하기 위한 시스템 (운영체제는 하나의 머신에서 프로세스를 관리하기 위한 프로세스 오케스트레이션 시스템이잖아) → 덕분에 사용자가 OS에 대해 신경을 쓸일이 적어졌다. 해방됐다!라고 표현하기도 한다.
+* _What is Container Orchestration?_ - 여러 머신으로 구성된 클러스터 상에서 컨테이너를 효율적으로 관리하기 위한 시스템 (운영체제는 하나의 머신에서 프로세스를 관리하기 위한 프로세스 오케스트레이션 시스템이잖아) → 덕분에 사용자가 OS에 대해 신경을 쓸일이 적어졌다. 해방됐다!라고 표현하기도 한다.
 
 * 기존에도 노마드, 메소스(DC/OS), 도커스웜, 랜처(간단한게 장점) 등 있었지만 선택받은 쿠버네티스
 
@@ -856,7 +854,7 @@ kubectl get node
 
 ```
 
-* `kubectl get po ~~all~~namespaces`  이렇게 pods 자원의 현황을 조회 
+* `kubectl get po -all-namespaces`  이렇게 pods 자원의 현황을 조회 
 
 * `kubectl explain pod`  해당 리소스의 스펙을 조회
 
@@ -892,9 +890,9 @@ kubectl get node
 
 * 명령형
 
-`kubectl run -i ~~t ubuntu -~~image unbuntu:focal bash` 이게 이미지로 우분투 파드 생성
+`kubectl run -i -t ubuntu --image unbuntu:focal bash` 이게 이미지로 우분투 파드 생성
 
-`kubectl expose deployment grafana ~~-type=NodePort -~~port=80 ~~-target~~port=3000`
+`kubectl expose deployment grafana --type=NodePort --port=80 --target-port=3000`
 
 → grafana dep 오브젝트에 대해 Nodeport 타입의 Service 오브젝트 생성. 노드포트에 3000번을 개방하라는 지시.
 
@@ -902,7 +900,7 @@ kubectl get node
 
 → frontend dep 의 www 컨테이너 이미지를 image:v2로 변경
 
-`kubectl rollout undo dep/frontend ~~-to~~revision=2`
+`kubectl rollout undo dep/frontend --to-revision=2`
 
 → frontend dep 을 리비전 2로 롤백
 
@@ -920,9 +918,9 @@ kubectl get node
 
 * 실습
 
-`kubectl create deployment grafana ~~-image=grafana/grafana -~~port=3000` → DEP을 생성하는데 3000번을 열라고 '포드'에게 지시하는것
+`kubectl create deployment grafana --image=grafana/grafana --port=3000` → DEP을 생성하는데 3000번을 열라고 '포드'에게 지시하는것
 
-`kubectl expose deployment grafana ~~-type=NodePort -~~port=80 ~~-target~~port=3000`
+`kubectl expose deployment grafana --type=NodePort --port=80 --target-port=3000`
 
 → grafana DEP에게 '노드포트'에 3000번을 개방하라는 지시.
 
@@ -946,7 +944,7 @@ kubectl get node
 
 	* SSH, log, port 개방 등은 선언형으로 관리
 
-****트러블슈팅용 명령어*
+* *트러블슈팅용 명령어*
 
 	* `logs, attach, exec, port-forward, proxy, top`
 
@@ -984,11 +982,11 @@ kubectl get pod -o wide # ip등을 포함한 정보
 
 	* `minikube ssh`  를 이용해 접근하면 된다.  이제 여기서 curl을 보내면 서비스를 받을 수 있다. 
 
-	* 두번째 방법 pod에 접근. `kubectl  run -i ~~t debug -~~image=posquit0/doraemon bash`  이제 클러스터의 쉘에 있으니 curl 가능
+	* 두번째 방법 pod에 접근. `kubectl  run -i -t debug --image=posquit0/doraemon bash`  이제 클러스터의 쉘에 있으니 curl 가능
 
 	* `kubectl exec -i -t hello bash`  도커와 마찬가지로 hello 이미지에 명령을 전달할 수 있다. 쉘을 켜면 된다.
 
-****멀티 컨테이너 파드, 사이드카 패턴*
+* *멀티 컨테이너 파드, 사이드카 패턴*
 
 	* 파드 구성의 특징
 
@@ -1136,7 +1134,7 @@ spec:
 
 `kubectl set image deployment rolling nginx=nginxdemos/hello:latest --record` 선언형으로 업데이트 진행
 
-`kubectl rollout undo deployment rolling ~~-to~~revision=1`  롤링으로 롤백을 수행
+`kubectl rollout undo deployment rolling --to-revision=1`  롤링으로 롤백을 수행
 
 `kubectl rollout status deployment rolling`  롤백 상황을 조회 가능
 
@@ -1166,11 +1164,7 @@ spec:
 
 * ClusterIP 
 
-	**서비스 네트워크 IP/PORT 정보 → 
-```diff
-+ spec.clusterIP:spec.ports[**].port
-```
-
+	* 서비스 네트워크 IP/PORT 정보 → ::spec.clusterIP:spec.ports[*].port::
 
 	* ⭐️ 파드에 부여하는 CIDR 대역과 서비스에 부여되는 ClusterIP CIDR 가 독립적으로 존재한다.  클러스터는 서비스를 가지고 서비스는 ClusterIP 를 가진다. 이곳으로 오는 요청은 LoadBalance 내부 DNS를 통해 서비스 이름으로 통신도 가능
 
@@ -1212,19 +1206,15 @@ spec:
 
 `minikube ssh` 접속해서 curl 해보면 서비스하는 파드의 이름들이 변하는걸 볼 수 있다.
 
-`kubectl run -i ~~t test -~~image=posquit0/doraemon bash` 이렇게 만들 다음 curl을 해보면 클러스터 내에서 통신이 가능하지
+`kubectl run -i -t test --image=posquit0/doraemon bash` 이렇게 만들 다음 curl을 해보면 클러스터 내에서 통신이 가능하지
 
-`kubectl cluster-info dump | grep ~~m 1 service-cluster-ip~~range`
+`kubectl cluster-info dump | grep -m 1 service-cluster-ip-range`
 
 → 클러스터 아이피를 볼 수 있고 수도으로 설정도 가능하다.
 
 * NodePort를 외부에 노출하기
 
-	**서비스 네트워크 IP/PORT 정보 
-```diff
-+ <NodeIP:spec.port[**].nodePort
-```
-
+	* 서비스 네트워크 IP/PORT 정보 ::<NodeIP:spec.port[*].nodePort::
 
 	* 쿠너네티스의 모든 동일 포트를 개방하여 서비스에 접근가능케함
 
@@ -1272,11 +1262,7 @@ spec:
 
 * LoadBalancer (보통 클라우드 프로바이더의 로드밸런서와 연동하여 쓴다)
 
-	**서비스 네트워크 IP/Port 정보 
-```diff
-+ spec.loadBalancerlp:spec.ports[**].port
-```
-
+	* 서비스 네트워크 IP/Port 정보 ::spec.loadBalancerlp:spec.ports[*].port::
 
 	* 클라우드 프로바이더에서 제공하는 로드밸런서를 동적으로 생성하는 방식. minikube 에선 패스. (할수는 있지만) MetalLB 같은 기술을 쓰면 On Poremise에서도 로드밸런스 타입 사용가능.
 
@@ -1416,7 +1402,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
 ```
 
-**envFrom 방법**
+*envFrom 방법*
 
 ```
 
@@ -1428,7 +1414,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
 ```
 
-**configMapKeyRef 방법**
+*configMapKeyRef 방법*
 
 ```
 
@@ -1448,7 +1434,7 @@ data: # 대개 spec을 가지나 data 키를 가진다.
 
 apply 하고 나면  `kubectl describe cm` 을 통해 현재 관리되고 있는 ConfigMap 의 정보를 조회가능. `kubectl describe cm mysql`을 통해 현재 가지고 있는 환경변수 값을 조회 가능
 
-**볼륨으로 쓰는법**
+*볼륨으로 쓰는법*
 
 ```
 
@@ -1476,17 +1462,17 @@ apply 하고 나면  `kubectl describe cm` 을 통해 현재 관리되고 있는
 
 `kubectl create configmap my-config`
 
-`kubectl create configmap my~~config --from~~file config.yaml` 이건  `#key=value` 구조로 들어간다.
+`kubectl create configmap my-config --from-file config.yaml` 이건  `#key=value` 구조로 들어간다.
 
-`kubectl create configmap my~~config --from~~file config=config.yaml` // 이렇게 쓰면 'config'키가 파일을 바라보게 된다.
+`kubectl create configmap my-config --from-file config=config.yaml` // 이렇게 쓰면 'config'키가 파일을 바라보게 된다.
 
-`kubectl create configmap my~~config --from~~file config=config.yaml ~~dry~~run -o yaml `  드라이 런은 이렇게 하면 가짜로 실행하라는 의미. 클러스터에 반영이 안되고 어떤 결과를 내는지를 본다. -o (ou  tput) yaml 포맷. 의미 따라서 declarative한 사용에 필요한 값을 출력 받을 수 있다. 
+`kubectl create configmap my-config --from-file config=config.yaml -dry-run -o yaml `  드라이 런은 이렇게 하면 가짜로 실행하라는 의미. 클러스터에 반영이 안되고 어떤 결과를 내는지를 본다. -o (ou  tput) yaml 포맷. 의미 따라서 declarative한 사용에 필요한 값을 출력 받을 수 있다. 
 
-`kubectl create configmap my~~config config=config.yaml -dry~~run ~~o yaml --from~~file deployment.yaml`이렇게 쓰면 'data:' 의 키값으로 deployment.yaml 이 들어간다.
+`kubectl create configmap my-config config=config.yaml -dry-run -o yaml --from-file deployment.yaml`이렇게 쓰면 'data:' 의 키값으로 deployment.yaml 이 들어간다.
 
-`kubectl create configmap my~~config config=config.yaml -dry~~run ~~o yaml --from~~file test=deployment.yaml`  → test 이렇게까지 써주면 파일명 대신 test란 이름으로 config키가 설정된다. 
+`kubectl create configmap my-config config=config.yaml -dry-run -o yaml --from-file test=deployment.yaml`  → test 이렇게까지 써주면 파일명 대신 test란 이름으로 config키가 설정된다. 
 
-`~~-from~~literal key=value` 옵션을 주면 data: 밑에 바로 등록이 된다.
+`--from-literal key=value` 옵션을 주면 data: 밑에 바로 등록이 된다.
 
 
 
@@ -1502,13 +1488,13 @@ apply 하고 나면  `kubectl describe cm` 을 통해 현재 관리되고 있는
 
 	* tls → 파드나 서비스 등에서 암호화를 위해 필수!
 
-	* service~~account~~token - ServiceAccount 인증 정보 (RBAC할때 필요함)
+	* service-account-token - ServiceAccount 인증 정보 (RBAC할때 필요함)
 
 * kubectl 로 생성
 
 `kubectl create secret generic my-secret` →  generic은 타입이다. 
 
-`kubectl create secret generic ~~-from~~file secret.yaml`  yaml 에 정의해놓고 쓰는법 이것 도 역시 드라이런을 활용할 수 있다.
+`kubectl create secret generic --from-file secret.yaml`  yaml 에 정의해놓고 쓰는법 이것 도 역시 드라이런을 활용할 수 있다.
 
 * 실습
 
@@ -1608,11 +1594,11 @@ Secret을 코드로 관리하게 되면 의미가 없어진다. 따라서 두가
 
 * 네임스페이스 - 일반 언어 네임스페이스와 다르지 않다. 논리적 구분 + 논리적인 그룹에 대하여 CPU, MEM 등 리소스 제한을 둘 수도 있다. 환경에 따라 구분  (팀, 환경, 서비스 단위)
 
-	* 네임스페이스 범위 API 리소스 조회  `kubectl api~~resources -~~namespaced=true `
+	* 네임스페이스 범위 API 리소스 조회  `kubectl api-resources --namespaced=true `
 
 		* 종속적인 리소스들 event, pods, 
 
-	* 클러스터 범위 API 리소스 조회  `kubectl api~~resources -~~namespaced=false`
+	* 클러스터 범위 API 리소스 조회  `kubectl api-resources --namespaced=false`
 
 		* namespaces, nodes, 
 
@@ -1622,7 +1608,7 @@ Secret을 코드로 관리하게 되면 의미가 없어진다. 따라서 두가
 
 	* `kube-public` 클러스터 모든 사용자로부터 접근 가능하고 읽을 수 있는 오브젝트
 
-	* `kube~~node~~lease` 쿠버 내부 시스템이 사용하는 영역
+	* `kube-node-lease` 쿠버 내부 시스템이 사용하는 영역
 
 * 다른 네임 스페이스의 서비스에 접근하는법
 
@@ -1750,7 +1736,7 @@ sepc:
 
 ```
 
-	* 이 구조는 `DEP -> ReplicaSet ~~> pod <~~ job <- Cronjob` 로 파드를 감싼다고 보면 된다.
+	* 이 구조는 `DEP -> ReplicaSet -> pod <- job <- Cronjob` 로 파드를 감싼다고 보면 된다.
 
 
 
@@ -1926,7 +1912,7 @@ spec:
 
 	* 노드를 구성할때 Kubelet 옵션을 통해 기본 레이블 설정 가능
 
-	* `kubectl label node minikube~~m2 team=red`  이렇게 레이블 설정 뺄때는 `team~~`
+	* `kubectl label node minikube-m2 team=red`  이렇게 레이블 설정 뺄때는 `team-`
 
 	* 실제로 셀렉트 할때는
 
@@ -2052,9 +2038,9 @@ kind:deployment: (...중략)
 
 `kubectl taint node minikube-m02 role=system:NoSchedule`  해당 노드에 노스케쥴 테인트 추가
 
-`kubectl taint node minikube~~m02 role=system:NoSchedule~~`  해당 노드에 노스케쥴 테인트 제거
+`kubectl taint node minikube-m02 role=system:NoSchedule-`  해당 노드에 노스케쥴 테인트 제거
 
-`kubectl taint node minikube~~m02 role~~`  해당 노드 모든 테인트 제거 
+`kubectl taint node minikube-m02 role-`  해당 노드 모든 테인트 제거 
 
 
 
@@ -2068,12 +2054,11 @@ kind:deployment: (...중략)
 
 
 
-
 ---
 
 # Chapter04. Kustomize를 이용한 쿠버네티스 매니페스토 관리 (이하 kust)
 
-**Helm에 대해 정리**
+*Helm에 대해 정리*
 
 차트 - 헬름의 패키지.  (패키지에는 애플리케이션, 도구, 서비스를 구동하는데 필요한 리소스가 포함. like YUM RPM (Redhat Package Manager) 디펜던시를 설치해주고 실제 목적했던 프로그램도 설치
 
@@ -2539,7 +2524,6 @@ op 엔 add replace 등등 많으니 문서 참고
 
 
 
-
 ---
 
 # CAHP5 쿠버네티스 관리 도구
@@ -2548,9 +2532,9 @@ op 엔 add replace 등등 많으니 문서 참고
 
 * `kubectl config get-contexts` 를 통해 보면 EKS를 통해 만들어진 컨텍스트, minikube 를 통해 만들어진 네임. 여러가지가 있을 수 있다.
 
-	**cluster + user + namespace 3개의 합이**컨텍스트*
+	* cluster + user + namespace 3개의 합이 *컨텍스트*
 
-* `cat ~*.kube*config` 에서 컨텍스트를 볼 수 있다. 
+* `cat ~/.kube/config` 에서 컨텍스트를 볼 수 있다. 
 
 	* kubectl 로도 컨텍스트를 바꿀 수도 있는데, kubectx가 더 간단하다.
 
@@ -2558,7 +2542,7 @@ op 엔 add replace 등등 많으니 문서 참고
 
 * `kubens`명령얼 통해 네임스페이스 목록을 출력
 
-	* kubectl get pod  같은걸 할때 default 를 지정해놓은걸로 자동으로 타겟이 지정된다. 디폴트를 안썼으면 아무것도 안나옴. `kubectl get pod ~~n kube~~system` 처럼 다 쓰지 않고도 명령어 수행가능
+	* kubectl get pod  같은걸 할때 default 를 지정해놓은걸로 자동으로 타겟이 지정된다. 디폴트를 안썼으면 아무것도 안나옴. `kubectl get pod -n kube-system` 처럼 다 쓰지 않고도 명령어 수행가능
 
 	* `kubeens` 로 네임스페이스를 바꾸면 간단하게 사용 가능 굳
 
@@ -2572,9 +2556,9 @@ op 엔 add replace 등등 많으니 문서 참고
 
 * Combining Selector
 
-	* 예를 들어 `mail ~~-rs workers -~~rs db` 이렇게 두번 쓰면 OR로 동작한다.
+	* 예를 들어 `mail --rs workers --rs db` 이렇게 두번 쓰면 OR로 동작한다.
 
-	*  `mail ~~-svc front -~~deploy back`  둘다 다른 옵션을 쓰면 AND 로 동작한다.
+	*  `mail --svc front --deploy back`  둘다 다른 옵션을 쓰면 AND 로 동작한다.
 
 * other flags
 
@@ -2584,7 +2568,7 @@ op 엔 add replace 등등 많으니 문서 참고
 
 * 예를 들어 kubectl get svc 를 통해 서비스를 보고 그중에 hello를 보고 싶어.. 그런데 지금은 로그가 없네
 
-그러면 `kail ~~-svc hello -~~since 12h` 쓰면된다.
+그러면 `kail --svc hello --since 12h` 쓰면된다.
 
 * `-n` 은 네임스페이스 지정
 
@@ -2598,9 +2582,9 @@ op 엔 add replace 등등 많으니 문서 참고
 
 * kubefwd를 이용하면 공공 DNS에 요청하기 전에 먼저 응답받을 수 있다.
 
-* `sudo kubefwd svc ~~all~~namespaces`를 수행하면 모든 네임스페이스로 부터 서비스를 가져다가 포트포워딩을 벌크로 진행한다.  ( 포트포워드는 관리자 권한을 요구한다) 이제 로그가 막 찍히는데
+* `sudo kubefwd svc -all-namespaces`를 수행하면 모든 네임스페이스로 부터 서비스를 가져다가 포트포워딩을 벌크로 진행한다.  ( 포트포워드는 관리자 권한을 요구한다) 이제 로그가 막 찍히는데
 
-* `kubernetesectl get svc ~~all~~namespaces`로 서비스 목록을 받아보고 비교해보면 포트포워드된걸 확인할 수 있다.
+* `kubernetesectl get svc -all-namespaces`로 서비스 목록을 받아보고 비교해보면 포트포워드된걸 확인할 수 있다.
 
 * `curl nginx:80` 이러면 통신이 되지? 접속안해도 바로 된다! 굿
 

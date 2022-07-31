@@ -2,18 +2,17 @@
 
 #Devops/OS_INFRA
 
-
 ---
 
 
 
 # 리눅스를 부팅하면 내부에서 어떤 과정을 거치는가?
 
-`BIOS > bootloader > linux kernel > initramfs (램기반FS) > init (systemd) > Init.d (*etc*init.d)`
+`BIOS > bootloader > linux kernel > initramfs (램기반FS) > init (systemd) > Init.d (/etc/init.d)`
 
 * init.d 시스템 부팅 후 첫 프로세스 init 이 사용하는 스크립트들을 담고 있음. 서비스에 대한 start reload 컨트롤하는 스크립트 가짐.
 
-**`*etc*init` 이 디렉토리는 Upstart가 사용하는 설정파일들을 담고 있음. Upstart가 서비스 start reload 컨트롤하는 설정.**Upstart 는 systemd로 대체 예정 (ubuntu 12, cent7 부터는 systemd를 쓴다)*
+* `/etc/init` 이 디렉토리는 Upstart가 사용하는 설정파일들을 담고 있음. Upstart가 서비스 start reload 컨트롤하는 설정. *Upstart 는 systemd로 대체 예정 (ubuntu 12, cent7 부터는 systemd를 쓴다)*
 
 
 
@@ -37,7 +36,7 @@
 
 # 파일 시스템
 
-* *proc*
+* /proc/
 
 	* 리눅스의 커널과 사용자 영역 사이에 일어나는 통신 채널로 사용하는 가상 파일 시스템
 
@@ -45,7 +44,7 @@
 
 	* 사용자가 설치하지 않은 하지만 시스템 기본 프로그램도 아닌것이 깔린다.
 
-* *dev*
+* /dev/
 
 	* 디바이스 (리소스)
 
@@ -75,7 +74,7 @@
 
 * bash 관리 정석
 
-	* [관리자환경파일] *etc*profile
+	* [관리자환경파일] /etc/profile
 
 		* .profile 은 환경변수 등
 
@@ -113,7 +112,7 @@
 
 ssh-keygen -t rsa
 
-ssh~~copu~~id -i [공개키] [키를 받을 호스트] 이렇게 하면 ssh 비번없이 된다. 키만 준다고 될게 아니다. sshd 를 다시 불러오는 방법도 있다.
+ssh-copu-id -i [공개키] [키를 받을 호스트] 이렇게 하면 ssh 비번없이 된다. 키만 준다고 될게 아니다. sshd 를 다시 불러오는 방법도 있다.
 
 
 
@@ -127,11 +126,11 @@ ssh~~copu~~id -i [공개키] [키를 받을 호스트] 이렇게 하면 ssh 비�
 
 # /proc
 
-## *[pid]*fd
+## /[pid]/fd
 
 ### 여기서 열려있는 심볼링 링크들이 
 
-`9999 -> pipe:[numbers]` 이렇게 표현되는데 numbers는 inode다. `find / -inum 아이노드번호 2>*dev*null` 검색이 필요할땐 이렇게
+`9999 -> pipe:[numbers]` 이렇게 표현되는데 numbers는 inode다. `find / -inum 아이노드번호 2>/dev/null` 검색이 필요할땐 이렇게
 
 
 
@@ -139,7 +138,7 @@ ssh~~copu~~id -i [공개키] [키를 받을 호스트] 이렇게 하면 ssh 비�
 
 1. `df -l`
 
-2. `*var/log` `var*spool’` 에서 많은 숫자의 파일을 생성했을때 증상이 발생한다.
+2. `/var/log` `var/spool’` 에서 많은 숫자의 파일을 생성했을때 증상이 발생한다.
 
 3. 지우거나 옮기고 심볼릭을 건다
 
@@ -151,5 +150,4 @@ sudo ln -s /home/사용자명/log /var/log
 
 ```
 
-4. `’*var/spool/mail*`의 파일을 지우거나 다른 곳에 백업해준다. (스풀은 발송하지 못한 메일이 쌓이는 곳이며 어디서 쏘는지 알아내서 막으면 된다)
-
+4. `’/var/spool/mail/`의 파일을 지우거나 다른 곳에 백업해준다. (스풀은 발송하지 못한 메일이 쌓이는 곳이며 어디서 쏘는지 알아내서 막으면 된다)

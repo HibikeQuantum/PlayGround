@@ -1,7 +1,6 @@
 # 🏔bash shell
 
-#Devops*language*bash 
-
+#Devops/language/bash 
 
 ---
 
@@ -61,7 +60,7 @@ bash는 이제 표준을 따르지 않는다.
 
 * $1 첫번째 파라미터
 
-**$** 전체 파라미터
+* $* 전체 파라미터
 
 * $# 파라미터의 갯수
 
@@ -112,7 +111,6 @@ bash는 이제 표준을 따르지 않는다.
 	* += -= *= /= %=
 
 ```
-
 
 
 
@@ -249,7 +247,6 @@ EOF
 * echo 는 실행한 환경으로 값을 돌려준다. 그래서 [프로그램] > text 하면 에코에서 찍은걸 그대로 값으로 저장하고 유저는 볼수없다.
 
 `echo -e`  escape 문자를 사용하게 해주는 옵션 carriage return, new line 
-
 
 ---
 
@@ -435,7 +432,7 @@ echo $(( ${#t} - ${#rest} - ${#searchstring} ))
 
 
 
-## *dev*null
+## /dev/null
 
 * 이곳으로 다이렉트를 하면 출력을 버릴 수 있다. 굳이 화면에 보거나 저장하지 않는다면 쓰면 깔끔
 
@@ -513,7 +510,7 @@ read dir < tty
 
 ## tty
 
-`*dev*ttys000`  이 경로는 터미널 가상 디바이스를 반환한다. 
+`/dev/ttys000`  이 경로는 터미널 가상 디바이스를 반환한다. 
 
 
 
@@ -569,7 +566,6 @@ done
 
 	* -s : 사용할 자원의 최대치 지정 (이건 쓸만하네 너무 큰 작업을 하지 않게!)  
 
-
 ---
 
 ## 매개변수 확장
@@ -624,7 +620,7 @@ echo ${string:=HELLO})
 
 * `String="This is a pen"`
 
-**`echo "$String" : "This is a \(.**\)."`
+* `echo "$String" : "This is a \(.*\)."`
 
 이렇게 하면 'pen'이 결과물
 
@@ -658,9 +654,9 @@ sh ./(쓰고 싶은 쉘)이렇게만 하면 끝. 마치 소스에 붙인것 처�
 
 ## sed
 
-sed -n 출력을 따로 안한다. "s*some/thing*p" 마지막 인자로 p를 주면패턴을 찾았을때만 출력한다.
+sed -n 출력을 따로 안한다. "s/some/thing/p" 마지막 인자로 p를 주면패턴을 찾았을때만 출력한다.
 
-sed -n "s*<code>\(.*\)><\/code>/\1*p"
+sed -n "s/<code>\(.*\)><\/code>/\1/p"
 
 
 
@@ -680,7 +676,7 @@ err_coint=`grep -c "ERROR" /var/log/\`host_anme\`.log`
 
 이런식의 그레이브 문자열 처리는 실수를 유발하기 쉽다
 
-`err_count=$(grep -c "ERROR" *var/log*$(hostname).log)` 
+`err_count=$(grep -c "ERROR" /var/log/$(hostname).log)` 
 
 →  서브쉘을 실행시켜 결과값을 받는 구조가 더 깨끗하다.
 
@@ -762,7 +758,7 @@ echo "Start: $program, arg 1: $1, Stop: $program"
 
 ```
 
-`program=${0$$**}`  /* 이것도 가능하다. (확장표현인듯)
+`program=${0$$*/}`  // 이것도 가능하다. (확장표현인듯)
 
 
 
@@ -820,7 +816,7 @@ basename -s .py bear_import
 
 ## tree
 
-`tree [~~L] depth [~~d] [-f] path`
+`tree [-L] depth [-d] [-f] path`
 
  * 디렉토리 구조 보기 좋은 명령어, 뎁스 및 디렉토리만 보기 지원
 
@@ -836,9 +832,9 @@ basename -s .py bear_import
 
 * `find $dir -mtime +364 -print | xargs ls`  이렇게 미리 어떤 명령이 실행되는지 확인해라. `rm`은 무서우니까
 
-* `find $dir -mtime +364 -print0 | xargs -0 rm ~~fv`  앞에선 구분자를 null로 하여 사용한다고 하고 , `~~print0`을 통해 구분자를 null로 하도록 파이프를 연결하면 하면 띄어쓰기 등으로 인한 예외를 처리할 수 있다.
+* `find $dir -mtime +364 -print0 | xargs -0 rm -fv`  앞에선 구분자를 null로 하여 사용한다고 하고 , `-print0`을 통해 구분자를 null로 하도록 파이프를 연결하면 하면 띄어쓰기 등으로 인한 예외를 처리할 수 있다.
 
-* xargs는 넘겨 받은 명령들을 운영체제에서 지정한 명령행 인수의 상한값 (`getconf ARG_MAX`) 을 넘지 않도록 알아서 나눠서 실행하는 좋은 녀석이다. `find ... -print | xargs grep "ERROR" *dev/null` 이렇게 하면 find의 결과물 내용이 길어서 에러가 나는 문제(`Argument list too long`)를 피할 수 있다. 여기서 `dev*null`이 있는건 그랩이 늘 복수개를 대상으로 실행함으로서 결과에 파일명이 나오게 하기 위함이다. (이거 좋다야). zsh에선 항상 파일이름이 표시되네
+* xargs는 넘겨 받은 명령들을 운영체제에서 지정한 명령행 인수의 상한값 (`getconf ARG_MAX`) 을 넘지 않도록 알아서 나눠서 실행하는 좋은 녀석이다. `find ... -print | xargs grep "ERROR" /dev/null` 이렇게 하면 find의 결과물 내용이 길어서 에러가 나는 문제(`Argument list too long`)를 피할 수 있다. 여기서 `dev/null`이 있는건 그랩이 늘 복수개를 대상으로 실행함으로서 결과에 파일명이 나오게 하기 위함이다. (이거 좋다야). zsh에선 항상 파일이름이 표시되네
 
 
 
@@ -868,9 +864,9 @@ if [ "$tommorow" = "01" ]; then
 
 * 디렉토리의 내용을 다른 장소와 일치시키는 명령어다. 증분방식으로 작업을 하고 타임스탬프와 소유, 퍼미션을 그대로 유지하고 원격에서도 된다. 정말 유용한 명령어
 
-* `~~v -~~verbose` `~~a -~~archieve` → 메타데이터 동일하게 `~~n -~~dryrun` 테스트용 예행실행
+* `-v --verbose` `-a --archieve` → 메타데이터 동일하게 `-n --dryrun` 테스트용 예행실행
 
-* 명령어를 지정할때 `rsync -av path*log/ /target* `이라 쓰면 log 디렉토리는 복사하지 않고 내용물만 복사한다. 주의~ 디렉토리를 복사하고 싶지 않다면 디렉토리를 지정해라. 
+* 명령어를 지정할때 `rsync -av path/log/ /target/ `이라 쓰면 log 디렉토리는 복사하지 않고 내용물만 복사한다. 주의~ 디렉토리를 복사하고 싶지 않다면 디렉토리를 지정해라. 
 
 * 원격지에 하고 싶다면 목적지 경로 앞에 `사용자명@호스트명:/TargetPath` 
 
@@ -882,7 +878,7 @@ if [ "$tommorow" = "01" ]; then
 
 * 로컬에 파일을 압축해서 넘겨주는게 아니라 바로 압축파일을 넘겨주고 싶을때가 생길것이다. (1테라 10테라 짜리를 압축해서 전송한다고 생각해보자 비용이 장난이 아니다) 유연하게 작동하게 만들기 위해 다른 호스트에 파이프라인을 꼽고 파일을 쓰는 방법을 쓰면 된다.
 
-`tar cvfz - myapp*log | ssh {$user}@{server} "cat > /backup*myapplog.tar"`
+`tar cvfz - myapp/log | ssh {$user}@{server} "cat > /backup/myapplog.tar"`
 
 1. `-` 옵션은 표준출력에 'tar 아카이브'를 출력하도록 한다.
 
@@ -892,16 +888,13 @@ if [ "$tommorow" = "01" ]; then
 
 반대로 원격의 압축을 로컬에서 풀고 싶다면?
 
-`ssh {$user}@{server} "cat > *backup*myapplog.tar" | tar xvfz - ` 
+`ssh {$user}@{server} "cat > /backup/myapplog.tar" | tar xvfz - ` 
 
-* `~~-exclude` 옵션을 이용해 원하지 않는 이름, 디렉토리를 제외할 수 있다. 리스트에서 제외하고 싶다면 `~~X`을 사용해 파일을 지정해주면 된다. 
+* `--exclude` 옵션을 이용해 원하지 않는 이름, 디렉토리를 제외할 수 있다. 리스트에서 제외하고 싶다면 `-X`을 사용해 파일을 지정해주면 된다. 
 
 * `tar rvf $archieveFile $targetFile`  -r (append) 를 이용해 기존 아카이브에 파일을 추가할 수 있다.
 
-```diff
-+ 아카이브 파일이 없으면 에러 안내고 생성하므로 주의)
-```
-
+::아카이브 파일이 없으면 에러 안내고 생성하므로 주의)::
 
 
 
@@ -927,7 +920,7 @@ if [ "$tommorow" = "01" ]; then
 
 * 그냥 하면 TimeStamp, Permission 이 명령어를 쓰는 유저의 umask 기준으로 바뀐다. 유지하고 싶다면 `-a` 옵션을 주면 된다.
 
-* `~~R -~~recursive` `~~p -~~preserve` 파일속성유지
+* `-R --recursive` `-p --preserve` 파일속성유지
 
 * `-L link` 심볼링 링크를 실제로 복사하고 싶을때
 
@@ -937,7 +930,7 @@ if [ "$tommorow" = "01" ]; then
 
 ## umask
 
-* umask 값은 계정마다 설정할 수 있으며, root의 umask는 *etc*profile에서 설정
+* umask 값은 계정마다 설정할 수 있으며, root의 umask는 /etc/profile에서 설정
 
 * 권한은 초기 값은 파일은 666, 디렉토리는 777인데 `umask`를 빼면 실제 파일의 기본값이 된다. umask가 0002 라면 파일은 664 그룹외 리드,  디렉토리는 775 그룹외 리드 및 실행 
 
@@ -953,11 +946,11 @@ if [ "$tommorow" = "01" ]; then
 
 ## du
 
-`du ~~sm ${data~~dir}/*/ | sort -rn`
+`du -sm ${data-dir}/*/ | sort -rn`
 
 * mega kilo 단위로 하면 솔트가 가능하다. h 옵션은 솔트가 안됨
 
-**`-s` 서브디렉토리를 어디까지 보는지 지정한다. `/**/` 했으니 아랫쪽에   
+* `-s` 서브디렉토리를 어디까지 보는지 지정한다. `/*/` 했으니 아랫쪽에   
 
 
 
@@ -973,7 +966,7 @@ if [ "$tommorow" = "01" ]; then
 
 * 스크립트 언어로 작성된 에러메시지는 바로 grep 이 가능하지만 컴파일된 바이너리는 검색이 불가능하다. 이때 strings를 사용한다. 파일에서 문자열을 출력하는 명령어를 찾아낼 수 있다. 
 
-`strings -ff *home/user1/myapp/bin** | grep "$message"`
+`strings -ff /home/user1/myapp/bin/* | grep "$message"`
 
 * `-f` 결과값을 출력할때 파일명도 같이 출력
 
@@ -1017,7 +1010,6 @@ sleep 하고 rm -f $tmpfile 하면 된다.
 
 `day1_epoch=date -d "$day1" '+%s'`  일반적으로 쓰는 시간에서 epoch를 뽑아내는 방법
 
-
 ---
 
 # 네트워크
@@ -1036,11 +1028,11 @@ sleep 하고 rm -f $tmpfile 하면 된다.
 
 ## arp
 
-`arp -an | awk “*\($target_ip\)* {print \$4}”)` → 지정한 ip에 대해 MAC을 얻는다. 이제 타겟 IP, MAC 을 echo로 출력하면 깔끔하게 맥을 얻는 명령어 마냥 동작한다. arp -an | grep ip 로 해도 비슷할듯.
+`arp -an | awk “/\($target_ip\)/ {print \$4}”)` → 지정한 ip에 대해 MAC을 얻는다. 이제 타겟 IP, MAC 을 echo로 출력하면 깔끔하게 맥을 얻는 명령어 마냥 동작한다. arp -an | grep ip 로 해도 비슷할듯.
 
 ## host
 
-* 입력한 호스트이름에 대해 DNS반환하는 IP 주소를 모두 보여준다. 하나의 도메인에 대해 여러 서버가 서비스하는 경우가 많다보니 그걸 고려한 명령어. (DNS에 질의 하는 명령어 이므로 `*etc*host` 파일의 내용을 무시하는 점을 주의)
+* 입력한 호스트이름에 대해 DNS반환하는 IP 주소를 모두 보여준다. 하나의 도메인에 대해 여러 서버가 서비스하는 경우가 많다보니 그걸 고려한 명령어. (DNS에 질의 하는 명령어 이므로 `/etc/host` 파일의 내용을 무시하는 점을 주의)
 
 ```
 
@@ -1084,19 +1076,19 @@ while read ipadd
 
 `nc -w 5 -z $ipaddr $port` 이렇게 처리하면 포트의 개방 체크
 
-`~~w` 는 응답없음에 대해 타임아웃 `~~z`은 핸드쉐이크만 하고 실제 통신을 하지 않는 옵션이다.
+`-w` 는 응답없음에 대해 타임아웃 `-z`은 핸드쉐이크만 하고 실제 통신을 하지 않는 옵션이다.
 
 * 간이 TCP 서비스 열어서 서비스가 동작을 흉내내기
 
 `nc -v -k -l $PORT`
 
-`—~~verbose`, `~~k`는 상태를 계속 유지하겠다는 플래그 `-l`은 듣기 플래그
+`—-verbose`, `-k`는 상태를 계속 유지하겠다는 플래그 `-l`은 듣기 플래그
 
 
 
 ## FTP
 
-* ftp 동작을 스크립트로 하기. `ftp -n $server” << _***EOT******` 가 핵심. 히어 도큐먼트로 `user "$user" "$passwd"`  `binary` `get "$file"` 등등 쓰고 싶은 명령어를 쭉쭉쓰다가 `******EOT***_`를 해주면 된다. 
+* ftp 동작을 스크립트로 하기. `ftp -n $server” << __EOT__` 가 핵심. 히어 도큐먼트로 `user "$user" "$passwd"`  `binary` `get "$file"` 등등 쓰고 싶은 명령어를 쭉쭉쓰다가 `__EOT__`를 해주면 된다. 
 
 * 이런 시크릿을 담은 스크립트는 700 권한으로 관리한다.
 
@@ -1104,9 +1096,9 @@ while read ipadd
 
 ## 통신연결 성능 테스트
 
-* `wget “ftp:*/<user>:<pw>@<host>*<path>”`
+* `wget “ftp://<user>:<pw>@<host>/<path>”`
 
-* `curl -u “<user>:<pw> -0 “ftp:*/<host>*<path>”` 
+* `curl -u “<user>:<pw> -0 “ftp://<host>/<path>”` 
 
 * `time -p ftp -n <server>` 를 이용해 시간을 측정하고 `expr` 명령어로 계산하는 방법도 있지만 wget, curl 에는 전송결과를 요약해주는 기능이 있어서 활용하면 좋다.
 
@@ -1125,7 +1117,6 @@ cat $scirpt | ssh ${username}@${ipAdd} "sh"
 ```
 
 * 위와 같은 실행방법은 비인터렉티브 셸이다. 
-
 
 
 
@@ -1169,7 +1160,7 @@ cat $scirpt | ssh ${username}@${ipAdd} "sh"
 
 ## cut
 
-* while 로 라인을 돌면서 `cut -f 1 ~~d ','`   `~~f 2`  `-f 3`  이렇게 하면 CSV를 간단하게 다룰 수 있다.
+* while 로 라인을 돌면서 `cut -f 1 -d ','`   `-f 2`  `-f 3`  이렇게 하면 CSV를 간단하게 다룰 수 있다.
 
 	* 다만 구분자가 값으로 들어올 수 있는 경우라면 사용할 수 없다. 
 
@@ -1243,7 +1234,7 @@ Deginate numb of * by func arg as
 
 `awk '$(NF-1)=404 {print $7}' "$logfile" > "{logfile}.404"` 
 
-	**{ } -> 액션,**액션값 앞에는 조건식이 올 수 있다.*
+	* { } -> 액션, *액션값 앞에는 조건식이 올 수 있다.*
 
 
 
@@ -1262,7 +1253,6 @@ Deginate numb of * by func arg as
 `sort | unique -c | sort -nr`
 
 `asd`
-
 
 ---
 
