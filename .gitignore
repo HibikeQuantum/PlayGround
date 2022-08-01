@@ -2,14 +2,6 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 
-# hub MEMO
-MEMO/Private.md
-MEMO/IM14.md
-MEMO/Codestates.md
-MEMO/TEMP(userFree).md
-MEMO/Private_interview.md
-MEMO/life.md
-
 # Floobits
 .idea/
 .floo
