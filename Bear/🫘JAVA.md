@@ -49,3 +49,17 @@ class Player<T, S>{ public T team, public S name }
 → 이렇게 복수의 제너릭을 선언할 수도 있다.
 
 ```
+
+
+
+# jstack 덤프 분석
+
+1. `ps -mo pid,lwp,stime,time,cpu -C java`
+
+2. 이걸로 가장 많이 리소스를 먹는 자바런타임 여기 나오는 프로세스 num을 16진법으로 전환
+
+3. `“NioProcessor-2” prio=10 tid=0x0a8d2800 nid=0x2737 runnable [0x49aa5000]` 얘다
+
+하나하나 이해하기 힘드므로 스레드를 만들때 이름을 잘 지어놓으면 좋다.
+
+Mbean을 이용하면 더 쉽게 할 수 있다.
