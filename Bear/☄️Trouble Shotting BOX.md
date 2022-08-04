@@ -1,6 +1,6 @@
 # ☄️Trouble Shotting BOX 
 
-#Devops/T-Shotting
+#Devops
 
 ---
 

@@ -58,6 +58,14 @@
 
 `CMD+SHIFT+L` -> log it 
 
+익스텐션
+
+`Insert DateTime (⇧+⌘+I) `  YYYY.MM.DD
+
+`Insert Formatted DateTime (⇧+⌘+⌥+I)`  YYYY.MM.DD …. 풀버전
+
+CMD + P 팔레트에서 파일 이름으로 검색 가능
+
 ## Sapari
 
 Customizing key (not work other env)
@@ -80,6 +88,10 @@ Vanilla
 
 F6을 F13으로 쓰기로 함. 프린트는 그걸로 하면된다.
 
+
+
+
+
 ---
 
 ### shottr
@@ -97,6 +109,16 @@ customizing key (not work other env)
 `CTRL + CMD + SHIFT + F13` 복합 캡처 모드
 
 ---
+
+Atom
+
+1 From Command Palette (⌘+⌂+P) invoke Compare Files: Compare
+
+2 Right click on one of the selected files and choose Compare Files
+
+3 Use the keyboard shortcut - ⌘+ctrl+C (Windows and Linux: ctrl+alt+C)
+
+
 
 ### MAC notes
 

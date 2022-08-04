@@ -1,6 +1,6 @@
 # 🌏 Terraform
 
-#Devops/language
+#Devops #Devops/tools
 
 ---
 
