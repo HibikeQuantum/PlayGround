@@ -62,6 +62,10 @@ git reset —hard 하면 스테이지 끌어내리고 파일도 바구고 다
 
 
 
+* 브랜치 이름 바꾸기 `git branch -m before after`
+
+
+
 ### 오브젝트 분석
 
 `git count-objects -vH`

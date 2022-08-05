@@ -710,9 +710,11 @@ echo ${string:=HELLO})
 
 굳이 내용물까지 필요없고 서비스만 확인하고 싶다면 `curl -I`를 쓴다. 헤드만 받음.
 
-## sed
+## `sed
 
 * `-n`  옵션을 주면 기본적으로 출력을 따로 안한다. "s/some/thing/p" 마지막 인자로 p를 주면패턴을 찾았을때만 출력한다.
+
+`branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')` -> 브랜치 이름을 받고 패턴 찾아서 그룹핑해서 파이프라인으로 이전
 
 * `sed -n "s/<code>\(.*\)><\/code>/\1/p"` -> code 블럭 사이의 내용만 잡아서 \1로 replace
 
@@ -1333,7 +1335,7 @@ awk -F, ‘{sum += $3} END {print sum / NR}’ "$1" > ${filename}.avg
 
 * `{code that exec each line} END {code that exec at last}` 표현이 awk출력을 좌우하게 된다. 
 
-* 추출하는 값의 좌우의 공백을 없앨때도 자주 활용가능하다.
+	* 추출하는 값의 좌우의 공백을 없앨때도 자주 활용가능하다.
 
 * `df -P awk ‘NR >=2 {print $5,$6}’`  ->  첫번째 줄을 무시하는 패턴
 
