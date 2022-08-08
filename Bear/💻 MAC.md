@@ -90,6 +90,10 @@ F6을 F13으로 쓰기로 함. 프린트는 그걸로 하면된다.
 
 
 
+`cmd` + `+`  -> jpg, copy, move 오토메이트 서비스
+
+
+
 
 
 ---
@@ -178,4 +182,4 @@ gc 제일 강하게 git gc —aggressive —prune=now
 
 ## Crome
 
-`shift + Scroll`-> 좌우 스크롤∂∂∂∂∂
+`shift + Scroll`-> 좌우 스크롤
