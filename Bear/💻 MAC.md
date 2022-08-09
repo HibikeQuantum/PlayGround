@@ -38,6 +38,8 @@
 
 ## VS (VisualStudio)
 
+#### default
+
 `Shift + Alt + (↑, ↓)` ->  한줄 복사
 
 `ALT + (↑, ↓)` ->  한줄 이동
@@ -58,11 +60,17 @@
 
 `CMD+SHIFT+L` -> log it 
 
-익스텐션
+`CTRL + W ` Switch window
+
+#### 익스텐션 + Custom
 
 `Insert DateTime (⇧+⌘+I) `  YYYY.MM.DD
 
-`Insert Formatted DateTime (⇧+⌘+⌥+I)`  YYYY.MM.DD …. 풀버전
+`Insert Formatted DateTime (⇧+⌘+⌥+I)`  YYYY.MM.DD …. 
+
+`CMD + ESC` Close primary side window
+
+#### 풀버전
 
 CMD + P 팔레트에서 파일 이름으로 검색 가능
 

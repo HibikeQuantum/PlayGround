@@ -24,7 +24,7 @@ TIL 1) 네스티드한 구조가 이상하게 구현되었일때 console에서 �
 
 * 인증서를 발급해서 CNAME으로 인증을 받고 (route 53에서 인증용 cname을 발급) 
 
-* route53에선 duchoo.site 레코드를 생성해서 4가지 이름을 발급함.
+* route53에선 thekoo.site 레코드를 생성해서 4가지 이름을 발급함.
 
 ---
 
