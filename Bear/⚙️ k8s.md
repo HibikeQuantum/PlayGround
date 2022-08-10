@@ -1,6 +1,6 @@
 # ⚙️ k8s
 
-#Devops/kubernetes
+#Devops/kubernetes #Devops
 
 ---
 

@@ -34,6 +34,22 @@
 
 `Force 1 tap` - 데이터 탐색 (사전)
 
+`Cmd + Opt + - ` -> Blocked text Summarize 
+
+`CMD + OPT + SHIFT + =` jpg and move
+
+
+
+---
+
+## keycub
+
+`cmd` long press - show every shortcut
+
+`cmd + CTL` Long press - show every emotion
+
+## keypad
+
 ---
 
 ## VS (VisualStudio)
