@@ -13,6 +13,6 @@ Python
 ### js
 javascript
 ### nodejs
-nodejs😭
+nodejs
 ### WEB  
 HTML 관련 모음
