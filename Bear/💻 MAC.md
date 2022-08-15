@@ -80,7 +80,7 @@
 
 `CMD + Shift + L`  Select all Occurrence of Find Match
 
-`ctl + shift + P` Print Select variable
+`CTL + shift + P` Print Select variable
 
 #### 익스텐션 + Custom
 
@@ -105,6 +105,8 @@ Customizing key (not work other env)
 `OPT + S`  open this site at chrome
 
 Vanilla
+
+
 
 ## Shell
 
