@@ -42,7 +42,7 @@
 
 ---
 
-## keycub
+## keycue
 
 `cmd` long press - show every shortcut
 
@@ -76,7 +76,11 @@
 
 `CMD+SHIFT+L` -> log it 
 
-`CTRL + W ` Switch window
+`CTL + W ` Switch window
+
+`CMD + Shift + L`  Select all Occurrence of Find Match
+
+`ctl + shift + P` Print Select variable
 
 #### 익스텐션 + Custom
 
@@ -85,6 +89,8 @@
 `Insert Formatted DateTime (⇧+⌘+⌥+I)`  YYYY.MM.DD …. 
 
 `CMD + ESC` Close primary side window
+
+`CMD +  Y` show current git comment
 
 #### 풀버전
 
