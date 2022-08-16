@@ -40,6 +40,14 @@
 
 
 
+## google sheet
+
+`F4` 절대 참조
+
+
+
+
+
 ---
 
 ## keycue
