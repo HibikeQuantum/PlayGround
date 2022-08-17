@@ -111,3 +111,11 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 - NAT 게이트웨이를 쓰면 Private 공간의 리로스가 인터넷에 접속할 수 있게 된다.
 
 - `피어링` 연결을 사용하면 VPC간 트래픽을 라우팅할 수 있다.
+
+
+
+
+
+## lightsail
+
+Cache by AWS lightsail -  [https://blog.lael.be/post/7605](https://blog.lael.be/post/7605)

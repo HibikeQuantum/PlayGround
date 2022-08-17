@@ -192,7 +192,11 @@ xargs 는 입력되는 문쟈열을 trim 하고 각각에 대해 명령을 내�
 
 * 태그가 떨어진 (최근꺼만 lastest를 달고 있다) 이미지 삭제
 
-docker rmi -f $(docker images -f "dangling=true" -q)
+`docker rmi -f $(docker images -f "dangling=true" -q)`
+
+
+
+* `docker run -d --name my-nginx nginx` → 깔끔하게 컨테이너들을 실행하고 끝내자!
 
 
 
@@ -204,11 +208,17 @@ docker rmi -f $(docker images -f "dangling=true" -q)
 
 
 
+---
+
+
+
 sed 명령어
 
 s/old/new/g
 
 s/old/new/gi
+
+
 
 
 

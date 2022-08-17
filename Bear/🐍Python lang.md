@@ -4,6 +4,24 @@
 
 ---
 
+
+
+#### 파이선 함수이름 출력하기
+
+```
+
+def ilaya1():
+
+    current_func_name = sys._getframe().f_code.co_name
+
+    print ("The current running function name : {}".format(current_func_name))
+
+```
+
+
+
+
+
 ## pyenv global 3.10.1
 
 * 가상환경을 이동하면서 디펜던시 관리가능해짐

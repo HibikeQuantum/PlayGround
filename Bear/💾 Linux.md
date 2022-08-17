@@ -6,6 +6,10 @@
 
 
 
+#### 유닉스 계통은 crash 명령어로 리포트를 볼 수 있음
+
+
+
 # 리눅스를 부팅하면 내부에서 어떤 과정을 거치는가?
 
 `BIOS > bootloader > linux kernel > initramfs (램기반FS) > init (systemd) > Init.d (/etc/init.d)`
@@ -18,19 +22,19 @@
 
 # 프로세스 컨트롤 hot-key
 
-	* CTRL+C 
+* CTRL+C 
 
-	* CTRL+Z
+* CTRL+Z
 
-	* fg %{PID}
+* fg %{PID}
 
-		* 이걸로 정지된 프로세스 재개 가능
+	* 이걸로 정지된 프로세스 재개 가능
 
-		* fg = foregrond
+	* fg = foreground
 
-	* bg %{PID}
+* bg %{PID}
 
-		* Background 로 보내기
+	* Background 로 보내기
 
 
 

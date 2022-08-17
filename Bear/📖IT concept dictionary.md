@@ -6,6 +6,40 @@
 
 
 
+템플릿 리터럴 (확장표현, 문자열 치환) `${var}`
+
+
+
+WEB - Nginx
+
+WAS - 톰캣/서블릿 등 앱(로직)=컨테이너를 가동해주는 서비스
+
+APM Application Performance Management
+
+
+
+멀티태스크 - 여러개의 프로세스. 컨텍스트는 독립.
+
+멀티쓰레드 - 프로세스가 여러개의 쓰레드를 가짐. 컨텍스트를 공유함. 비용적음
+
+
+
+ADG DR ( Active Data Guard Disaster Recovery)
+
+: 디비의 동기화 시스템을 끊어서 잘못된 반영의 확산을 방지
+
+
+
+
+
+세션은 Redis로 하는게 정석
+
+---
+
+* for의 유래, 포트란의 for ···   do ···  에서 유래했다.
+
+
+
 * 프로퍼티 = 필드
 
 * PEM (Privacy Enhanced Mail)은 Base64 로 인코딩한 텍스트 형식의 파일
