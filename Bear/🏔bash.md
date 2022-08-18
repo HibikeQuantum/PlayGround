@@ -1487,6 +1487,60 @@ mySQL을 쓴다면 이렇게 내장명령어도 오니까 이걸로 주기적으
 
 
 
+# Git
+
+## sh에서 git diff 결과물 파싱해서 changed 된 내용만 추출하는 코드
+
+```
+
+git diff -U0 | diffLines
+
+diffLines() {
+
+    local path=
+
+    local line=
+
+    while read; do
+
+        esc=$'\033'
+
+        if [[ $REPLY =~ ---\ (a/)?.* ]]; then
+
+            continue
+
+        elif [[ $REPLY =~ \+\+\+\ (b/)?([^[:blank:]$esc]+).* ]]; then
+
+            path=${BASH_REMATCH[2]}
+
+        elif [[ $REPLY =~ @@\ -[0-9]+(,[0-9]+)?\ \+([0-9]+)(,[0-9]+)?\ @@.* ]]; then
+
+            line=${BASH_REMATCH[2]}
+
+        elif [[ $REPLY =~ ^($esc\[[0-9;]*m)*([\ +-]) ]]; then
+
+            if [[ ${BASH_REMATCH[2]} == \+ ]]; then
+
+                echo "${REPLY:1}" >
+
+                ((line++))
+
+            fi
+
+        fi
+
+    done
+
+}
+
+
+
+```
+
+
+
+
+
 ---
 
 

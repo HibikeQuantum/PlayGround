@@ -48,7 +48,7 @@ _postBlogAutoCommit() {
 
 _autoBearPublish() {
     mypwd=`pwd`
-    cd publisherPath
+    cd $publisherPath
     sh AutoPublish.sh
     cd $mypwd
 }

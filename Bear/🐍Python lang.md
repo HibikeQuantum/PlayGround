@@ -186,4 +186,24 @@ tail -f app.log   (로그 확인)
 
 
 
+## iterate 하다보면 궁금한것들
+
+```python
+
+
+
+enumerate_letters = enumerate(['A', 'B', 'C'])
+
+>>> next(enumerate_letters)
+
+
+
+list(enumerate([‘A’, ‘B’, ‘C’]))
+
+>>> [(0, ‘A’), (1, ‘B’), (2, ‘C’)]
+
+```
+
+
+
 ---
