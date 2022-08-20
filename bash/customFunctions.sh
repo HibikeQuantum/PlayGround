@@ -9,6 +9,7 @@
 # bash --version
 
 publisherPath="/Users/kth/Code/Bear-Auto-Publisher"
+blogPath="/Users/kth/Code/HibikeQuantum.github.io"
 
 canChangeDirectory () {
     currentPath=`pwd`
@@ -25,7 +26,7 @@ canChangeDirectory () {
 }
 
 _postBlogAutoCommit() {
-    targetPath="/Users/kth/Code/HibikeQuantum.github.io"
+    targetPath=$blogPath
     commitMessage="Build and auto commit "`date`
     mypwd=`pwd`
     cd $targetPath
@@ -34,17 +35,6 @@ _postBlogAutoCommit() {
     git push origin main;
     cd $mypwd
 }
-_postBlogAutoCommit() {
-    targetPath="/Users/kth/Code/HibikeQuantum.github.io"
-    commitMessage="Build and auto commit "`date`
-    mypwd=`pwd`
-    cd $targetPath
-    bundle exec jekyll build; 
-    git add -A; git commit -m "${commitMessage}"; 
-    git push origin main;
-    cd $mypwd
-}
-
 
 _autoBearPublish() {
     mypwd=`pwd`

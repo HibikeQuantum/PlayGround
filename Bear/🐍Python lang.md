@@ -6,6 +6,12 @@
 
 
 
+
+
+## 문자열
+
+* `index` 메서드는 못찾으면 에러. -1을 뱉는건 `find`
+
 #### 파이선 함수이름 출력하기
 
 ```
@@ -22,13 +28,25 @@ def ilaya1():
 
 
 
-## pyenv global 3.10.1
+## pyenv 사용
 
 * 가상환경을 이동하면서 디펜던시 관리가능해짐
 
 * pyenv로 설치할것!
 
 * `pyenv versions` 현재 관리중인 버전들 확인
+
+* `pyenv global [V]`으로 버전 선택
+
+## 의존성 저장 및 구현
+
+```
+
+pip3 freeze > requirements.txt
+
+pip3 install -r requirements.txt
+
+```
 
 
 

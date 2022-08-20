@@ -141,3 +141,23 @@ NAT Gatewaya 켜놓기만 했는데 한달에 36달러 나왔다..
 다 배움이다. 수업비용 치곤 싼거야.. 절대로 테라폼 없이 하지 말자!!! 어디서 어떤 리소스가 도는지 한눈에 파악할 수가 없다.
 
 → 별 트래픽이 없는데 비용이 청구되면 미리미리 알람을 주는 서비스 있으면 좋겠다! 내가 만들면 어떄!?
+
+
+
+
+
+## After reinstall jekyll, these message is occurred.
+
+```
+
+$ jekyll serve --trace
+
+/Users/kth/.rbenv/versions/2.6.10/lib/ruby/site_ruby/2.6.0/rubygems.rb:265:in `find_spec_for_exe': can't find gem jekyll (>= 0.a) with executable jekyll (Gem::GemNotFoundException)
+
+	from /Users/kth/.rbenv/versions/2.6.10/lib/ruby/site_ruby/2.6.0/rubygems.rb:284:in `activate_bin_path'
+
+	from /usr/local/bin/jekyll:23:in `<main>'
+
+```
+
+gem update --system
