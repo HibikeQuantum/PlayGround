@@ -38,6 +38,12 @@
 
 `CMD + OPT + SHIFT + =` jpg and move
 
+* 현재 폴더를 파인더로 열기
+
+`open .`
+
+
+
 
 
 ## google sheet
@@ -119,6 +125,20 @@ Vanilla
 ## Shell
 
 `CTRL+INSERT` copy
+
+
+
+## ZSH 플러그인
+
+`autojump` -s 또는 `j -s`
+
+`google [keyword]`
+
+`h - prints your history`
+
+`hs [grep term]`
+
+- 디자인 예쁜 랭귀지 튜토리얼 사이트 https://intrepidgeeks.com/tutorial/visualize-marathon-data-with-python-bokeh
 
 
 
