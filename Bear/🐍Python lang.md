@@ -38,6 +38,20 @@ def ilaya1():
 
 * `pyenv global [V]`으로 버전 선택
 
+
+
+`pyenv virtualenv test***env***08` 글로벌 버전으로 환경 생성
+
+`pyenv virtualenv 3.5.3 test***env***08_3.5.3` → 버전 지정
+
+`pyenv shell test***env***08` --> pyenv 활성화
+
+
+
+pip list 해보면 해당 환경에 대한 패키지 정보가 하나도 없는걸 확인가능
+
+
+
 ## 의존성 저장 및 구현
 
 ```
