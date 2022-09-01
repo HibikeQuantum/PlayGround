@@ -96,6 +96,10 @@
 
 `CTL + shift + P` Print Select variable
 
+`CMD + B`  toggle Primary side view
+
+`CMD + J`  toggle pannel
+
 #### 익스텐션 + Custom
 
 `Insert DateTime (⇧+⌘+I) `  YYYY.MM.DD
