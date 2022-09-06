@@ -174,6 +174,14 @@ Graddle은 사용자 지정 task도 지원한다.
 
 
 
+
+
+## Gradle
+
+* 프로젝트의 명세 파일을 보고 미리 준비하고 빌드를 해놓는 역할
+
+
+
 # Virtual OS
 
 * Container 에서 실행되는 명령어는 Host-OS의 스케쥴에서 실행됨
