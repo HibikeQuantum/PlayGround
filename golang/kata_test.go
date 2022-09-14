@@ -1,12 +1,13 @@
-package kata_test
+package main
 
 import (
-	"testing"
 	"kata"
-  "github.com/stretchr/testify/assert"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-// original test
+// #1 original test Method
 func TestExample(t *testing.T) {
 	if true {
 		print("Passed TestExmaple test")
@@ -15,8 +16,15 @@ func TestExample(t *testing.T) {
 	}
 }
 
-// test with assertion
+// #2 test with assertion package
 func TestS001(t *testing.T) {
-	assert.False(t, kata.Solution001("abc", "cd"))
+	assert.False(t, kata.Solution001("abc", "ab"))
 	assert.True(t, kata.Solution001("abc", "c"))
+}
+
+// #3
+func TestS002(t *testing.T) {
+	assert.Equal(t, []int{2}, kata.Solution002([]int{1, 2}, []int{1}))
+	assert.Equal(t, []int{1}, kata.Solution002([]int{1, 2, 3}, []int{2, 3, 4}))
+	assert.Equal(t, []int{0}, kata.Solution002([]int{0, -1}, []int{-1, 1}))
 }
