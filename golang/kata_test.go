@@ -1,4 +1,4 @@
-package main
+package kata_test
 
 import (
 	"kata"
@@ -18,8 +18,8 @@ func TestExample(t *testing.T) {
 
 // #2 test with assertion package
 func TestS001(t *testing.T) {
-	assert.False(t, kata.Solution001("abc", "ab"))
 	assert.True(t, kata.Solution001("abc", "c"))
+	assert.False(t, kata.Solution001("abc", "ab"))
 }
 
 // #3
