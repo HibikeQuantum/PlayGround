@@ -870,13 +870,13 @@ func (r *Rect) area2() int {
 
 * go mod init {pack_name}
 
-	* GOPATH 밖에 있어도 알 수 있게 컨트롤 해줌.
+	* GOPATH 밖에 있어도 알 수 있게 컨트롤 해줌 (대체로 프로젝트안에서 정의한 사용자 패키지는 GOPATH에 없겠지 그래서 항상해준다.)
 
 	* mod 파일은 모듈의 루트에만 존재
 
 	* mod 실행시 현존 모든 경로의 DIR을 정리해 임포트(mod 명세 파일을 만든다) (디렉토리만든다고 또 실행할 필요없다.)
 
-	* `tidy`        add missing and remove unused modules
+	* `tidy`   Install package that defined by import command, operate missing and remove unused modules. 
 
 
 
@@ -1430,4 +1430,22 @@ println(i)  // 포인터주소 출력
 
 println(j)  // 1 출력
 
+```
+
+
+
+
+
+## 제너릭
+
+1. 제네릭 프로그래밍은 타입 파라미터를 통해서 하나의 함수나 타입이 여러 타입에 대해서 동작할 수 있도록 해줍니다.
+
+2. 타입 제한을 통해서 타입 파라미터로 사용되는 타입을 제한합니다.
+
+3. 인터페이스와 제네릭 타입은 각각의 사용법이 있습니다.
+
+4. 동작하는 코드 먼저, 제네릭은 나중에 고민하세요.
+
+```diff
++ 일단 타입을 좀 더 유연하게 하지만 좀 더 광범위하게 사용하기 위해 사용. 다만 인터페이스란 옵션도 존재한다!
 ```

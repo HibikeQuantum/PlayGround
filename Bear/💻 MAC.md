@@ -110,6 +110,10 @@
 
 `CMD +  Y` show current git comment
 
+
+
+`⌥ [` -> print it
+
 #### 풀버전
 
 CMD + P 팔레트에서 파일 이름으로 검색 가능
@@ -123,6 +127,8 @@ Customizing key (not work other env)
 `OPT + S`  open this site at chrome
 
 Vanilla
+
+`CTRL+ UP/DOWN` 그룹간 이동
 
 
 
