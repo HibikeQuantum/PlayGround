@@ -35,6 +35,7 @@ func Solution002(originSlice, compSlice []int) []int {
 				targetIndex = -1
 				break
 			} else {
+
 				break
 			}
 		}

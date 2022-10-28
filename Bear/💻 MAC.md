@@ -44,6 +44,10 @@
 
 
 
+## Mail
+
+CMD + R -> Mark All Messages as Read
+
 
 
 ## google sheet
@@ -51,18 +55,6 @@
 `F4` 절대 참조
 
 
-
-
-
----
-
-## keycue
-
-`cmd` long press - show every shortcut
-
-`cmd + CTL` Long press - show every emotion
-
-## keypad
 
 ---
 
