@@ -63,3 +63,9 @@ class Player<T, S>{ public T team, public S name }
 하나하나 이해하기 힘드므로 스레드를 만들때 이름을 잘 지어놓으면 좋다.
 
 Mbean을 이용하면 더 쉽게 할 수 있다.
+
+
+
+# JVM
+
+*  PIPE를 굉장히 많이 생성하고 한번에 3개씩 생성한다. input output error Stream. 이걸 제거하지 못하면 많은 파일이 열려서 시스템에러 발생

@@ -206,13 +206,23 @@ xargs 는 입력되는 문쟈열을 trim 하고 각각에 대해 명령을 내�
 
 개발 컴퓨터의 Localhost를 따로 지정해주려면 'host.docker.internal'를 쓴다.
 
+* `CMD` -> 도커 실행시 명령인자도 같이 붙였다면 실행되지 않는다. `docker run --name my***con my***con ps -aef` 이러면 dockfile에정의한 CMD는 무시된다.
+
+* `ENTRYPOINT`는 항상 실행된다. 따라서 `CMD`쪽은 디폴트패턴. ENTRY는 
+
+---
+
+
+
+
+
 
 
 ---
 
 
 
-sed 명령어
+## sed 명령어
 
 s/old/new/g
 

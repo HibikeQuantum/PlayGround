@@ -4,57 +4,109 @@
 
 ---
 
-### 공통
+### MAC 일반
 
-`CTL + CMD + SPACE`  → 이모지콘
+### 공용
 
-`CMD-SFT+Arrow` 커서에서 라인 끝까지 블럭
+* `fn + arrow`  →  home up and end
 
-`CMD-Arrow` 라인 끝으로 커서 이동
+* `CMD + Tab` 을 계속 누르고 있는 상태에서
 
-전체 캡처 `F13`, 선택 캡처 `CMD+F13`, 레코딩 `CMD+SHIFT+F13` (또는 F6)
-
-	if u want capture to clipboard press `CTL` with above shortcuts.
-
-`CMD + Tab`
-
-	CMD+TAB 한뒤에 CMD를 누르고 있는 상태에서
-
-		 ` : 역방향 이동
+		그레이브(`)  : 역방향 이동
 
 		`q`: 선택된 앱 종료
 
 		`[cmd → opt]` / `[opt + Click]` → 최소화된 창 보이게 하기. 
 
-`CMD + CTL + D` 사전 팝업1
+* `CTL + CMD + SPACE`  → 이모지콘
 
-`CTRL+OPT+CMD+P` - SLEEP
+* `CMD-SFT+Arrow` 커서에서 라인 끝까지 블럭
 
-`CMD OPT H` -> 액티브 빼고 다 최소화
+* `CMD-Arrow` 라인 끝으로 커서 이동
 
-`Force 1 tap` - 데이터 탐색 (사전)
+### Customization
 
-`Cmd + Opt + - ` -> Blocked text Summarize 
+`CMD + CTL + D` -> 사전 팝업1
+
+`CTRL+OPT+CMD+P` -> SLEEP
+
+`Cmd + Opt + - ` -> Blocked text Summarize 
+
+* Hide/Show Dock -> `⌘ + F3`
+
+* LunchPad -> `⌥ + F3`
+
+* 액티브 빼고 다 최소화 -> `CMD + OPT + H` 
+
+#### Automation
 
 `CMD + OPT + SHIFT + =` jpg and move
 
-* 현재 폴더를 파인더로 열기
-
-`open .`
+---
 
 
 
-## Mail
+## 응용프로그램
+
+### MAC notes APP
+
+opt + 7 → 블릿
+
+`opt + shift + 7`  → 블릿 포맷
+
+`ctl + alt + tab`  → TAB 
+
+
+
+### FINDER
+
+`Cmd + SHIFT + G` 이동
+
+`CMD + OPT + DEL` 바로 삭제
+
+### shottr
+
+customizing key (not work other env)
+
+`F13` 액티브 창 캡처
+
+`CMD + F13` 아레나 캡처
+
+`SHIFT + F13` 풀스크린 캡처
+
+`CTRL + F13` 스크롤 캡처
+
+`CTRL + CMD + SHIFT + F13` 복합 캡처 모드
+
+#### Mail
 
 CMD + R -> Mark All Messages as Read
 
+#### Reminder
 
+`CMD + ] ` → make subtask. only work list screen not work other view like schedule, today.
+
+## Terminal
+
+ * 현재 폴더를 파인더로 열기 `open .`
+
+
+
+## Safari
+
+* Customizing key (not work other env)
+
+`OPT + P`  자바스크립트 정지
+
+`OPT + S`  open this site at chrome
+
+Vanilla
+
+`CTRL+ UP/DOWN` 그룹간 이동
 
 ## google sheet
 
 `F4` 절대 참조
-
-
 
 ---
 
@@ -110,24 +162,6 @@ CMD + R -> Mark All Messages as Read
 
 CMD + P 팔레트에서 파일 이름으로 검색 가능
 
-## Sapari
-
-Customizing key (not work other env)
-
-`OPT + P`  자바스크립트 정지
-
-`OPT + S`  open this site at chrome
-
-Vanilla
-
-`CTRL+ UP/DOWN` 그룹간 이동
-
-
-
-## Shell
-
-`CTRL+INSERT` copy
-
 
 
 ## ZSH 플러그인
@@ -142,38 +176,6 @@ Vanilla
 
 - 디자인 예쁜 랭귀지 튜토리얼 사이트 https://intrepidgeeks.com/tutorial/visualize-marathon-data-with-python-bokeh
 
-
-
----
-
-### Customized Key
-
-F6을 F13으로 쓰기로 함. 프린트는 그걸로 하면된다.
-
-
-
-`cmd` + `+`  -> jpg, copy, move 오토메이트 서비스
-
-
-
-
-
----
-
-### shottr
-
-customizing key (not work other env)
-
-`F13` 액티브 창 캡처
-
-`CMD + F13` 아레나 캡처
-
-`SHIFT + F13` 풀스크린 캡처
-
-`CTRL + F13` 스크롤 캡처
-
-`CTRL + CMD + SHIFT + F13` 복합 캡처 모드
-
 ---
 
 Atom
@@ -183,50 +185,6 @@ Atom
 2 Right click on one of the selected files and choose Compare Files
 
 3 Use the keyboard shortcut - ⌘+ctrl+C (Windows and Linux: ctrl+alt+C)
-
-
-
-### MAC notes
-
-opt + 7 → 블릿
-
-`opt + shift + 7`  → 블릿 포맷
-
-`ctl + alt + tab`  → TAB 
-
-
-
-### FINDER
-
-`Cmd + SHIFT + G` 이동
-
-`CMD + OPT + DEL` 바로 삭제
-
-
-
-처음 작업을 시작할때 파일 제목 리스트를 생성하고 (스페이스는 _로 치환) 제목을 찾지못하면 그냥 파싱을 포기하고 그대로 출력하는것도 나쁘지 않을듯
-
-
-
-## KeyBoard
-
-`fn + arrow`  →  home up and end
-
-Global icon →  Fn
-
-## GIT
-
-커밋 메시지 수정 `git commit --amend -m "commit_message"`
-
-gc 제일 강하게 git gc —aggressive —prune=now
-
-
-
----
-
-## Reminder
-
-`CMD + ] ` → make subtask. only work list screen not work other view like schedule, today.
 
 ---
 
@@ -242,6 +200,6 @@ gc 제일 강하게 git gc —aggressive —prune=now
 
 ---
 
-## Crome
+## Chrome
 
 `shift + Scroll`-> 좌우 스크롤

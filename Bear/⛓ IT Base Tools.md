@@ -24,6 +24,12 @@
 
 ```
 
+## GIT
+
+* 커밋 메시지 수정 `git commit --amend -m "commit_message"`
+
+* gc 제일 강하게 git gc —aggressive —prune=now
+
 
 
 ## 슬로기운 Git 탐구생활
